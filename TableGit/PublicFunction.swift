@@ -16,11 +16,6 @@ func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
     // Figure out what our orientation is, and use that to form the rectangle
     var newSize: CGSize
     newSize = CGSize(width: size.width * widthRatio, height: size.height * heightRatio)
-//    if(widthRatio > heightRatio) {
-//        newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-//    } else {
-//        newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
-//    }
     
     // This is the rect that we've calculated out and this is what is actually used below
     let rect = CGRect(origin: .zero, size: newSize)
