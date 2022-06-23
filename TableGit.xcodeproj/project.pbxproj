@@ -85,9 +85,46 @@
 		0077CCDE2862C2E80079F06A /* TableGit */ = {
 			isa = PBXGroup;
 			children = (
-				0077CCDF2862C2E80079F06A /* AppDelegate.swift */,
-				0077CCE12862C2E80079F06A /* SceneDelegate.swift */,
+				007FD8DA28640169007ADA91 /* AppDelegate */,
+				007FD8D82864013E007ADA91 /* Ulities */,
+				007FD8D728640134007ADA91 /* Views */,
+				007FD8D628640128007ADA91 /* ViewControllers */,
+				007FD8D528640120007ADA91 /* Models */,
+				007FD8D428640111007ADA91 /* ViewModels */,
+				0077CCE52862C2E80079F06A /* Main.storyboard */,
+				0077CCE82862C2EA0079F06A /* Assets.xcassets */,
+				0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */,
+				0077CCED2862C2EA0079F06A /* Info.plist */,
+			);
+			path = TableGit;
+			sourceTree = "<group>";
+		};
+		007FD8D428640111007ADA91 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		007FD8D528640120007ADA91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		007FD8D628640128007ADA91 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				0077CCE32862C2E80079F06A /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		007FD8D728640134007ADA91 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				E98DB4E92863523E00D4DA51 /* FooterTableView.swift */,
 				E98DB4DF2863503600D4DA51 /* HeaderTableView.swift */,
 				E98DB4E5286351A800D4DA51 /* HeaderCollectionReusableView.swift */,
@@ -95,16 +132,27 @@
 				E98DB4E32863512E00D4DA51 /* CustomCollectionCell.swift */,
 				E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */,
 				E98DB4D728634ED100D4DA51 /* CustomCell.swift */,
-				0077CCE52862C2E80079F06A /* Main.storyboard */,
-				0077CCE82862C2EA0079F06A /* Assets.xcassets */,
-				0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */,
-				0077CCED2862C2EA0079F06A /* Info.plist */,
-				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		007FD8D82864013E007ADA91 /* Ulities */ = {
+			isa = PBXGroup;
+			children = (
+				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
 				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
-				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 			);
-			path = TableGit;
+			path = Ulities;
+			sourceTree = "<group>";
+		};
+		007FD8DA28640169007ADA91 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				0077CCDF2862C2E80079F06A /* AppDelegate.swift */,
+				0077CCE12862C2E80079F06A /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		522C42CE83074CA1B52E3A0F /* Pods */ = {
@@ -113,7 +161,6 @@
 				C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */,
 				27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
