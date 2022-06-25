@@ -13,6 +13,10 @@
 		0077CCE72862C2E80079F06A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCE52862C2E80079F06A /* Main.storyboard */; };
 		0077CCE92862C2EA0079F06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCE82862C2EA0079F06A /* Assets.xcassets */; };
 		0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */; };
+		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
+		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
+		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
+		E9101AA42866A08F00A597C9 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA32866A08F00A597C9 /* SearchViewModel.swift */; };
 		E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D728634ED100D4DA51 /* CustomCell.swift */; };
 		E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D928634F8600D4DA51 /* PublicData.swift */; };
 		E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */; };
@@ -39,6 +43,10 @@
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
+		E9101A9C28669EBF00A597C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E9101A9E28669EFE00A597C9 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		E9101AA12866A05500A597C9 /* ITuneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITuneService.swift; sourceTree = "<group>"; };
+		E9101AA32866A08F00A597C9 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = TableGit/Server/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E98DB4D728634ED100D4DA51 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		E98DB4D928634F8600D4DA51 /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
 		E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Extension.swift"; sourceTree = "<group>"; };
@@ -85,6 +93,7 @@
 		0077CCDE2862C2E80079F06A /* TableGit */ = {
 			isa = PBXGroup;
 			children = (
+				E9101AA02866A01600A597C9 /* Server */,
 				007FD8DA28640169007ADA91 /* AppDelegate */,
 				007FD8D82864013E007ADA91 /* Ulities */,
 				007FD8D728640134007ADA91 /* Views */,
@@ -102,6 +111,7 @@
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9101AA32866A08F00A597C9 /* SearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -110,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
+				E9101A9E28669EFE00A597C9 /* SearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
 				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
+				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 			);
 			path = Ulities;
 			sourceTree = "<group>";
@@ -170,6 +182,14 @@
 				361C9B9073A082976A810428 /* Pods_TableGit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9101AA02866A01600A597C9 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				E9101AA12866A05500A597C9 /* ITuneService.swift */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,11 +309,15 @@
 			files = (
 				0077CCE42862C2E80079F06A /* ViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
+				E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */,
 				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
+				E9101AA42866A08F00A597C9 /* SearchViewModel.swift in Sources */,
 				0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */,
 				E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */,
+				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
+				E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */,
 				E98DB4E02863503600D4DA51 /* HeaderTableView.swift in Sources */,
 				E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* CustomCollectionCell.swift in Sources */,
