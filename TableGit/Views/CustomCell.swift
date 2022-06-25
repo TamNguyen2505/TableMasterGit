@@ -28,6 +28,7 @@ class CustomCell: UITableViewCell {
         let label = UILabel()
         label.text = "CDB"
         label.numberOfLines = 0
+        label.textAlignment = .right
         return label
     }()
     
@@ -124,7 +125,7 @@ class CustomCell: UITableViewCell {
             make.leading.equalToSuperview().offset(20)
             
         }
-        nameLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         contentView.addSubview(messageLabel)
         messageLabel.snp.makeConstraints{ make in
@@ -134,11 +135,12 @@ class CustomCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(20)
             
         }
+        messageLabel.setContentHuggingPriority(.required, for: .horizontal)
         
         contentView.addSubview(cardImageView)
         cardImageView.snp.makeConstraints{ make in
             
-            make.top.equalTo(messageLabel.snp.bottom).offset(10)
+            make.top.equalTo(messageLabel.snp.bottom).offset(16)
             make.bottom.equalToSuperview().inset(10)
             make.height.equalTo(200).priority(.high)
             
@@ -222,11 +224,21 @@ class CustomCell: UITableViewCell {
 
     }
     
-    func setupContent(image: UIImage?, name: String, message: String) {
-        
-        self.cardImageView.image = image
+    func setupContent(name: String, message: String) {
+    
         self.nameLabel.text = name
         self.messageLabel.text = message
+        
+    }
+    
+    func setupImage(image: UIImage?) {
+        
+        guard let image = image else {return}
+        
+        DispatchQueue.main.async {
+            self.cardImageView.image = image
+        }
+        
     }
 
 }

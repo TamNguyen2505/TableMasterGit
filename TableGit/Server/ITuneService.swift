@@ -26,7 +26,7 @@ struct ITuneService {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = "https://itunes.apple.com/search?" +
-            "term=\(encodedText)&limit=200&entity=\(kind)" +
+            "term=\(encodedText)&limit=800&entity=\(kind)" +
             "&lang=\(language)&country=\(countryCode)"
         let url = URL(string: urlString)
         return url!

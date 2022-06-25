@@ -202,7 +202,7 @@ class HeaderTableView: UITableViewHeaderFooterView {
             make.top.equalTo(hStack.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(140)
+            make.height.equalTo(120)
             
         }
  

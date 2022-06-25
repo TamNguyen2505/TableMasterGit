@@ -7,19 +7,19 @@
 
 import UIKit
 
-class SearchModel {
+class SearchViewModel {
+    //MARK: Typelias
+    typealias SearchComplete = (Bool) -> Void
     
     //MARK: Properties
     var url: URL?
     private(set) var state: State = .notSearchedYet
-    
-    //MARK: Typelias
-    typealias SearchComplete = (Bool) -> Void
-    
+    var didReceiveSearchResult: SearchComplete?
     
     //MARK: API fuctions
-    func performSearch(for text: String, category: Category, completion: @escaping SearchComplete) {
+    func performSearch(for text: String, category: Category = .all) {
         
+        Loader.shared.show()
         self.state = .loading
         let url = ITuneService.iTinesUrl(searchText: text, category: Category(rawValue: category.rawValue) ?? .all)
         self.url = url
@@ -31,7 +31,7 @@ class SearchModel {
                 self.state = .notSearchedYet
                 DispatchQueue.main.async {
     
-                    completion(false)
+                    self.didReceiveSearchResult?(false)
                     
                 }
                 
@@ -46,11 +46,13 @@ class SearchModel {
                 self.state = .results(searchResults)
                 DispatchQueue.main.async {
        
-                    completion(true)
+                    self.didReceiveSearchResult?(true)
+                    
                 }
                 
             }
             
+            Loader.shared.hide()
             
         })
         

@@ -10,12 +10,23 @@ import SnapKit
 
 class ViewController: UIViewController {
     //MARK: Properties
+    private lazy var searchTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Search here ..."
+        textField.layer.cornerRadius = 5
+        textField.layer.borderColor = UIColor.systemMint.cgColor
+        textField.layer.borderWidth = 2
+        textField.delegate = self
+        return textField
+    }()
+    
     private lazy var infoTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.backgroundColor = .clear
         tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.className)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.estimatedRowHeight = 167
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 61
@@ -27,6 +38,11 @@ class ViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
+    private let searchViewModel = SearchViewModel()
+    private var searchResults = [SearchResult]()
+    private lazy var loadingQueue = OperationQueue()
+    private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
 
     //MARK: View cycle
     override func viewDidLoad() {
@@ -35,15 +51,42 @@ class ViewController: UIViewController {
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setupVM()
+        
+    }
+    
     //MARK: Helpers
     private func setupUI() {
+        
+        view.addSubview(searchTextField)
+        searchTextField.snp.makeConstraints{ make in
+            
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(50)
+            
+        }
         
         view.addSubview(infoTableView)
         infoTableView.snp.makeConstraints{ make in
             
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(searchTextField.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
+            
+        }
+        
+    }
+    
+    private func setupVM() {
+        
+        self.searchViewModel.didReceiveSearchResult = { [weak self] (success) in
+            guard success, let self = self else {return}
+            
+            self.infoTableView.reloadData()
             
         }
         
@@ -52,6 +95,7 @@ class ViewController: UIViewController {
 
 }
 
+//MARK: Table cell
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,6 +103,98 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
         
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch searchViewModel.state {
+        case .results(let list):
+            
+            return list.count
+        
+        default:
+            
+            return 1
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.className, for: indexPath) as! CustomCell
+        cell.delegate = self
+        
+        switch searchViewModel.state {
+        case .results(let list):
+            
+            let searchResult = list[indexPath.row]
+            cell.setupContent(name: searchResult.name, message: searchResult.artist)
+            
+            break
+        
+        default:
+            
+            break
+            
+        }
+    
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let cell = cell as! CustomCell
+        
+        let updateCellClosure: (UIImage?) -> () = { [unowned self] (image) in
+            
+            cell.setupImage(image: image)
+            self.loadingOperations.removeValue(forKey: indexPath)
+        }
+
+        if let dataLoader = loadingOperations[indexPath] {
+            
+            if let image = dataLoader.image {
+                
+                cell.setupImage(image: image)
+                loadingOperations.removeValue(forKey: indexPath)
+                
+            } else {
+                
+                dataLoader.loadingCompleteHandler = updateCellClosure
+                
+            }
+            
+        } else {
+            
+            if let dataLoader = loadImage(at: indexPath.row) {
+                
+                dataLoader.loadingCompleteHandler = updateCellClosure
+                loadingQueue.addOperation(dataLoader)
+                loadingOperations[indexPath] = dataLoader
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let dataLoader = loadingOperations[indexPath] else {return}
+            
+        dataLoader.cancel()
+        loadingOperations.removeValue(forKey: indexPath)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableView.automaticDimension
+        
+    }
+    
+}
+
+//MARK: Header Table View
+extension ViewController {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -72,27 +208,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return imageArray.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.className, for: indexPath) as! CustomCell
-        cell.setupContent(image: imageArray[indexPath.row], name: "NGUYEN MINH TAM", message: "Hang out anytime, anywhere ... Messenger makes it easy and fun to stay close to your favorite people. ... New! Message your Instagram friends right from Messenger.")
-        cell.delegate = self
-    
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return UITableView.automaticDimension
-        
-    }
+}
+
+//MARK: Footer Table View
+extension ViewController {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
@@ -105,6 +224,40 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UITableView.automaticDimension
         
+    }
+    
+}
+
+extension ViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+
+            if let _ = loadingOperations[indexPath] { return }
+            guard let dataLoader = loadImage(at: indexPath.row) else {return}
+                
+                loadingQueue.addOperation(dataLoader)
+                loadingOperations[indexPath] = dataLoader
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            guard let dataLoader = loadingOperations[indexPath] else {return}
+            
+            dataLoader.cancel()
+            loadingOperations.removeValue(forKey: indexPath)
+            
+        }
+    }
+    
+    func loadImage(at index: Int) -> DataLoadOperation? {
+        guard case .results(let list) = searchViewModel.state else {return .none}
+        let searchResult = list[index]
+        return DataLoadOperation(searchResult: searchResult)
     }
     
 }
@@ -134,6 +287,20 @@ extension ViewController: CustomCelllDelegate {
             cell?.resetUIForCardView()
             
         }
+        
+    }
+    
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let text = textField.text else {return false}
+        
+        searchViewModel.performSearch(for: text)
+
+        return true
         
     }
     
