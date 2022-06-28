@@ -56,6 +56,10 @@ class ViewController: UIViewController {
         
         setupVM()
         
+        let targetVC = WebViewController()
+        targetVC.modalPresentationStyle = .automatic
+        self.present(targetVC, animated: true, completion: nil)
+        
     }
     
     //MARK: Helpers
