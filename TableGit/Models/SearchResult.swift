@@ -34,9 +34,11 @@ struct SearchResult: Codable, CustomStringConvertible {
         }
         return ""
     }
+    
     var artist: String {
         return artistName ?? ""
     }
+    
     var artistName: String? = ""
     var trackName: String? = ""
     var kind: String? = ""
