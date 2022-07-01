@@ -56,10 +56,6 @@ class ViewController: UIViewController {
         
         setupVM()
         
-        let targetVC = WebViewController()
-        targetVC.modalPresentationStyle = .automatic
-        self.present(targetVC, animated: true, completion: nil)
-        
     }
     
     //MARK: Helpers
@@ -192,6 +188,31 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return UITableView.automaticDimension
+        
+    }
+    
+}
+
+extension ViewController {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch searchViewModel.state {
+        case .results(let list):
+            
+            let targetVC = WebViewController()
+            let searchResult = list[indexPath.row]
+            
+            targetVC.urlItune = searchResult.storeURL
+            self.navigationController?.pushViewController(targetVC, animated: true)
+            
+            break
+        
+        default:
+            
+            break
+            
+        }
         
     }
     
