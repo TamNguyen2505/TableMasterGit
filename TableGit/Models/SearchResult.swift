@@ -17,15 +17,19 @@ struct SearchResult: Codable, CustomStringConvertible {
     var description: String {
         return "Kind: \(CodingKeys.kind), Name: \(CodingKeys.trackName), Artist Name: \(CodingKeys.artistName)\n"
     }
+    
     var name: String {
         return trackName ?? collectionName ?? ""
     }
+    
     var storeURL: String {
         return trackViewUrl ?? collectionViewUrl ?? ""
     }
+    
     var price: Double {
         return trackPrice ?? collectionPrice ?? itemPrice ?? 0.0
     }
+    
     var genre: String {
         if let genre = itemGenre {
             return genre
@@ -34,9 +38,11 @@ struct SearchResult: Codable, CustomStringConvertible {
         }
         return ""
     }
+    
     var artist: String {
         return artistName ?? ""
     }
+    
     var artistName: String? = ""
     var trackName: String? = ""
     var kind: String? = ""
