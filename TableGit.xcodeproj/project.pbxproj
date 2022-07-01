@@ -16,6 +16,7 @@
 		0080809B286ADB5A00973384 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080809A286ADB5A00973384 /* WebViewController.swift */; };
 		0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E699286E83F400423001 /* VerticalSlider.swift */; };
 		0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E69C286E859100423001 /* UIImage + Extension.swift */; };
+		0086E6A0286EF2D900423001 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0086E69F286EF2D900423001 /* giphy.gif */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
 		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
 		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
@@ -48,6 +49,7 @@
 		0080809A286ADB5A00973384 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0086E699286E83F400423001 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		0086E69C286E859100423001 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		0086E69F286EF2D900423001 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		0077CCDE2862C2E80079F06A /* TableGit */ = {
 			isa = PBXGroup;
 			children = (
+				0086E69E286EF2B900423001 /* GIF */,
 				E9101AA02866A01600A597C9 /* Server */,
 				007FD8DA28640169007ADA91 /* AppDelegate */,
 				007FD8D82864013E007ADA91 /* Ulities */,
@@ -180,6 +183,14 @@
 				0077CCE12862C2E80079F06A /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0086E69E286EF2B900423001 /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				0086E69F286EF2D900423001 /* giphy.gif */,
+			);
+			path = GIF;
 			sourceTree = "<group>";
 		};
 		522C42CE83074CA1B52E3A0F /* Pods */ = {
@@ -269,6 +280,7 @@
 			files = (
 				0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */,
 				0077CCE92862C2EA0079F06A /* Assets.xcassets in Resources */,
+				0086E6A0286EF2D900423001 /* giphy.gif in Resources */,
 				0077CCE72862C2E80079F06A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
