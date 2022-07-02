@@ -33,7 +33,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        loadContentForWeb(url: "https://ebanking.scb.com.vn/term/URLBAOLONG.htm")
+        loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
 
     }
     

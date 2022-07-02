@@ -67,7 +67,6 @@ class VerticalSlider: UIControl {
             let offset = offsetValue(touchPoint.y)
             
             animateConstraintTop(offset)
-            layoutIfNeeded()
             
         }
         
@@ -104,7 +103,7 @@ class VerticalSlider: UIControl {
     
     private func offsetValue(_ value: CGFloat) -> CGFloat {
         
-        if value - thumbnailImageViewHeight < 0 {
+        if value <= thumbnailImageViewHeight {
             
             self.topOffsetGetter = 0
             
@@ -112,7 +111,7 @@ class VerticalSlider: UIControl {
             
         } else if value >= bounds.height - thumbnailImageViewHeight {
             
-            self.topOffsetGetter = bounds.height - thumbnailImageViewHeight
+            self.topOffsetGetter = bounds.height
             
             return bounds.height - thumbnailImageViewHeight
             
@@ -128,9 +127,11 @@ class VerticalSlider: UIControl {
     
     private func animateConstraintTop(_ value: CGFloat) {
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self = self else {return}
             
             self.topConstraint.update(offset: value)
+            self.layoutIfNeeded()
             
         }
     
