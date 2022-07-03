@@ -40,7 +40,7 @@ class WebViewController: UIViewController {
     //MARK: Actions
     @objc func handleEventFromSlider(_ sender: VerticalSlider) {
         
-        let percentage = sender.topOffsetGetter / sender.bounds.height
+        let percentage = sender.topOffsetOfThumb / (sender.bounds.height - sender.thumbnailImageViewHeight)
         let invisibleHeightContent = webView.scrollView.contentSize.height - webView.bounds.height
         let offsetY = percentage * invisibleHeightContent
         let rect = CGRect(x: 0, y: offsetY, width: webView.bounds.width, height: webView.bounds.height)
@@ -96,7 +96,7 @@ extension WebViewController: UIScrollViewDelegate {
         
         guard !self.webView.isLoading, !self.verticalSlide.isTouchInside else {return}
         
-        verticalSlide.topOffsetSetter = topOffset
+        verticalSlide.topOffsetOfThumb = topOffset
         
     }
     
