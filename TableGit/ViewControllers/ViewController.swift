@@ -233,7 +233,11 @@ extension ViewController {
 
 extension ViewController: FooterTableViewDelegate {
     
-    func didTapCancelButton(from view: FooterTableView) {}
+    func didTapCancelButton(from view: FooterTableView) {
+        
+        let targetVC = CircleGraphViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
+    }
     
     func didTapContinueButton(from view: FooterTableView) {
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FF45528729115009FDD30 /* CircleGraphViewController.swift */; };
 		0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCDF2862C2E80079F06A /* AppDelegate.swift */; };
 		0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCE12862C2E80079F06A /* SceneDelegate.swift */; };
 		0077CCE42862C2E80079F06A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCE32862C2E80079F06A /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006FF45528729115009FDD30 /* CircleGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGraphViewController.swift; sourceTree = "<group>"; };
 		0077CCDC2862C2E80079F06A /* TableGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0077CCDF2862C2E80079F06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0077CCE12862C2E80079F06A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				0077CCE32862C2E80079F06A /* ViewController.swift */,
 				0080809A286ADB5A00973384 /* WebViewController.swift */,
+				006FF45528729115009FDD30 /* CircleGraphViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */,
 				0077CCE42862C2E80079F06A /* ViewController.swift in Sources */,
 				00876D9B28728BEC00A3CCB0 /* CircleSlider.swift in Sources */,
+				006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
