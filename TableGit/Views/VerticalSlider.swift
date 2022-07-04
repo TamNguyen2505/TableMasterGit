@@ -124,13 +124,15 @@ class VerticalSlider: UIControl {
         addSubview(bottomTrackView)
         bottomTrackView.snp.makeConstraints{ make in
             
-            make.top.equalTo(thumbnailImageView.snp.centerY)
+            make.top.equalTo(thumbnailImageView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
             
         }
         bottomTrackView.layer.cornerRadius = 20
         bottomTrackView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        bringSubviewToFront(thumbnailImageView)
         
     }
     
