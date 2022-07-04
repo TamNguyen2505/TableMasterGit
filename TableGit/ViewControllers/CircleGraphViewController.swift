@@ -9,8 +9,9 @@ import UIKit
 
 class CircleGraphViewController: UIViewController {
     //MARK: Properties
-    private let circleSlider: CircleSlider = {
+    private lazy var circleSlider: CircleSlider = {
         let slider = CircleSlider()
+        slider.addTarget(self, action: #selector(handleEventFromCircleSlider(_:forEvent:)), for: .allEvents)
         return slider
     }()
     
@@ -21,6 +22,11 @@ class CircleGraphViewController: UIViewController {
         
         setupUI()
 
+    }
+    
+    //MARK: Helpers
+    @objc func handleEventFromCircleSlider(_ sender: CircleSlider, forEvent event: UIEvent) {
+                
     }
     
     //MARK: Helpers

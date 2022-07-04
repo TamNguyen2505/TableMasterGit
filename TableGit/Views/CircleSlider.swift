@@ -9,7 +9,7 @@ import UIKit
 
 class CircleSlider: UIControl {
     //MARK: Properties
-    private let thumbnailImageView: UIImageView = {
+    private lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "component1513")
         iv.contentMode = .center
@@ -21,6 +21,8 @@ class CircleSlider: UIControl {
     //MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupUI()
         
     }
     
@@ -66,6 +68,9 @@ class CircleSlider: UIControl {
     
     //MARK: Helpers
     private func setupUI() {
+            
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.lightGray.cgColor
         
         addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints{ make in
@@ -75,6 +80,9 @@ class CircleSlider: UIControl {
             make.width.height.equalTo(40)
             
         }
+        thumbnailImageView.layer.cornerRadius = 20
+        
+        
         
     }
 
