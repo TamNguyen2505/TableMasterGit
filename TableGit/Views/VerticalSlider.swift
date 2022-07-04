@@ -17,6 +17,12 @@ class VerticalSlider: UIControl {
         return iv
     }()
     
+    private let bottomTrackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.6, alpha: 0.4)
+        return view
+    }()
+    
     private var topConstraint: Constraint!
     private var previousPoint = CGPoint()
     
@@ -99,6 +105,17 @@ class VerticalSlider: UIControl {
             
         }
         thumbnailImageView.layer.cornerRadius = 20
+        
+        addSubview(bottomTrackView)
+        bottomTrackView.snp.makeConstraints{ make in
+            
+            make.top.equalTo(thumbnailImageView.snp.centerY)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            
+        }
+        bottomTrackView.layer.cornerRadius = 20
+        bottomTrackView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
     }
     
