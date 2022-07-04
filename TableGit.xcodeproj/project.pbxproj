@@ -33,6 +33,7 @@
 		E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E92863523E00D4DA51 /* FooterTableView.swift */; };
 		E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */; };
 		E9B8AF2C286708C600A8242B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AF2B286708C600A8242B /* Loader.swift */; };
+		E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */; };
 		FB6B16453A127E07448972E9 /* Pods_TableGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C9B9073A082976A810428 /* Pods_TableGit.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		E98DB4E92863523E00D4DA51 /* FooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		E9B8AF2B286708C600A8242B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
 				0086E69C286E859100423001 /* UIImage + Extension.swift */,
 				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
+				E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */,
 			);
@@ -342,6 +345,7 @@
 				E98DB4E42863512E00D4DA51 /* CustomCollectionCell.swift in Sources */,
 				E98DB4E2286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,
+				E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */,
 				E98DB4E8286351D300D4DA51 /* FooterCollectionReusableView.swift in Sources */,
 				0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,
