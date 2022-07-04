@@ -35,6 +35,10 @@ class CustomCell: UITableViewCell {
     private let cardImageView: UIImageView = {
         let iv = UIImageView()
         iv.isUserInteractionEnabled = true
+        
+        let gifImage = UIImage.gifImageWithName("giphy")
+        iv.image = gifImage
+        
         return iv
     }()
     
