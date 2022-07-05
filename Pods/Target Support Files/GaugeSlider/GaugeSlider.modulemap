@@ -1,0 +1,6 @@
+framework module GaugeSlider {
+  umbrella header "GaugeSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,16 +1,20 @@
 PODS:
+  - GaugeSlider (1.2.1)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - GaugeSlider (~> 1.2.1)
   - SnapKit (~> 5.6)
 
 SPEC REPOS:
   trunk:
+    - GaugeSlider
     - SnapKit
 
 SPEC CHECKSUMS:
+  GaugeSlider: 0a93d2c07989880744f3911a94011a611b40e943
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: af242001aea37a29c92e932a9c44b46bbb5090c7
+PODFILE CHECKSUM: 3f2523fd73ef45b1bff553b0cb0e7151e0e5bfb6
 
 COCOAPODS: 1.11.2
