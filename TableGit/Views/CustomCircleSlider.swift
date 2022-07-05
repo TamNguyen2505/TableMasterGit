@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CircleSlider: UIControl {
+class CustomCircleSlider: UIControl {
     //MARK: Properties
     private lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()

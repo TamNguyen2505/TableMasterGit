@@ -18,7 +18,7 @@
 		0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E699286E83F400423001 /* VerticalSlider.swift */; };
 		0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E69C286E859100423001 /* UIImage + Extension.swift */; };
 		0086E6A0286EF2D900423001 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0086E69F286EF2D900423001 /* giphy.gif */; };
-		00876D9B28728BEC00A3CCB0 /* CircleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00876D9A28728BEC00A3CCB0 /* CircleSlider.swift */; };
+		00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
 		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
 		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
@@ -54,7 +54,7 @@
 		0086E699286E83F400423001 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		0086E69C286E859100423001 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		0086E69F286EF2D900423001 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
-		00876D9A28728BEC00A3CCB0 /* CircleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSlider.swift; sourceTree = "<group>"; };
+		00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleSlider.swift; sourceTree = "<group>"; };
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				E98DB4D728634ED100D4DA51 /* CustomCell.swift */,
 				E9B8AF2B286708C600A8242B /* Loader.swift */,
 				0086E699286E83F400423001 /* VerticalSlider.swift */,
-				00876D9A28728BEC00A3CCB0 /* CircleSlider.swift */,
+				00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 			files = (
 				E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */,
 				0077CCE42862C2E80079F06A /* ViewController.swift in Sources */,
-				00876D9B28728BEC00A3CCB0 /* CircleSlider.swift in Sources */,
+				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
 				006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */,
