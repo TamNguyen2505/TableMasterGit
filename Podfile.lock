@@ -1,16 +1,20 @@
 PODS:
+  - CircleSlider (0.6.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - CircleSlider (~> 0.6)
   - SnapKit (~> 5.6)
 
 SPEC REPOS:
   trunk:
+    - CircleSlider
     - SnapKit
 
 SPEC CHECKSUMS:
+  CircleSlider: e5ebeeda1ae15637fc992756adecbed115292649
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: af242001aea37a29c92e932a9c44b46bbb5090c7
+PODFILE CHECKSUM: 494f9eec6eb548bed2fe3c2e8f19afbc36539998
 
 COCOAPODS: 1.11.2
