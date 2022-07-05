@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol FooterTableViewDelegate: AnyObject {
+    
+    func didTapCancelButton(from view: FooterTableView)
+    func didTapContinueButton(from view: FooterTableView)
+    
+}
+
 class FooterTableView: UITableViewHeaderFooterView {
     //MARK: Properties
     private lazy var cancelButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("CHART", for: .normal)
-        btn.backgroundColor = .green
+        btn.backgroundColor = UIColor(white: 0.6, alpha: 0.8)
         btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(handleEventFromCancelButton(_:)), for: .touchUpInside)
         return btn
@@ -21,12 +28,14 @@ class FooterTableView: UITableViewHeaderFooterView {
     private lazy var continueButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("CARD", for: .normal)
-        btn.backgroundColor = .green
+        btn.backgroundColor = UIColor(white: 0.6, alpha: 0.8)
         btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(handleEventFromContinueButton(_:)), for: .touchUpInside)
         return btn
     }()
 
+    weak var delegate: FooterTableViewDelegate?
+    
     //MARK: View cycle
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -43,12 +52,14 @@ class FooterTableView: UITableViewHeaderFooterView {
     @objc func handleEventFromCancelButton(_ sender: UIButton) {
         
         sender.backgroundColor = UIColor.blue
+        delegate?.didTapCancelButton(from: self)
         
     }
     
     @objc func handleEventFromContinueButton(_ sender: UIButton) {
         
         sender.backgroundColor = UIColor.blue
+        delegate?.didTapContinueButton(from: self)
         
     }
     
