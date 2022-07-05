@@ -193,31 +193,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension ViewController {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch searchViewModel.state {
-        case .results(let list):
-            
-            let targetVC = WebViewController()
-            let searchResult = list[indexPath.row]
-            
-            targetVC.urlItune = searchResult.storeURL
-            self.navigationController?.pushViewController(targetVC, animated: true)
-            
-            break
-        
-        default:
-            
-            break
-            
-        }
-        
-    }
-    
-}
-
 //MARK: Header Table View
 extension ViewController {
     
@@ -241,6 +216,9 @@ extension ViewController {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterTableView.className) as! FooterTableView
+        
+        view.delegate = self
+        
         return view
         
     }
@@ -248,6 +226,23 @@ extension ViewController {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         return UITableView.automaticDimension
+        
+    }
+    
+}
+
+extension ViewController: FooterTableViewDelegate {
+    
+    func didTapCancelButton(from view: FooterTableView) {
+        
+        let targetVC = CircleGraphViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
+    }
+    
+    func didTapContinueButton(from view: FooterTableView) {
+        
+        let targetVC = WebViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
         
     }
     
