@@ -98,7 +98,7 @@ class CustomCircleSlider: UIControl {
     private func getPointDistanceFromStart(to point: CGPoint) -> CGFloat {
         
         var angle = radiansToDegrees(atan2(point.x - bounds.midX, point.y - bounds.midY))
-        angle = (-angle.truncatingRemainder(dividingBy: 360.0) + 360).truncatingRemainder(dividingBy: 360)
+        angle = (-angle.truncatingRemainder(dividingBy: 360.0) + 360 + 90).truncatingRemainder(dividingBy: 360)
                 
         return angle
     }
