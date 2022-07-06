@@ -56,13 +56,12 @@ class CustomCircleSlider: UIControl {
         let touchPoint = touch.location(in: self)
         previousPoint = touchPoint
         
+        print(previousPoint)
+        
         if bounds.contains(previousPoint) {
-
-//            let coordination = calculateOffset(x: touchPoint.x, y: touchPoint.y)
-//            reconstraintThumb(x: coordination.offsetX, y: coordination.offsetY)
             
-            let radiant = calculateRadiants(x: touchPoint.x, y: touchPoint.y)
-            transform = CGAffineTransform(rotationAngle: radiant)
+            let origion = calculateNewXandNewY(from: thumbnailImageView.frame.origin, to: touchPoint)
+            thumbnailImageView.frame.origin = origion
             
         }
         
@@ -86,78 +85,46 @@ class CustomCircleSlider: UIControl {
         
         addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints{ make in
-            
-            centerXOfThumb = make.centerX.equalToSuperview().constraint
-            centerYOfThumb = make.centerY.equalToSuperview().offset(bounds.height / 2).constraint
+
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(self.snp.bottom)
             make.width.height.equalTo(40)
-            
+
         }
         thumbnailImageView.layer.cornerRadius = 20
         
     }
     
-    private func calculateRadiants(x: CGFloat, y: CGFloat) -> CGFloat {
+    private func getPointDistanceFromStart(to point: CGPoint) -> CGFloat {
         
-        let deltaX = x - bounds.midX
-        let deltaY = y - bounds.midY
-        
-        let degree = x / bounds.width * 360
-        
-        let radiant = degree * .pi / 180
-        
-        return radiant
+        var angle = radiansToDegrees(atan2(point.x - bounds.midX, point.y - bounds.midY))
+        angle = (-angle.truncatingRemainder(dividingBy: 360.0) + 360).truncatingRemainder(dividingBy: 360)
+                
+        return angle
     }
     
-    private func calculateOffset(x: CGFloat, y: CGFloat) -> (offsetX: CGFloat?, offsetY: CGFloat?) {
-    
-        let deltaX = x - bounds.midX
-        let deltaY = y - bounds.midY
+    private func radiansToDegrees(_ angle: CGFloat) -> CGFloat {
         
-        guard abs(deltaX) > thumbnailImageView.bounds.height / 2 else {return (nil, nil)}
-        
-        let r = bounds.height / 2
-        
-        let cosAlpha = deltaX / r
-        let sinAlpha = sqrt(1 - pow(cosAlpha, 2))
-        
-        var offsetX = abs(cosAlpha * r)
-        var offsetY = abs(sinAlpha * r)
-        
-        if deltaX < 0, deltaY > 0 {
-            
-            offsetX = -offsetX
-            
-        } else if deltaX <= 0, deltaY >= 0 {
-            
-            offsetX = -offsetX
-            offsetY = -offsetY
-            
-        } else if deltaX >= 0, deltaY <= 0 {
-            
-            offsetY = -offsetY
-            
-        } else {
-            
-            
-            
-        }
-        
-        return (offsetX, offsetY)
+        return angle / .pi * 180.0
         
     }
     
-    private func reconstraintThumb(x: CGFloat?, y: CGFloat?) {
+    private func calculateNewXandNewY(from oldPoint: CGPoint, to point: CGPoint) -> CGPoint {
         
-        guard let x = x, let y = y else {return}
+        let spinDegree = getPointDistanceFromStart(to: point)
         
-        thumbnailImageView.snp.remakeConstraints{ make in
-            
-            make.centerX.equalToSuperview().offset(x)
-            make.centerY.equalToSuperview().offset(y)
-            make.width.height.equalTo(40)
-            
-        }
+        let sinAplha = sin(spinDegree * .pi / 180)
+        let cosAlpha = cos(spinDegree * .pi / 180)
         
-    }
+        let radius = bounds.width / 2
+        
+        let newX = radius * cosAlpha + radius - thumbnailImageView.bounds.width / 2
+        let newY = radius * sinAplha + radius - thumbnailImageView.bounds.height / 2
 
+        let point = CGPoint(x: newX, y: newY)
+            
+        return point
+        
+    }
+    
 }

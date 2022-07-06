@@ -38,7 +38,7 @@ class CircleGraphViewController: UIViewController {
                 
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
                 make.centerX.equalToSuperview()
-                make.width.height.equalTo(200)
+                make.width.height.equalTo(300)
                 
             }
             
