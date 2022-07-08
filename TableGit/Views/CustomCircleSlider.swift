@@ -10,21 +10,45 @@ import SnapKit
 
 class CustomCircleSlider: UIControl {
     //MARK: Properties
-    private lazy var thumbnailImageView: UIImageView = {
+    private let pinView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private let thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "component1513")
+        iv.image = UIImage(named: "component1461")
         iv.contentMode = .center
         return iv
     }()
     
-    private var previousPoint = CGPoint()
+    private lazy var gradientLayer: CAGradientLayer = {
+        let startColor: UIColor = #colorLiteral(red: 0.3003244996, green: 0.9285392165, blue: 0.957008183, alpha: 0.2)
+        let endColor: UIColor = #colorLiteral(red: 0.01771551371, green: 0.2268912196, blue: 0.9867611527, alpha: 0.3)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.type = .conic
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
+        
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [startColor, endColor].map{ $0.cgColor}
+        
+        return gradientLayer
+    }()
     
-    private var centerXOfThumb: Constraint!
-    private var centerYOfThumb: Constraint!
+    private var previousPoint = CGPoint()
+    private var angle: CGFloat?
+    private var startAngle: CGFloat = 0
+    private let lineWidth: CGFloat = 40
 
     //MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupUI()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +58,16 @@ class CustomCircleSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        setupUI()
+        let midPointOfThumb = CGPoint(x: thumbnailImageView.frame.midX, y: thumbnailImageView.frame.midY)
+        
+        startAngle = getPointDistanceFromStart(to: midPointOfThumb)
+        
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        createGradientLayer()
         
     }
     
@@ -44,7 +77,12 @@ class CustomCircleSlider: UIControl {
         previousPoint = touch.location(in: self)
         
         let isTouchingImageView = thumbnailImageView.frame.contains(previousPoint)
-        thumbnailImageView.backgroundColor = #colorLiteral(red: 0.06444338986, green: 0.631372549, blue: 0.5324723758, alpha: 0.4)
+        
+        if isTouchingImageView {
+            
+            thumbnailImageView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 0.5)
+            
+        }
                 
         return isTouchingImageView
         
@@ -55,13 +93,14 @@ class CustomCircleSlider: UIControl {
         
         let touchPoint = touch.location(in: self)
         previousPoint = touchPoint
-        
-        print(previousPoint)
-        
+                
         if bounds.contains(previousPoint) {
             
-            let origion = calculateNewXandNewY(from: thumbnailImageView.frame.origin, to: touchPoint)
+            let origion = calculateNewXandNewY(to: touchPoint)
             thumbnailImageView.frame.origin = origion
+            
+            self.angle = getPointDistanceFromStart(to: touchPoint)
+            setNeedsDisplay()
             
         }
         
@@ -78,20 +117,24 @@ class CustomCircleSlider: UIControl {
     
     //MARK: Helpers
     private func setupUI() {
+        
+        addSubview(pinView)
+        pinView.snp.makeConstraints{ make in
             
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.cornerRadius = bounds.width / 2
+            make.edges.equalToSuperview().inset(lineWidth/2)
+            
+        }
         
         addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints{ make in
 
             make.centerX.equalToSuperview()
-            make.centerY.equalTo(self.snp.bottom)
+            make.centerY.equalTo(pinView.snp.top)
             make.width.height.equalTo(40)
 
         }
         thumbnailImageView.layer.cornerRadius = 20
+        pinView.isHidden = true
         
     }
     
@@ -99,7 +142,7 @@ class CustomCircleSlider: UIControl {
         
         var angle = radiansToDegrees(atan2(point.x - bounds.midX, point.y - bounds.midY))
         angle = (-angle.truncatingRemainder(dividingBy: 360.0) + 360 + 90).truncatingRemainder(dividingBy: 360)
-                
+        
         return angle
     }
     
@@ -109,21 +152,40 @@ class CustomCircleSlider: UIControl {
         
     }
     
-    private func calculateNewXandNewY(from oldPoint: CGPoint, to point: CGPoint) -> CGPoint {
+    private func calculateNewXandNewY(to point: CGPoint) -> CGPoint {
         
         let spinDegree = getPointDistanceFromStart(to: point)
         
         let sinAplha = sin(spinDegree * .pi / 180)
         let cosAlpha = cos(spinDegree * .pi / 180)
         
-        let radius = bounds.width / 2
+        let innerRadius = pinView.bounds.width / 2
+        let outerRadius = bounds.width / 2
         
-        let newX = radius * cosAlpha + radius - thumbnailImageView.bounds.width / 2
-        let newY = radius * sinAplha + radius - thumbnailImageView.bounds.height / 2
+        let newX = innerRadius * cosAlpha + outerRadius - thumbnailImageView.bounds.width / 2
+        let newY = innerRadius * sinAplha + outerRadius - thumbnailImageView.bounds.height / 2
 
         let point = CGPoint(x: newX, y: newY)
             
         return point
+        
+    }
+    
+    private func createGradientLayer() {
+                
+        guard let angle = angle else {return}
+                
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        let radius = (bounds.width - lineWidth) / 2
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle * .pi / 180, endAngle: angle * .pi / 180, clockwise: true)
+        
+        let mask = CAShapeLayer()
+        mask.fillColor = UIColor.clear.cgColor
+        mask.strokeColor = UIColor.white.cgColor
+        mask.lineWidth = lineWidth
+        mask.path = path.cgPath
+        gradientLayer.mask = mask
+        layer.addSublayer(gradientLayer)
         
     }
     
