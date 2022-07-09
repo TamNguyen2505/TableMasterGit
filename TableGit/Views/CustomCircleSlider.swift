@@ -16,6 +16,15 @@ class CustomCircleSlider: UIControl {
         return view
     }()
     
+    private lazy var playOrPauseButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "icons8-circled-play-96"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(handleEventFromPlayOrPauseButton(_:)), for: .touchDown)
+        return button
+    }()
+    
     private let thumbnailImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "component1461")
@@ -26,11 +35,9 @@ class CustomCircleSlider: UIControl {
     private lazy var gradientLayer: CAGradientLayer = {
         let startColor: UIColor = #colorLiteral(red: 0.3003244996, green: 0.9285392165, blue: 0.957008183, alpha: 0.2)
         let endColor: UIColor = #colorLiteral(red: 0.01771551371, green: 0.2268912196, blue: 0.9867611527, alpha: 0.3)
-        
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.type = .conic
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
         
         gradientLayer.frame = bounds
         gradientLayer.colors = [startColor, endColor].map{ $0.cgColor}
@@ -38,10 +45,12 @@ class CustomCircleSlider: UIControl {
         return gradientLayer
     }()
     
+    private var startPoint: CGPoint = .zero
     private var previousPoint = CGPoint()
     private var angle: CGFloat?
     private var startAngle: CGFloat = 0
     private let lineWidth: CGFloat = 40
+    private var isPlayed: Bool = true
 
     //MARK: Init
     override init(frame: CGRect) {
@@ -58,9 +67,9 @@ class CustomCircleSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let midPointOfThumb = CGPoint(x: thumbnailImageView.frame.midX, y: thumbnailImageView.frame.midY)
+        startPoint = CGPoint(x: thumbnailImageView.frame.midX, y: thumbnailImageView.frame.midY)
         
-        startAngle = getPointDistanceFromStart(to: midPointOfThumb)
+        startAngle = getDegree(to: startPoint)
         
     }
     
@@ -96,10 +105,12 @@ class CustomCircleSlider: UIControl {
                 
         if bounds.contains(previousPoint) {
             
-            let origion = calculateNewXandNewY(to: touchPoint)
+            let angle = getDegree(to: touchPoint)
+            
+            let origion = calculateNewXandNewY(with: angle)
             thumbnailImageView.frame.origin = origion
             
-            self.angle = getPointDistanceFromStart(to: touchPoint)
+            self.angle = angle
             setNeedsDisplay()
             
         }
@@ -112,6 +123,23 @@ class CustomCircleSlider: UIControl {
         super.endTracking(touch, with: event)
                 
         thumbnailImageView.backgroundColor = nil
+        
+    }
+    
+    //MARK: Actions
+    @objc func handleEventFromPlayOrPauseButton(_ sender: UIButton) {
+        
+        isPlayed.toggle()
+        
+        if isPlayed {
+            
+            playOrPauseButton.setImage(UIImage(named: "icons8-circled-play-96"), for: .normal)
+            
+        } else {
+            
+            playOrPauseButton.setImage(UIImage(named: "icons8-pause-64"), for: .normal)
+
+        }
         
     }
     
@@ -129,16 +157,24 @@ class CustomCircleSlider: UIControl {
         thumbnailImageView.snp.makeConstraints{ make in
 
             make.centerX.equalToSuperview()
-            make.centerY.equalTo(pinView.snp.top)
+            make.centerY.equalTo(pinView.snp.bottom)
             make.width.height.equalTo(40)
 
         }
+        
+        addSubview(playOrPauseButton)
+        playOrPauseButton.snp.makeConstraints{ make in
+            
+            make.edges.equalToSuperview().inset(lineWidth * 2)
+            
+        }
+        
         thumbnailImageView.layer.cornerRadius = 20
         pinView.isHidden = true
         
     }
     
-    private func getPointDistanceFromStart(to point: CGPoint) -> CGFloat {
+    private func getDegree(to point: CGPoint) -> CGFloat {
         
         var angle = radiansToDegrees(atan2(point.x - bounds.midX, point.y - bounds.midY))
         angle = (-angle.truncatingRemainder(dividingBy: 360.0) + 360 + 90).truncatingRemainder(dividingBy: 360)
@@ -152,10 +188,8 @@ class CustomCircleSlider: UIControl {
         
     }
     
-    private func calculateNewXandNewY(to point: CGPoint) -> CGPoint {
-        
-        let spinDegree = getPointDistanceFromStart(to: point)
-        
+    private func calculateNewXandNewY(with spinDegree: CGFloat) -> CGPoint {
+                
         let sinAplha = sin(spinDegree * .pi / 180)
         let cosAlpha = cos(spinDegree * .pi / 180)
         
