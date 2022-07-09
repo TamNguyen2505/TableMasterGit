@@ -6,6 +6,7 @@ target 'TableGit' do
   use_frameworks!
   pod 'SnapKit', '~> 5.6'
   pod 'GaugeSlider', '~> 1.2.1'
+  pod ‘youtube-ios-player-helper’, ‘~> 0.1’
 
   # Pods for TableGit
 

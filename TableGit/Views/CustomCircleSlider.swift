@@ -47,10 +47,17 @@ class CustomCircleSlider: UIControl {
     
     private var startPoint: CGPoint = .zero
     private var previousPoint = CGPoint()
-    private var angle: CGFloat?
+    var angle: CGFloat?
     private var startAngle: CGFloat = 0
     private let lineWidth: CGFloat = 40
-    private var isPlayed: Bool = true
+    private var isPlayed: Bool = false
+    
+    var handleEventOfDidTapButton: ((Bool) -> Void)?
+    var setSliderFromOutside: CGFloat = 0 {
+        didSet{
+            moveSlider(outsideSet: setSliderFromOutside)
+        }
+    }
 
     //MARK: Init
     override init(frame: CGRect) {
@@ -105,13 +112,7 @@ class CustomCircleSlider: UIControl {
                 
         if bounds.contains(previousPoint) {
             
-            let angle = getDegree(to: touchPoint)
-            
-            let origion = calculateNewXandNewY(with: angle)
-            thumbnailImageView.frame.origin = origion
-            
-            self.angle = angle
-            setNeedsDisplay()
+            moveSlider(touchPoint: touchPoint)
             
         }
         
@@ -133,13 +134,15 @@ class CustomCircleSlider: UIControl {
         
         if isPlayed {
             
-            playOrPauseButton.setImage(UIImage(named: "icons8-circled-play-96"), for: .normal)
+            playOrPauseButton.setImage(UIImage(named: "icons8-pause-64"), for: .normal)
             
         } else {
             
-            playOrPauseButton.setImage(UIImage(named: "icons8-pause-64"), for: .normal)
-
+            playOrPauseButton.setImage(UIImage(named: "icons8-circled-play-96"), for: .normal)
+            
         }
+        
+        handleEventOfDidTapButton?(isPlayed)
         
     }
     
@@ -220,6 +223,32 @@ class CustomCircleSlider: UIControl {
         mask.path = path.cgPath
         gradientLayer.mask = mask
         layer.addSublayer(gradientLayer)
+        
+    }
+    
+    private func moveSlider(touchPoint: CGPoint = .zero, outsideSet ratio: CGFloat? = nil) {
+        
+        if let ratio = ratio {
+            
+            let angle = ratio * 360 + startAngle
+                        
+            let origion = calculateNewXandNewY(with: angle)
+            thumbnailImageView.frame.origin = origion
+            
+            self.angle = angle
+            setNeedsDisplay()
+            
+        } else {
+            
+            let angle = getDegree(to: touchPoint)
+            
+            let origion = calculateNewXandNewY(with: angle)
+            thumbnailImageView.frame.origin = origion
+            
+            self.angle = angle
+            setNeedsDisplay()
+            
+        }
         
     }
     
