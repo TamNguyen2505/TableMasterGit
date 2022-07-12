@@ -90,6 +90,9 @@ class ViewController: UIViewController {
             
         }
         
+        let vm = FDAViewModel()
+        vm.fetchAPI()
+        
     }
 
 

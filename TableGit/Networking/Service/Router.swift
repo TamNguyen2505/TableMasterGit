@@ -16,6 +16,7 @@ protocol NetworkRouter: AnyObject {
 }
 
 class Router<EndPoint: EndPointType>: NetworkRouter {
+    
     private var task: URLSessionTask?
     
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
@@ -36,11 +37,22 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         self.task?.cancel()
     }
     
+    public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) throws -> D {
+
+        do {
+            
+            return try decoder.decode(type, from: data)
+            
+        } catch(_) {
+            
+            throw NetworkError.encodingFailed
+            
+        }
+    }
+    
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
         
-        var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
-                                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-                                 timeoutInterval: 10.0)
+        var request = URLRequest(url: route.baseURL)
         
         request.httpMethod = route.httpMethod.rawValue
         do {

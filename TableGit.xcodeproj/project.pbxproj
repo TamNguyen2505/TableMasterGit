@@ -28,6 +28,10 @@
 		00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF1287D0C450058EA96 /* NetworkError.swift */; };
 		00B1CDF4287D0F110058EA96 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF3287D0F110058EA96 /* Router.swift */; };
 		00B1CDF7287D0F610058EA96 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */; };
+		00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */; };
+		00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDFA287D17F90058EA96 /* NetworkManager.swift */; };
+		00B1CDFD287D2CBE0058EA96 /* FDAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDFC287D2CBE0058EA96 /* FDAModel.swift */; };
+		00B1CDFF287D2D800058EA96 /* FDAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDFE287D2D800058EA96 /* FDAViewModel.swift */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
 		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
 		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
@@ -73,6 +77,10 @@
 		00B1CDF1287D0C450058EA96 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		00B1CDF3287D0F110058EA96 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEnpoint.swift; sourceTree = "<group>"; };
+		00B1CDFA287D17F90058EA96 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		00B1CDFC287D2CBE0058EA96 /* FDAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDAModel.swift; sourceTree = "<group>"; };
+		00B1CDFE287D2D800058EA96 /* FDAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDAViewModel.swift; sourceTree = "<group>"; };
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E9101AA32866A08F00A597C9 /* SearchViewModel.swift */,
+				00B1CDFE287D2D800058EA96 /* FDAViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -159,6 +168,7 @@
 			children = (
 				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
 				E9101A9E28669EFE00A597C9 /* SearchResult.swift */,
+				00B1CDFC287D2CBE0058EA96 /* FDAModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,6 +268,7 @@
 		00B1CDE3287D084D0058EA96 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				00B1CDFA287D17F90058EA96 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -265,6 +276,7 @@
 		00B1CDE4287D085C0058EA96 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
+				00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -418,6 +430,7 @@
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
 				E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */,
+				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
 				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
@@ -428,6 +441,7 @@
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				00B1CDEC287D0ACE0058EA96 /* ParameterEncoding.swift in Sources */,
 				0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */,
+				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
 				E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
@@ -435,6 +449,7 @@
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
 				E98DB4E02863503600D4DA51 /* HeaderTableView.swift in Sources */,
 				E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */,
+				00B1CDFD287D2CBE0058EA96 /* FDAModel.swift in Sources */,
 				0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */,
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* CustomCollectionCell.swift in Sources */,
@@ -445,6 +460,7 @@
 				E98DB4E8286351D300D4DA51 /* FooterCollectionReusableView.swift in Sources */,
 				0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,
+				00B1CDFF287D2D800058EA96 /* FDAViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
