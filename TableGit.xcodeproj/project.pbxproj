@@ -30,6 +30,8 @@
 		00B1CDF7287D0F610058EA96 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */; };
 		00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */; };
 		00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDFA287D17F90058EA96 /* NetworkManager.swift */; };
+		00B1CE01287D61F40058EA96 /* ArtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CE00287D61F40058EA96 /* ArtViewModel.swift */; };
+		00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CE02287D62EC0058EA96 /* ArtModel.swift */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
 		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
 		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
@@ -77,6 +79,8 @@
 		00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEnpoint.swift; sourceTree = "<group>"; };
 		00B1CDFA287D17F90058EA96 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		00B1CE00287D61F40058EA96 /* ArtViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtViewModel.swift; sourceTree = "<group>"; };
+		00B1CE02287D62EC0058EA96 /* ArtModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtModel.swift; sourceTree = "<group>"; };
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				E9101AA32866A08F00A597C9 /* SearchViewModel.swift */,
+				00B1CE00287D61F40058EA96 /* ArtViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			children = (
 				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
 				E9101A9E28669EFE00A597C9 /* SearchResult.swift */,
+				00B1CE02287D62EC0058EA96 /* ArtModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -422,6 +428,7 @@
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				00B1CDF4287D0F110058EA96 /* Router.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
+				00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
 				E9101AA42866A08F00A597C9 /* SearchViewModel.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
@@ -430,6 +437,7 @@
 				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
 				E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
+				00B1CE01287D61F40058EA96 /* ArtViewModel.swift in Sources */,
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
 				E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */,
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,

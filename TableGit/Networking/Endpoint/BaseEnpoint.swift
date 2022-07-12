@@ -10,6 +10,7 @@ import Foundation
 enum BaseEnpoint {
     
     case getFDAInformation
+    case getArt(parameters: Parameters)
     
 }
 
@@ -21,6 +22,8 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return URL(string: "https://api.fda.gov/drug/label.json")!
+        case .getArt:
+            return URL(string: "https://api.artic.edu/api/v1/artworks")!
         }
         
     }
@@ -30,6 +33,8 @@ extension BaseEnpoint: EndPointType {
         switch self {
             
         case .getFDAInformation:
+            return ""
+        case .getArt:
             return ""
         }
         
@@ -41,6 +46,8 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return .get
+        case .getArt:
+            return .get
         }
     }
     
@@ -50,6 +57,8 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlAndJsonEncoding, urlParameters: nil)
+        case let .getArt(parameters):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
         }
         
     }
@@ -60,6 +69,9 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return [:]
+        case .getArt:
+            return [:]
+            
         }
         
     }
