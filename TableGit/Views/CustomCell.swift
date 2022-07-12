@@ -137,6 +137,7 @@ class CustomCell: UITableViewCell {
             make.firstBaseline.equalTo(nameLabel.snp.firstBaseline)
             make.leading.equalTo(nameLabel.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(20)
+            make.width.greaterThanOrEqualTo(50)
             
         }
         messageLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -144,7 +145,7 @@ class CustomCell: UITableViewCell {
         contentView.addSubview(cardImageView)
         cardImageView.snp.makeConstraints{ make in
             
-            make.top.equalTo(messageLabel.snp.bottom).offset(16)
+            make.top.equalTo(nameLabel.snp.bottom).offset(16)
             make.bottom.equalToSuperview().inset(10)
             make.height.equalTo(200).priority(.high)
             

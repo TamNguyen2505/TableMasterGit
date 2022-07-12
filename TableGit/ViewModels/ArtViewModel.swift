@@ -14,7 +14,7 @@ class ArtViewModel {
     
     func fetchAPI() {
         
-        let paramters = ["page": 4, "limit": 100]
+        let paramters = ["page": 3, "limit": 100]
         
         router.request(.getArt(parameters: paramters)){ data,response,error in
             
