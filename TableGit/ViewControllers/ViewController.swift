@@ -89,9 +89,7 @@ class ViewController: UIViewController {
             self.infoTableView.reloadData()
             
         }
-        
-        let vm = FDAViewModel()
-        vm.fetchAPI()
+
         
     }
 
