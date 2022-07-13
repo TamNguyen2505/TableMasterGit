@@ -8,12 +8,11 @@
 import Foundation
 
 class ArtViewModel {
-    
-    let router = Router<BaseEnpoint>()
+    //MARK: Properties
     let networkManager = NetworkManager()
-    var didGetArtData: ((ArtModel) -> Void)?
     var artData: ArtModel? = nil
     
+    //MARK: Features
     func fetchAPI() async throws {
         
         let paramters = ["page": 2, "limit": 100]
