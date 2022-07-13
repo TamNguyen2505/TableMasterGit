@@ -6,38 +6,64 @@
 //
 
 import Foundation
+import UIKit
 
-class NetworkLogger {
+struct NetworkLogger: CustomDebugStringConvertible {
+    //MARK: Properties
+    public let urlRequest: URLRequest?
+    public let data: Data?
+    public let httpURLResponse: HTTPURLResponse?
     
-    static func log(request: URLRequest) {
+    public var debugDescription: String {
         
-        print("\n - - - - - - - - - - OUTGOING - - - - - - - - - - \n")
-        defer { print("\n - - - - - - - - - -  END - - - - - - - - - - \n") }
+        return description
         
-        let urlAsString = request.url?.absoluteString ?? ""
-        let urlComponents = NSURLComponents(string: urlAsString)
+    }
+
+    public var prettyJSONString: NSString? {
         
-        let method = request.httpMethod != nil ? "\(request.httpMethod ?? "")" : ""
-        let path = "\(urlComponents?.path ?? "")"
-        let query = "\(urlComponents?.query ?? "")"
-        let host = "\(urlComponents?.host ?? "")"
+        return data?.prettyJSONString
         
-        var logOutput = """
-                        \(urlAsString) \n\n
-                        \(method) \(path)?\(query) HTTP/1.1 \n
-                        HOST: \(host)\n
-                        """
-        for (key,value) in request.allHTTPHeaderFields ?? [:] {
-            logOutput += "\(key): \(value) \n"
-        }
-        if let body = request.httpBody {
-            logOutput += "\n \(NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? "")"
-        }
+    }
+
+    public var json: Any? {
         
-        print(logOutput)
+        return data?.json
+        
     }
     
-    static func log(response: URLResponse) {}
+    public var description: String {
+        return """
+        ====================================================================================================================
+        URL: \(urlRequest?.url?.absoluteString ?? "nil")
+        Status Code: \(httpURLResponse?.statusCode ?? -999)
+        Method: \(urlRequest?.httpMethod ?? "nil")
+        Header Request: \(String(data: try! JSONSerialization.data(withJSONObject: urlRequest?.allHTTPHeaderFields ?? [:], options: .prettyPrinted), encoding: .utf8) ?? "nil")
+        ==============================
+        Header Response: \(String(data: try! JSONSerialization.data(withJSONObject: self.httpURLResponse?.allHeaderFields ?? [:], options: .prettyPrinted), encoding: .utf8) ?? "nil")
+        Body: \(String(describing: urlRequest?.httpBody?.prettyJSONString))
+        \(data?.prettyJSONString ?? "nil")
+        """
+    }
+        
+    //MARK: Init
+    init(urlRequest: URLRequest?, data: Data?, httpURLResponse: HTTPURLResponse?) {
+        
+        self.urlRequest = urlRequest
+        self.data = data
+        self.httpURLResponse = httpURLResponse
+        
+    }
+
+    //MARK: Heleprs
+    func announce() {
+        
+        let infomation = String(reflecting: self)
+        print(infomation)
+        
+    }
+
     
 }
+
 

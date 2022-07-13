@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FF45528729115009FDD30 /* CircleGraphViewController.swift */; };
+		00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00715DF9287EB85800209B2A /* Data + Extension.swift */; };
 		0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCDF2862C2E80079F06A /* AppDelegate.swift */; };
 		0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCE12862C2E80079F06A /* SceneDelegate.swift */; };
 		0077CCE42862C2E80079F06A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCE32862C2E80079F06A /* ViewController.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		006FF45528729115009FDD30 /* CircleGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGraphViewController.swift; sourceTree = "<group>"; };
+		00715DF9287EB85800209B2A /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		0077CCDC2862C2E80079F06A /* TableGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0077CCDF2862C2E80079F06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0077CCE12862C2E80079F06A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				0086E69C286E859100423001 /* UIImage + Extension.swift */,
 				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
 				E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */,
+				00715DF9287EB85800209B2A /* Data + Extension.swift */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */,
 			);
@@ -425,6 +428,7 @@
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
 				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
+				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				00B1CDF4287D0F110058EA96 /* Router.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,

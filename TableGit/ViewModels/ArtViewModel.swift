@@ -10,17 +10,16 @@ import Foundation
 class ArtViewModel {
     
     let router = Router<BaseEnpoint>()
+    let networkManager = NetworkManager()
     var artData: ArtModel? = nil
     
     func fetchAPI() {
         
         let paramters = ["page": 3, "limit": 100]
         
-        router.request(.getArt(parameters: paramters)){ data,response,error in
+        networkManager.callAndParseAPI(accordingTo: .getArt(parameters: paramters), parseInto: ArtModel.self) { [weak self] model in
             
-            guard let data = data else {return}
-            
-            self.parse(data: data)
+            self?.artData = model
             
         }
         

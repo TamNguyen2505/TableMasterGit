@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias NetworkRouterCompletion = (_ data: Data?,_ response: URLResponse?,_ error: Error?)->()
+public typealias NetworkRouterCompletion = (_ urlRequest: URLRequest?, _ data: Data?, _ response: URLResponse?, _ error: Error?)->()
 
 protocol NetworkRouter: AnyObject {
     associatedtype EndPoint: EndPointType
@@ -21,33 +21,27 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
+        
         do {
+            
             let request = try self.buildRequest(from: route)
-            NetworkLogger.log(request: request)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
-                completion(data, response, error)
+                completion(request, data, response, error)
             })
+            
         }catch {
-            completion(nil, nil, error)
+            
+            completion(nil ,nil, nil, error)
+            
         }
+        
         self.task?.resume()
     }
     
     func cancel() {
+        
         self.task?.cancel()
-    }
-    
-    public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) throws -> D {
-
-        do {
-            
-            return try decoder.decode(type, from: data)
-            
-        } catch(_) {
-            
-            throw NetworkError.encodingFailed
-            
-        }
+        
     }
     
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
@@ -86,6 +80,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             return request
             
         } catch {
+            
             throw error
             
         }
@@ -97,18 +92,27 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                          urlParameters: Parameters?,
                                          request: inout URLRequest) throws {
         do {
-            try bodyEncoding.encode(urlRequest: &request,
-                                    bodyParameters: bodyParameters, urlParameters: urlParameters)
+            
+            try bodyEncoding.encode(urlRequest: &request, bodyParameters: bodyParameters, urlParameters: urlParameters)
+            
         } catch {
+            
             throw error
+            
         }
+        
     }
     
     fileprivate func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
+        
         guard let headers = additionalHeaders else { return }
+        
         for (key, value) in headers {
+            
             request.setValue(value, forHTTPHeaderField: key)
+            
         }
+        
     }
     
 }

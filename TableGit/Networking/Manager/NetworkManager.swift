@@ -27,7 +27,34 @@ enum Result<String>{
 }
 
 class NetworkManager {
+    //MARK: Properties
+    let router = Router<BaseEnpoint>()
     
+    //MARK: Features
+    public func callAndParseAPI<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type, completion: @escaping (D) -> Void) {
+        
+        router.request(caseEndPoint) { [weak self] (urlRequest, data, response, error) in
+            guard let self = self, error == nil, let response = response as? HTTPURLResponse else {return}
+            let result = self.handleNetworkResponse(response)
+            
+            switch result {
+            case .success:
+                guard let responseData = data, let decodedModel = try? self.map(from: responseData, to: model) else {return}
+                
+                let information = NetworkLogger(urlRequest: urlRequest, data: data, httpURLResponse: response)
+                information.announce()
+                
+                completion(decodedModel)
+                
+            case .failure(_):
+                return
+            }
+            
+        }
+        
+    }
+        
+    //MARK: Helpers
     public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) throws -> D {
 
         do {
