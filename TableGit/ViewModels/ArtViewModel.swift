@@ -11,36 +11,15 @@ class ArtViewModel {
     
     let router = Router<BaseEnpoint>()
     let networkManager = NetworkManager()
+    var didGetArtData: ((ArtModel) -> Void)?
     var artData: ArtModel? = nil
     
-    func fetchAPI() {
+    func fetchAPI() async throws {
         
-        let paramters = ["page": 3, "limit": 100]
+        let paramters = ["page": 2, "limit": 100]
         
-        networkManager.callAndParseAPI(accordingTo: .getArt(parameters: paramters), parseInto: ArtModel.self) { [weak self] model in
-            
-            self?.artData = model
-            
-        }
+        self.artData = try await networkManager.callAndParseAPI(accordingTo: .getArt(parameters: paramters), parseInto: ArtModel.self)
         
     }
-    
-    private func parse(data: Data) {
-        
-        do {
-            
-            let result = try JSONDecoder().decode(ArtModel.self, from: data)
-            self.artData = result
-            
-        } catch {
-            
-            print("DEBUG: JSON Parsing error \(error.localizedDescription)")
-            
-        }
-        
-        
-    }
-
-    
     
 }

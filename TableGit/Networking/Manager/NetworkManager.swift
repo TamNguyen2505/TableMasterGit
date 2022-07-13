@@ -31,31 +31,32 @@ class NetworkManager {
     let router = Router<BaseEnpoint>()
     
     //MARK: Features
-    public func callAndParseAPI<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type, completion: @escaping (D) -> Void) {
+    public func callAndParseAPI<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type) async throws -> D? {
         
-        router.request(caseEndPoint) { [weak self] (urlRequest, data, response, error) in
-            guard let self = self, error == nil, let response = response as? HTTPURLResponse else {return}
-            let result = self.handleNetworkResponse(response)
+        let routerResponse = try await router.request(caseEndPoint)
+        
+        guard let response = routerResponse.response as? HTTPURLResponse else {return nil}
+        let result = handleNetworkResponse(response)
+        
+        switch result {
+        case .success:
+            guard let responseData = routerResponse.data, let decodedModel = try? await self.map(from: responseData, to: model) else {return nil}
             
-            switch result {
-            case .success:
-                guard let responseData = data, let decodedModel = try? self.map(from: responseData, to: model) else {return}
-                
-                let information = NetworkLogger(urlRequest: urlRequest, data: data, httpURLResponse: response)
-                information.announce()
-                
-                completion(decodedModel)
-                
-            case .failure(_):
-                return
-            }
+            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
+            information.announce()
+                        
+            return decodedModel
+            
+        case .failure(_):
+            
+            return nil
             
         }
         
     }
         
     //MARK: Helpers
-    public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) throws -> D {
+    public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) async throws -> D {
 
         do {
             

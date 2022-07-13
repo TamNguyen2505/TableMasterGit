@@ -6,36 +6,30 @@
 //
 
 import Foundation
+import UIKit
 
 public typealias NetworkRouterCompletion = (_ urlRequest: URLRequest?, _ data: Data?, _ response: URLResponse?, _ error: Error?)->()
 
 protocol NetworkRouter: AnyObject {
     associatedtype EndPoint: EndPointType
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
+    func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
     func cancel()
 }
 
 class Router<EndPoint: EndPointType>: NetworkRouter {
-    
+
     private var task: URLSessionTask?
     
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
+    func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
         let session = URLSession.shared
+        let request = try self.buildRequest(from: route)
         
-        do {
-            
-            let request = try self.buildRequest(from: route)
-            task = session.dataTask(with: request, completionHandler: { data, response, error in
-                completion(request, data, response, error)
-            })
-            
-        }catch {
-            
-            completion(nil ,nil, nil, error)
-            
-        }
-        
+        task = session.dataTask(with: request)
+        let (data, response) = try await session.data(for: request)
+ 
         self.task?.resume()
+        
+        return (request, data, response, task?.error)
     }
     
     func cancel() {

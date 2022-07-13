@@ -45,6 +45,11 @@ class ViewController: UIViewController {
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
 
     let vm = ArtViewModel()
+    var data = ArtModel() {
+        didSet {
+            self.infoTableView.reloadData()
+        }
+    }
     
     //MARK: View cycle
     override func viewDidLoad() {
@@ -92,8 +97,10 @@ class ViewController: UIViewController {
             
         }
         
-        vm.fetchAPI()
-        self.infoTableView.reloadData()
+        Task {
+            try await vm.fetchAPI()
+            self.data = vm.artData ?? ArtModel()
+        }
 
         
     }
