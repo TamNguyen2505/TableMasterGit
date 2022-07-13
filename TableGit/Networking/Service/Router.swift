@@ -55,10 +55,13 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         var request = URLRequest(url: route.baseURL)
         
         request.httpMethod = route.httpMethod.rawValue
+        
         do {
             switch route.task {
             case .request:
+                
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
             case .requestParameters(let bodyParameters,
                                     let bodyEncoding,
                                     let urlParameters):
@@ -78,11 +81,15 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                              bodyEncoding: bodyEncoding,
                                              urlParameters: urlParameters,
                                              request: &request)
+                
             }
             return request
+            
         } catch {
             throw error
+            
         }
+        
     }
     
     fileprivate func configureParameters(bodyParameters: Parameters?,

@@ -28,6 +28,19 @@ enum Result<String>{
 
 class NetworkManager {
     
+    public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) throws -> D {
+
+        do {
+            
+            return try decoder.decode(type, from: data)
+            
+        } catch(_) {
+            
+            throw NetworkError.encodingFailed
+            
+        }
+    }
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         
         switch response.statusCode {
