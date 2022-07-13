@@ -44,6 +44,13 @@ class ViewController: UIViewController {
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
 
+    let vm = ArtViewModel()
+    var data = ArtModel() {
+        didSet {
+            self.infoTableView.reloadData()
+        }
+    }
+    
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +93,15 @@ class ViewController: UIViewController {
         self.searchViewModel.didReceiveSearchResult = { [weak self] (success) in
             guard success, let self = self else {return}
             
-            self.infoTableView.reloadData()
+            //self.infoTableView.reloadData()
             
         }
+        
+        Task {
+            try await vm.fetchAPI()
+            self.data = vm.artData ?? ArtModel()
+        }
+
         
     }
 
@@ -113,7 +126,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         default:
             
-            return 1
+            return vm.artData?.data?.count ?? 1
             
         }
         
@@ -134,6 +147,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         default:
             
+            let info = vm.artData?.data?[indexPath.row]
+            cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
             break
             
         }
@@ -275,9 +290,11 @@ extension ViewController: UITableViewDataSourcePrefetching {
     }
     
     func loadImage(at index: Int) -> DataLoadOperation? {
-        guard case .results(let list) = searchViewModel.state else {return .none}
-        let searchResult = list[index]
-        return DataLoadOperation(searchResult: searchResult)
+//        guard case .results(let list) = searchViewModel.state else {return .none}
+//        let searchResult = list[index]
+        guard let data = vm.artData?.data?[index] else {return nil}
+        
+        return DataLoadOperation(artResults: data)
     }
     
 }
