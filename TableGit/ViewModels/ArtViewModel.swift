@@ -17,7 +17,7 @@ class ArtViewModel {
         
         let paramters = ["page": 2, "limit": 100]
         
-        self.artData = try await networkManager.callAndParseAPI(accordingTo: .getArt(parameters: paramters), parseInto: ArtModel.self)
+        self.artData = try await networkManager.callAndParseAPI(accordingTo: .getArtInformation(parameters: paramters), parseInto: ArtModel.self)
         
     }
     

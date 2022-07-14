@@ -98,8 +98,10 @@ class ViewController: UIViewController {
         }
         
         Task {
-            try await vm.fetchAPI()
-            self.data = vm.artData ?? ArtModel()
+            
+            try await ITunesViewModel().fetchAPI(searchText: "Hello", category: .music)
+//            try await vm.fetchAPI()
+//            self.data = vm.artData ?? ArtModel()
         }
 
         

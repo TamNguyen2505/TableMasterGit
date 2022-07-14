@@ -54,7 +54,8 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                     let bodyEncoding,
                                     let urlParameters):
                 
-                try self.configureParameters(bodyParameters: bodyParameters,
+                try self.configureParameters(path: route.path,
+                                             bodyParameters: bodyParameters,
                                              bodyEncoding: bodyEncoding,
                                              urlParameters: urlParameters,
                                              request: &request)
@@ -65,7 +66,8 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                               let additionalHeaders):
                 
                 self.addAdditionalHeaders(additionalHeaders, request: &request)
-                try self.configureParameters(bodyParameters: bodyParameters,
+                try self.configureParameters(path: route.path,
+                                             bodyParameters: bodyParameters,
                                              bodyEncoding: bodyEncoding,
                                              urlParameters: urlParameters,
                                              request: &request)
@@ -81,13 +83,14 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         
     }
     
-    fileprivate func configureParameters(bodyParameters: Parameters?,
+    fileprivate func configureParameters(path: String?,
+                                         bodyParameters: Parameters?,
                                          bodyEncoding: ParameterEncoding,
                                          urlParameters: Parameters?,
                                          request: inout URLRequest) throws {
         do {
             
-            try bodyEncoding.encode(urlRequest: &request, bodyParameters: bodyParameters, urlParameters: urlParameters)
+            try bodyEncoding.encode(urlRequest: &request, bodyParameters: bodyParameters, urlParameters: urlParameters, path: path)
             
         } catch {
             

@@ -10,7 +10,8 @@ import Foundation
 enum BaseEnpoint {
     
     case getFDAInformation
-    case getArt(parameters: Parameters)
+    case getArtInformation(parameters: Parameters)
+    case getITunesInformation(parameters: Parameters)
     
 }
 
@@ -21,21 +22,29 @@ extension BaseEnpoint: EndPointType {
         switch self {
             
         case .getFDAInformation:
-            return URL(string: "https://api.fda.gov/drug/label.json")!
-        case .getArt:
-            return URL(string: "https://api.artic.edu/api/v1/artworks")!
+            return URLs.FDAUrl
+            
+        case .getArtInformation:
+            return URLs.ITunesUrl
+            
+        case .getITunesInformation:
+            return URLs.ITunesUrl
         }
         
     }
     
-    var path: String {
+    var path: String? {
         
         switch self {
             
         case .getFDAInformation:
-            return ""
-        case .getArt:
-            return ""
+            return nil
+            
+        case .getArtInformation:
+            return nil
+            
+        case .getITunesInformation:
+            return "/search"
         }
         
     }
@@ -46,7 +55,11 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return .get
-        case .getArt:
+            
+        case .getArtInformation:
+            return .get
+            
+        case .getITunesInformation:
             return .get
         }
     }
@@ -57,7 +70,11 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlAndJsonEncoding, urlParameters: nil)
-        case let .getArt(parameters):
+            
+        case let .getArtInformation(parameters):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .getITunesInformation(parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
         }
         
@@ -69,9 +86,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getFDAInformation:
             return [:]
-        case .getArt:
+            
+        case .getArtInformation:
             return [:]
             
+        case .getITunesInformation:
+            return [:]
         }
         
     }
