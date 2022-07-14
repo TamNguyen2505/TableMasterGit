@@ -39,8 +39,7 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    private let searchViewModel = SearchViewModel()
-    private var searchResults = [SearchResult]()
+    private var searchResults = [ItunesResults]()
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
 
@@ -90,21 +89,12 @@ class ViewController: UIViewController {
     
     private func setupVM() {
         
-        self.searchViewModel.didReceiveSearchResult = { [weak self] (success) in
-            guard success, let self = self else {return}
-            
-            //self.infoTableView.reloadData()
-            
-        }
-        
         Task {
             
             try await ITunesViewModel().fetchAPI(searchText: "Hello", category: .music)
-//            try await vm.fetchAPI()
-//            self.data = vm.artData ?? ArtModel()
+
         }
 
-        
     }
 
 
@@ -121,16 +111,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch searchViewModel.state {
-        case .results(let list):
-            
-            return list.count
-        
-        default:
-            
-            return vm.artData?.data?.count ?? 1
-            
-        }
+        return vm.artData?.data?.count ?? 1
         
     }
     
@@ -139,22 +120,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.className, for: indexPath) as! CustomCell
         cell.delegate = self
         
-        switch searchViewModel.state {
-        case .results(let list):
-            
-            let searchResult = list[indexPath.row]
-            cell.setupContent(name: searchResult.name, message: searchResult.artist)
-            
-            break
-        
-        default:
-            
-            let info = vm.artData?.data?[indexPath.row]
-            cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
-            break
-            
-        }
-    
+        let info = vm.artData?.data?[indexPath.row]
+        cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
+   
         return cell
         
     }
@@ -292,8 +260,7 @@ extension ViewController: UITableViewDataSourcePrefetching {
     }
     
     func loadImage(at index: Int) -> DataLoadOperation? {
-//        guard case .results(let list) = searchViewModel.state else {return .none}
-//        let searchResult = list[index]
+
         guard let data = vm.artData?.data?[index] else {return nil}
         
         return DataLoadOperation(artResults: data)
@@ -334,10 +301,6 @@ extension ViewController: CustomCelllDelegate {
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        guard let text = textField.text else {return false}
-        
-        searchViewModel.performSearch(for: text)
 
         return true
         

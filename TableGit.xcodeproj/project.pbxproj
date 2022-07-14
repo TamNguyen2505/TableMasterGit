@@ -36,9 +36,7 @@
 		00B1CE01287D61F40058EA96 /* ArtViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CE00287D61F40058EA96 /* ArtViewModel.swift */; };
 		00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CE02287D62EC0058EA96 /* ArtModel.swift */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
-		E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* SearchResult.swift */; };
-		E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA12866A05500A597C9 /* ITuneService.swift */; };
-		E9101AA42866A08F00A597C9 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA32866A08F00A597C9 /* SearchViewModel.swift */; };
+		E9101A9F28669EFE00A597C9 /* ItunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9E28669EFE00A597C9 /* ItunesResults.swift */; };
 		E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */; };
 		E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D728634ED100D4DA51 /* CustomCell.swift */; };
 		E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D928634F8600D4DA51 /* PublicData.swift */; };
@@ -91,9 +89,7 @@
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
 		E9101A9C28669EBF00A597C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		E9101A9E28669EFE00A597C9 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		E9101AA12866A05500A597C9 /* ITuneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITuneService.swift; sourceTree = "<group>"; };
-		E9101AA32866A08F00A597C9 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = TableGit/Server/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E9101A9E28669EFE00A597C9 /* ItunesResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesResults.swift; sourceTree = "<group>"; };
 		E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadOperation.swift; sourceTree = "<group>"; };
 		E98DB4D728634ED100D4DA51 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		E98DB4D928634F8600D4DA51 /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
@@ -162,7 +158,6 @@
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E9101AA32866A08F00A597C9 /* SearchViewModel.swift */,
 				00800035287FAA8600D3237C /* ITunesViewModel.swift */,
 				00B1CE00287D61F40058EA96 /* ArtViewModel.swift */,
 			);
@@ -173,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
-				E9101A9E28669EFE00A597C9 /* SearchResult.swift */,
+				E9101A9E28669EFE00A597C9 /* ItunesResults.swift */,
 				00B1CE02287D62EC0058EA96 /* ArtModel.swift */,
 			);
 			path = Models;
@@ -284,7 +279,6 @@
 		00B1CDE4287D085C0058EA96 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				E9101AA12866A05500A597C9 /* ITuneService.swift */,
 				00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */,
 			);
 			path = Endpoint;
@@ -430,7 +424,7 @@
 				006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
-				E9101A9F28669EFE00A597C9 /* SearchResult.swift in Sources */,
+				E9101A9F28669EFE00A597C9 /* ItunesResults.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
 				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
@@ -440,7 +434,6 @@
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
-				E9101AA42866A08F00A597C9 /* SearchViewModel.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				00B1CDEC287D0ACE0058EA96 /* ParameterEncoding.swift in Sources */,
 				0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */,
@@ -450,7 +443,6 @@
 				00B1CE01287D61F40058EA96 /* ArtViewModel.swift in Sources */,
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
 				00800036287FAA8600D3237C /* ITunesViewModel.swift in Sources */,
-				E9101AA22866A05500A597C9 /* ITuneService.swift in Sources */,
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
 				E98DB4E02863503600D4DA51 /* HeaderTableView.swift in Sources */,
 				E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */,

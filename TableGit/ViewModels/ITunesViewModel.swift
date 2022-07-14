@@ -10,7 +10,7 @@ import Foundation
 class ITunesViewModel {
     //MARK: Properties
     let networkManager = NetworkManager()
-    var iTunesData: ResultArray? = nil
+    var iTunesData: ITunesModel? = nil
     
     //MARK: Features
     func fetchAPI(searchText: String, category: Category) async throws {
@@ -32,7 +32,7 @@ class ITunesViewModel {
         
         let parameters: [String : Any] = ["term" : encodedText, "limit" : 800, "entity" : kind, "lang" : language, "country" : countryCode]
         
-        self.iTunesData = try await networkManager.callAndParseAPI(accordingTo: .getITunesInformation(parameters: parameters), parseInto: ResultArray.self)
+        self.iTunesData = try await networkManager.callAndParseAPI(accordingTo: .getITunesInformation(parameters: parameters), parseInto: ITunesModel.self)
         
         
     }

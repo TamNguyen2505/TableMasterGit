@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct ResultArray: Codable {
+struct ITunesModel: Codable {
     var resultCount = 0
-    var results = [SearchResult]()
+    var results = [ItunesResults]()
 }
 
-struct SearchResult: Codable, CustomStringConvertible {
+struct ItunesResults: Codable, CustomStringConvertible {
     
     var description: String {
         return "Kind: \(CodingKeys.kind), Name: \(CodingKeys.trackName), Artist Name: \(CodingKeys.artistName)\n"
