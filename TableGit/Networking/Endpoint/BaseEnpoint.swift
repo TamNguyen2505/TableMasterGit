@@ -25,7 +25,7 @@ extension BaseEnpoint: EndPointType {
             return URLs.FDAUrl
             
         case .getArtInformation:
-            return URLs.ITunesUrl
+            return URLs.artUrl
             
         case .getITunesInformation:
             return URLs.ITunesUrl

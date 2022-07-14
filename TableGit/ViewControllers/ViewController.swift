@@ -39,7 +39,6 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    private var searchResults = [ItunesResults]()
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
 
@@ -67,6 +66,8 @@ class ViewController: UIViewController {
     //MARK: Helpers
     private func setupUI() {
         
+        Loader.shared.show()
+        
         view.addSubview(searchTextField)
         searchTextField.snp.makeConstraints{ make in
             
@@ -91,8 +92,10 @@ class ViewController: UIViewController {
         
         Task {
             
-            try await ITunesViewModel().fetchAPI(searchText: "Hello", category: .music)
-
+            try await vm.fetchAPI()
+            self.data = vm.artData ?? ArtModel()
+            Loader.shared.hide()
+            
         }
 
     }
