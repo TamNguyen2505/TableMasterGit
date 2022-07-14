@@ -204,6 +204,7 @@ class HeaderTableView: UITableViewHeaderFooterView {
             make.height.equalTo(120).priority(.high)
             
         }
+        collectionView.setContentCompressionResistancePriority(.required, for: .vertical)
  
     }
     
