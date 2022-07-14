@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum NetworkResponse:String {
     
@@ -52,6 +53,29 @@ class NetworkManager {
             return nil
             
         }
+        
+    }
+    
+    public func uploadFile(accordingTo caseEndPoint: BaseEnpoint, image: UIImage) async throws {
+        
+        let routerResponse = try await router.upload(caseEndPoint, image: image)
+        
+        guard let response = routerResponse.response as? HTTPURLResponse else {return}
+        let result = handleNetworkResponse(response)
+        
+        switch result {
+        case .success:
+            guard let responseData = routerResponse.json as? Data else {return}
+            
+            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: responseData, httpURLResponse: response)
+            information.announce()
+                                    
+        case .failure(_):
+            
+            return
+            
+        }
+        
         
     }
         

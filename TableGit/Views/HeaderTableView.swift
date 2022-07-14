@@ -176,21 +176,20 @@ class HeaderTableView: UITableViewHeaderFooterView {
         hStack.axis = .horizontal
         hStack.spacing = 5
         hStack.distribution = .fillEqually
-        
+
         contentView.addSubview(hStack)
         hStack.snp.makeConstraints{ make in
-            
+
             make.centerY.equalTo(choosePackagesLabel.snp.centerY)
             make.trailing.equalToSuperview().inset(20)
             make.leading.greaterThanOrEqualTo(choosePackagesLabel.snp.trailing)
-            
+
         }
-        hStack.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
+
         shuffleImageView.snp.makeConstraints{ make in
-            
+
             make.width.height.equalTo(40)
-            
+
         }
         
         addImageView.addGestureRecognizer(oneTapOnAdd)
@@ -202,7 +201,7 @@ class HeaderTableView: UITableViewHeaderFooterView {
             make.top.equalTo(hStack.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(120)
+            make.height.equalTo(120).priority(.high)
             
         }
  

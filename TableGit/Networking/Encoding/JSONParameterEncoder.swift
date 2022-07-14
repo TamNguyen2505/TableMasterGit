@@ -9,10 +9,12 @@ import Foundation
 
 public struct JSONParameterEncoder: ParameterEncoder {
     
-    static public func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
+    public static func encode(urlRequest: inout URLRequest, with parameters: Parameters?, and path: String?) throws {
         
         do {
-    
+            
+            guard let parameters = parameters else {return}
+
             let jsonAsData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             urlRequest.httpBody = jsonAsData
             
@@ -29,5 +31,51 @@ public struct JSONParameterEncoder: ParameterEncoder {
         }
         
     }
+    
+    static func encode(urlRequest: inout URLRequest, with parameters: Parameters?, path: String?, media: [Media]?) throws {
+        
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        
+        let lineBreak = "\r\n"
+        
+        var body = Data()
+        
+        if let parameters = parameters {
+            
+            for (key, value) in parameters {
+                
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak + lineBreak)")
+                body.append("\(value as! String + lineBreak)")
+                
+            }
+            
+        }
+        
+        if let media = media {
+            
+            for photo in media {
+                
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"\(photo.key)\"; filename=\"\(photo.filename)\"\(lineBreak)")
+                body.append("Content-Type: \(photo.mimeType + lineBreak + lineBreak)")
+                body.append(photo.data)
+                body.append(lineBreak)
+                
+            }
+            
+        }
+        
+        body.append("--\(boundary)--\(lineBreak)")
+        urlRequest.httpBody = body
+        
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            
+            urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            
+        }
+        
+    }
+    
     
 }

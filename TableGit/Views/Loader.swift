@@ -37,46 +37,37 @@ public final class Loader {
 
         }
         
-        blurView.isHidden = true
         activeIndicator.layer.cornerRadius = 25
         
     }
 
     //MARK: Methods
     func show() {
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            let keyWindow = UIApplication.shared.keyWindow
-            keyWindow?.addSubview(strongSelf.blurView)
-            strongSelf.blurView.frame = keyWindow?.frame ?? CGRect()
-            
-            strongSelf.setupUIForActiveIndicator()
-            
-        })
+        
+        guard let keyWindow = UIApplication.shared.connectedScenes.flatMap({ ($0 as? UIWindowScene)?.windows ?? [] }).first, keyWindow.isKeyWindow else {return}
+        
+        keyWindow.addSubview(blurView)
+        blurView.frame = keyWindow.frame
+        
+        setupUIForActiveIndicator()
+        
         
     }
 
     func hide() {
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.blurView.removeFromSuperview()
-            strongSelf.activeIndicator.removeFromSuperview()
-            
-        })
+        
+        blurView.removeFromSuperview()
+        activeIndicator.removeFromSuperview()
+
     }
     
     func showInView(view: UIView) {
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            view.addSubview(strongSelf.blurView)
-            strongSelf.blurView.frame = view.frame
-            
-            strongSelf.setupUIForActiveIndicator()
-            
-        })
+        
+        view.addSubview(blurView)
+        blurView.frame = view.frame
+        
+        setupUIForActiveIndicator()
+
     }
     
 }
