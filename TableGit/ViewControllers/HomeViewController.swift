@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SnapKit
 
-class ViewController: UIViewController {
+class HomeViewController: BaseViewController {
     //MARK: Properties
     private lazy var searchTextField: UITextField = {
         let textField = UITextField()
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
     
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
-
+    
     let vm = ArtViewModel()
     var data = ArtModel() {
         didSet {
@@ -50,21 +49,8 @@ class ViewController: UIViewController {
     }
     
     //MARK: View cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        setupVM()
-        
-    }
-    
-    //MARK: Helpers
-    private func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         
         Loader.shared.show()
         
@@ -88,7 +74,8 @@ class ViewController: UIViewController {
         
     }
     
-    private func setupVM() {
+    override func setupVM() {
+        super.setupVM()
         
         Task {
             
@@ -97,14 +84,14 @@ class ViewController: UIViewController {
             Loader.shared.hide()
             
         }
-
+        
     }
-
-
+    
+    
 }
 
 //MARK: Table cell
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -125,7 +112,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let info = vm.artData?.data?[indexPath.row]
         cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
-   
+        
         return cell
         
     }
@@ -139,7 +126,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupImage(image: image)
             self.loadingOperations.removeValue(forKey: indexPath)
         }
-
+        
         if let dataLoader = loadingOperations[indexPath] {
             
             if let image = dataLoader.image {
@@ -167,7 +154,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let dataLoader = loadingOperations[indexPath] else {return}
-            
+        
         dataLoader.cancel()
         loadingOperations.removeValue(forKey: indexPath)
         
@@ -182,7 +169,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: Header Table View
-extension ViewController {
+extension HomeViewController {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -199,7 +186,7 @@ extension ViewController {
 }
 
 //MARK: Footer Table View
-extension ViewController {
+extension HomeViewController {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
@@ -219,7 +206,7 @@ extension ViewController {
     
 }
 
-extension ViewController: FooterTableViewDelegate {
+extension HomeViewController: FooterTableViewDelegate {
     
     func didTapCancelButton(from view: FooterTableView) {
         
@@ -236,17 +223,17 @@ extension ViewController: FooterTableViewDelegate {
     
 }
 
-extension ViewController: UITableViewDataSourcePrefetching {
+extension HomeViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         
         for indexPath in indexPaths {
-
+            
             if let _ = loadingOperations[indexPath] { return }
             guard let dataLoader = loadImage(at: indexPath.row) else {return}
-                
-                loadingQueue.addOperation(dataLoader)
-                loadingOperations[indexPath] = dataLoader
+            
+            loadingQueue.addOperation(dataLoader)
+            loadingOperations[indexPath] = dataLoader
             
         }
         
@@ -263,7 +250,7 @@ extension ViewController: UITableViewDataSourcePrefetching {
     }
     
     func loadImage(at index: Int) -> DataLoadOperation? {
-
+        
         guard let data = vm.artData?.data?[index] else {return nil}
         
         return DataLoadOperation(artResults: data)
@@ -271,12 +258,12 @@ extension ViewController: UITableViewDataSourcePrefetching {
     
 }
 
-extension ViewController: CustomCelllDelegate {
+extension HomeViewController: CustomCelllDelegate {
     
     func deleteRow(from cell: CustomCell) {
         
         guard let indexEdit = infoTableView.indexPath(for: cell) else {return}
-
+        
         imageArray.remove(at: indexEdit.row)
         
         infoTableView.beginUpdates()
@@ -288,9 +275,9 @@ extension ViewController: CustomCelllDelegate {
     func shouldResetUI(from cell: CustomCell) {
         
         guard let cells = infoTableView.visibleCells as? [CustomCell?], let indexEdit = infoTableView.indexPath(for: cell) else {return}
-
+        
         cells.forEach{ [weak self] cell in
-
+            
             guard let self = self, let unwrapCell = cell, let index = self.infoTableView.indexPath(for: unwrapCell), index != indexEdit else {return}
             
             cell?.resetUIForCardView()
@@ -301,10 +288,10 @@ extension ViewController: CustomCelllDelegate {
     
 }
 
-extension ViewController: UITextFieldDelegate {
+extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
+        
         return true
         
     }

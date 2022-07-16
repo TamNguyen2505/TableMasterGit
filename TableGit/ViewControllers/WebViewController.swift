@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: BaseViewController {
     //MARK: Properties
     private lazy var webView: WKWebView = {
         let web = WKWebView()
@@ -32,9 +32,8 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
         loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
-
+        
     }
     
     //MARK: Actions
@@ -47,9 +46,10 @@ class WebViewController: UIViewController {
         
         self.webView.scrollView.scrollRectToVisible(rect, animated: true)
     }
-
+    
     //MARK: Helpers
-    private func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         
         view.backgroundColor = .white
         
@@ -71,7 +71,7 @@ class WebViewController: UIViewController {
             make.bottom.equalTo(webView.snp.bottom)
             
         }
-
+        
     }
     
     private func loadContentForWeb(url: String) {
@@ -82,14 +82,14 @@ class WebViewController: UIViewController {
         self.webView.load(request)
         
     }
-
+    
 }
 
 //MARK: UIScrollViewDelegate
 extension WebViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-                
+        
         let invisibleHeightContent = webView.scrollView.contentSize.height - webView.bounds.height
         let percentage = scrollView.contentOffset.y / invisibleHeightContent
         let topOffset = percentage * (verticalSlide.bounds.height - verticalSlide.thumbnailImageViewHeight)

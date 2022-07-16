@@ -8,7 +8,7 @@
 import UIKit
 import youtube_ios_player_helper
 
-class CircleGraphViewController: UIViewController {
+class CircleGraphViewController: BaseViewController {
     //MARK: Properties
     private lazy var circleSlider: CustomCircleSlider = {
         let slider = CustomCircleSlider()
@@ -28,7 +28,6 @@ class CircleGraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
         
     }
     
@@ -58,7 +57,8 @@ class CircleGraphViewController: UIViewController {
     }
     
     //MARK: Helpers
-    private func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         
         view.backgroundColor = .white
         
@@ -87,7 +87,8 @@ class CircleGraphViewController: UIViewController {
             
         }
         
-        self.youtubeView.load(withVideoId: "h_xLRrwDric")
+        
+        self.youtubeView.load(withVideoId: "S7ElVoYZN0g")
         
     }
     
