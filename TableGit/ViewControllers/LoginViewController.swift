@@ -16,6 +16,19 @@ class LoginViewController: UIViewController {
         return iv
     }()
     
+    private let topGradientCurvedView: TopGradientCurvedView = {
+        let view = TopGradientCurvedView()
+        return view
+    }()
+    
+    private let avatarImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "default-avatar")
+        iv.layer.borderWidth = 1
+        iv.layer.borderColor = UIColor.lightGray.cgColor
+        return iv
+    }()
+    
     private let usernameTextField: UITextField = {
         let tf = UITextField()
         tf.layer.cornerRadius = 5
@@ -38,6 +51,7 @@ class LoginViewController: UIViewController {
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.backgroundColor = .systemOrange
         btn.layer.cornerRadius = 5
+        btn.addTarget(self, action: #selector(handleEventFromLogInButton(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -62,6 +76,14 @@ class LoginViewController: UIViewController {
     }
     
     //MARK: Actions
+    @objc func handleEventFromLogInButton(_ sender: UIButton) {
+        
+        let targetVC = HomeViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
+    }
+    
+    
     @objc func handleEventFromSignUpButton(_ sender: UIButton) {
         
         let targetVC = SignUpViewController()
@@ -82,6 +104,25 @@ class LoginViewController: UIViewController {
             
         }
         
+        view.addSubview(avatarImageView)
+        avatarImageView.layer.cornerRadius = 120 / 2
+        avatarImageView.snp.makeConstraints{ make in
+            
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(120)
+            
+        }
+        
+        view.addSubview(topGradientCurvedView)
+        topGradientCurvedView.snp.makeConstraints{ make in
+            
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(avatarImageView.snp.bottom)
+            
+        }
+        view.bringSubviewToFront(avatarImageView)
+        
         let vStackForTextField = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
         vStackForTextField.axis = .vertical
         vStackForTextField.spacing = 10
@@ -90,7 +131,7 @@ class LoginViewController: UIViewController {
         view.addSubview(vStackForTextField)
         vStackForTextField.snp.makeConstraints{ make in
             
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(avatarImageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
             
         }
@@ -123,6 +164,4 @@ class LoginViewController: UIViewController {
         
     }
     
-
-
 }

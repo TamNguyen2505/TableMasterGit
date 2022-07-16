@@ -52,6 +52,7 @@
 		E98DB4E8286351D300D4DA51 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E7286351D300D4DA51 /* FooterCollectionReusableView.swift */; };
 		E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E92863523E00D4DA51 /* FooterTableView.swift */; };
 		E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */; };
+		E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */; };
 		E9B8AF2C286708C600A8242B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AF2B286708C600A8242B /* Loader.swift */; };
 		E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */; };
 		FB6B16453A127E07448972E9 /* Pods_TableGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C9B9073A082976A810428 /* Pods_TableGit.framework */; };
@@ -108,6 +109,7 @@
 		E98DB4E7286351D300D4DA51 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		E98DB4E92863523E00D4DA51 /* FooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
+		E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGradientCurvedView.swift; sourceTree = "<group>"; };
 		E9B8AF2B286708C600A8242B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,6 +208,7 @@
 				E9B8AF2B286708C600A8242B /* Loader.swift */,
 				0086E699286E83F400423001 /* VerticalSlider.swift */,
 				00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */,
+				E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				00B1CDF7287D0F610058EA96 /* NetworkLogger.swift in Sources */,
 				E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */,
 				0077CCE42862C2E80079F06A /* HomeViewController.swift in Sources */,
+				E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */,
 				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
 				006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,

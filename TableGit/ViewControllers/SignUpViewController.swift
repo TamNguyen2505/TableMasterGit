@@ -16,6 +16,11 @@ class SignUpViewController: UIViewController {
         return iv
     }()
     
+    private let topGradientCurvedView: TopGradientCurvedView = {
+        let view = TopGradientCurvedView()
+        return view
+    }()
+    
     private let avatarImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "default-avatar")
@@ -27,10 +32,10 @@ class SignUpViewController: UIViewController {
     private lazy var uploadImageButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "camera.fill"), for: .normal)
-        btn.tintColor = UIColor.systemYellow
+        btn.tintColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1)
         btn.layer.cornerRadius = 5
         btn.layer.borderWidth = 2
-        btn.layer.borderColor = UIColor.systemYellow.cgColor
+        btn.layer.borderColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1).cgColor
         btn.scalesLargeContentImage = true
         return btn
     }()
@@ -109,6 +114,15 @@ class SignUpViewController: UIViewController {
             make.width.height.equalTo(120)
             
         }
+        
+        view.addSubview(topGradientCurvedView)
+        topGradientCurvedView.snp.makeConstraints{ make in
+            
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(avatarImageView.snp.bottom)
+            
+        }
+        view.bringSubviewToFront(avatarImageView)
         
         view.addSubview(uploadImageButton)
         uploadImageButton.snp.makeConstraints{ make in
