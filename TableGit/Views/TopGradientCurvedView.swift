@@ -49,7 +49,7 @@ class TopGradientCurvedView: UIView {
         let farStop = #colorLiteral(red: 0.9823524356, green: 0.7392255664, blue: 0.4647747874, alpha: 1)
         
         let gradientColors = [baseColor.cgColor, middleStop.cgColor, farStop.cgColor]
-        let locations: [CGFloat] = [0.0, 0.3, 0.6]
+        let locations: [CGFloat] = [0.0, 0.2, 0.5]
         
         guard let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors as CFArray, locations: locations) else {return}
         
@@ -74,8 +74,6 @@ class TopGradientCurvedView: UIView {
         
         
     }
-    
-   
     
 
 }
