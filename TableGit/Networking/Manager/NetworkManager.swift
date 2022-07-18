@@ -80,6 +80,30 @@ class NetworkManager {
         
         
     }
+    
+    public func downloadData(accordingTo caseEndPoint: BaseEnpoint) async throws -> Data? {
+        
+        let routerResponse = try await router.download(caseEndPoint)
+        
+        guard let response = routerResponse.response as? HTTPURLResponse else {return nil}
+        let result = handleNetworkResponse(response)
+        
+        switch result {
+        case .success:
+            guard let responseData = routerResponse.data else {return nil}
+            
+            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
+            information.announce()
+                        
+            return responseData
+                                    
+        case .failure(_):
+            
+            return nil
+            
+        }
+        
+    }
         
     //MARK: Helpers
     public func map<D: Codable>(from data: Data, to type: D.Type, decoder: JSONDecoder = JSONDecoder()) async throws -> D {

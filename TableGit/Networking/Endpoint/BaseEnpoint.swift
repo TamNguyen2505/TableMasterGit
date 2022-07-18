@@ -14,7 +14,9 @@ enum BaseEnpoint {
     case getITunesInformation(parameters: Parameters)
     case getDog(parameters: Parameters, header: HTTPHeaders)
     case uploadDog(parameters: Parameters, header: HTTPHeaders, media: Media)
-    
+    case downloadDog(url: String)
+    case downloadArt(url: String)
+
 }
 
 extension BaseEnpoint: EndPointType {
@@ -37,6 +39,12 @@ extension BaseEnpoint: EndPointType {
             
         case .uploadDog:
             return URLs.dogUrl
+            
+        case .downloadDog(url: let url):
+            return URL(string: url)!
+            
+        case .downloadArt(url: let url):
+            return URL(string: url)!
         }
         
     }
@@ -59,6 +67,12 @@ extension BaseEnpoint: EndPointType {
             
         case .uploadDog:
             return "/v1/images/upload"
+            
+        case .downloadDog:
+            return nil
+            
+        case .downloadArt:
+            return nil
         }
         
     }
@@ -81,6 +95,12 @@ extension BaseEnpoint: EndPointType {
             
         case .uploadDog:
             return .post
+            
+        case .downloadDog:
+            return .get
+            
+        case .downloadArt:
+            return .get
         }
     }
     
@@ -102,6 +122,12 @@ extension BaseEnpoint: EndPointType {
             
         case .uploadDog(parameters: let parameters, header: let header, media: let media):
             return .uploadFile(bodyParameters: parameters, bodyEncoding: .jsonEncodingWithMultipartdata, additionHeaders: header, media: media)
+            
+        case .downloadDog:
+            return .request
+            
+        case .downloadArt:
+            return .request
         }
         
     }
@@ -123,6 +149,12 @@ extension BaseEnpoint: EndPointType {
             return [:]
             
         case .uploadDog:
+            return [:]
+            
+        case .downloadDog:
+            return [:]
+            
+        case .downloadArt:
             return [:]
         }
         

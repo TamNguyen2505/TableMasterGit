@@ -14,6 +14,7 @@ protocol NetworkRouter: AnyObject {
     associatedtype EndPoint: EndPointType
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
     func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
+    func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
     func cancel()
 }
 
@@ -41,6 +42,21 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 
         task = session.dataTask(with: request)
         let (data, response) = try await session.data(for: request)
+        
+        self.task?.resume()
+        
+        return (request, data, response, task?.error)
+        
+    }
+    
+    func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?){
+        
+        let session = URLSession.shared
+        let request = try self.buildRequest(from: route)
+        
+        task = session.dataTask(with: request)
+        let (url, response) = try await session.download(for: request)
+        let data = try? Data(contentsOf: url)
         
         self.task?.resume()
         
@@ -103,7 +119,12 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                                       media: [media],
                                                       request: &request)
                 
+            case .downloadFile:
+                
+                break
+                
             }
+            
             return request
             
         } catch {
