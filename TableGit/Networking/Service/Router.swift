@@ -41,7 +41,9 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 
         task = session.dataTask(with: request)
         let (data, response) = try await session.data(for: request)
-                
+        
+        self.task?.resume()
+        
         return (request, data, response, task?.error)
         
     }

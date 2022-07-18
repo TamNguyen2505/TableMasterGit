@@ -311,8 +311,10 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+        Loader.shared.show()
         Task {
             try await vmDog.uploadAndSearch()
+            Loader.shared.hide()
         }
 
         return true

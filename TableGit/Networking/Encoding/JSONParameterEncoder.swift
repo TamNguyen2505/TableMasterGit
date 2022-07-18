@@ -36,31 +36,9 @@ public struct JSONParameterEncoder: ParameterEncoder {
         
         guard let url = urlRequest.url else { throw NetworkError.missingURL }
 
-        if var urlComponents = URLComponents(
-            url: url,
-            resolvingAgainstBaseURL: false) {
+        if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), let path = path {
             
-            if let path = path {
-                
-                urlComponents.path = path
-                
-            }
-            
-            if let parameters = parameters {
-                
-                urlComponents.queryItems = [URLQueryItem]()
-                
-                for (key,value) in parameters {
-                    
-                    let queryItem = URLQueryItem(
-                        name: key,
-                        value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
-                    urlComponents.queryItems?.append(queryItem)
-                    
-                }
-                
-            }
-            
+            urlComponents.path = path
             urlRequest.url = urlComponents.url
             
         }
