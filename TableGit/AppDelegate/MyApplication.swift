@@ -40,7 +40,6 @@ class MyApplication: UIApplication {
         if restartTimer {
             
             SessionTimer.share.setupTimer()
-            print("setupTimer")
             
         } else {
             

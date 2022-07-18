@@ -23,7 +23,12 @@ class BaseViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setupVM()
+        observeTimer()
         
+    }
+    
+    deinit {
+      NotificationCenter.default.removeObserver(self, name: Notification.Name("SessionTimer"), object: nil)
     }
     
     //MARK: Helpers
@@ -35,5 +40,16 @@ class BaseViewController: UIViewController {
     
     func setupVM() {}
     
+    private func observeTimer() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("SessionTimer"), object: nil)
+        
+    }
+    
+    @objc private func methodOfReceivedNotification(notification: NotificationCenter) {
+        
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
 
 }
