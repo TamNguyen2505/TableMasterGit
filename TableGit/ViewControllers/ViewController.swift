@@ -89,7 +89,7 @@ class ViewController: UIViewController {
             make.bottom.equalToSuperview()
             
         }
-        
+    
     }
     
     private func setupVM() {
@@ -104,8 +104,7 @@ class ViewController: UIViewController {
 
 
     }
-
-
+    
 }
 
 //MARK: Table cell

@@ -25,6 +25,9 @@
 		00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */; };
 		0089A8CD2884F24500792773 /* DogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8CC2884F24500792773 /* DogViewModel.swift */; };
 		0089A8CF2884F31200792773 /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8CE2884F31200792773 /* DogModel.swift */; };
+		0089A8D12885614300792773 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8D02885614300792773 /* main.swift */; };
+		0089A8D3288562DF00792773 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8D2288562DF00792773 /* MyApplication.swift */; };
+		0089A8D52885659200792773 /* SessionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8D42885659200792773 /* SessionTimer.swift */; };
 		00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE5287D088C0058EA96 /* EndPointType.swift */; };
 		00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE7287D09360058EA96 /* HTTPMethod.swift */; };
 		00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE9287D09CB0058EA96 /* HTTPTask.swift */; };
@@ -78,6 +81,9 @@
 		00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleSlider.swift; sourceTree = "<group>"; };
 		0089A8CC2884F24500792773 /* DogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModel.swift; sourceTree = "<group>"; };
 		0089A8CE2884F31200792773 /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
+		0089A8D02885614300792773 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		0089A8D2288562DF00792773 /* MyApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
+		0089A8D42885659200792773 /* SessionTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTimer.swift; sourceTree = "<group>"; };
 		00B1CDE5287D088C0058EA96 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		00B1CDE7287D09360058EA96 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		00B1CDE9287D09CB0058EA96 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -221,6 +227,7 @@
 				00715DF9287EB85800209B2A /* Data + Extension.swift */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */,
+				0089A8D42885659200792773 /* SessionTimer.swift */,
 			);
 			path = Ulities;
 			sourceTree = "<group>";
@@ -230,6 +237,8 @@
 			children = (
 				0077CCDF2862C2E80079F06A /* AppDelegate.swift */,
 				0077CCE12862C2E80079F06A /* SceneDelegate.swift */,
+				0089A8D02885614300792773 /* main.swift */,
+				0089A8D2288562DF00792773 /* MyApplication.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -439,11 +448,13 @@
 				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
+				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
 				00B1CDF4287D0F110058EA96 /* Router.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
+				0089A8D12885614300792773 /* main.swift in Sources */,
 				00B1CDEC287D0ACE0058EA96 /* ParameterEncoding.swift in Sources */,
 				00800038287FD99F00D3237C /* Media.swift in Sources */,
 				0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */,
@@ -469,6 +480,7 @@
 				0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */,
 				00800034287FA72B00D3237C /* URLs.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,
+				0089A8D52885659200792773 /* SessionTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
