@@ -34,6 +34,37 @@ public struct JSONParameterEncoder: ParameterEncoder {
     
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters?, path: String?, media: [Media]?) throws {
         
+        guard let url = urlRequest.url else { throw NetworkError.missingURL }
+
+        if var urlComponents = URLComponents(
+            url: url,
+            resolvingAgainstBaseURL: false) {
+            
+            if let path = path {
+                
+                urlComponents.path = path
+                
+            }
+            
+            if let parameters = parameters {
+                
+                urlComponents.queryItems = [URLQueryItem]()
+                
+                for (key,value) in parameters {
+                    
+                    let queryItem = URLQueryItem(
+                        name: key,
+                        value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+                    urlComponents.queryItems?.append(queryItem)
+                    
+                }
+                
+            }
+            
+            urlRequest.url = urlComponents.url
+            
+        }
+        
         let boundary = "Boundary-\(NSUUID().uuidString)"
         
         let lineBreak = "\r\n"

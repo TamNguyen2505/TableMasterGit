@@ -46,7 +46,7 @@ public enum ParameterEncoding {
                 try JSONParameterEncoder.encode(urlRequest: &urlRequest, with: bodyParameters, and: path)
                 
             case .jsonEncodingWithMultipartdata:
-                try JSONParameterEncoder.encode(urlRequest: &urlRequest, with: bodyParameters, path: nil, media: media)
+                try JSONParameterEncoder.encode(urlRequest: &urlRequest, with: bodyParameters, path: path, media: media)
             }
             
         } catch {

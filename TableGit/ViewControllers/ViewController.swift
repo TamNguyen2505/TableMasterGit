@@ -49,6 +49,10 @@ class ViewController: UIViewController {
         }
     }
     
+    var image: UIImage?
+    
+    let vmDog = DogViewModel()
+    
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,11 +96,12 @@ class ViewController: UIViewController {
         
         Task {
             
-            try await vm.fetchAPI()
-            self.data = vm.artData ?? ArtModel()
+            try await vmDog.fetchAPI()
+ //           self.data = vm.artData ?? ArtModel()
             Loader.shared.hide()
             
         }
+
 
     }
 
@@ -125,6 +130,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let info = vm.artData?.data?[indexPath.row]
         cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
+        cell.setupImage(image: image)
    
         return cell
         
@@ -304,6 +310,10 @@ extension ViewController: CustomCelllDelegate {
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        Task {
+            try await vmDog.uploadAndSearch()
+        }
 
         return true
         

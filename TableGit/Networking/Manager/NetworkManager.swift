@@ -56,23 +56,25 @@ class NetworkManager {
         
     }
     
-    public func uploadFile(accordingTo caseEndPoint: BaseEnpoint, image: UIImage) async throws {
+    public func uploadFileAndParseResponse<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type) async throws -> D? {
         
-        let routerResponse = try await router.upload(caseEndPoint, image: image)
+        let routerResponse = try await router.upload(caseEndPoint)
         
-        guard let response = routerResponse.response as? HTTPURLResponse else {return}
+        guard let response = routerResponse.response as? HTTPURLResponse else {return nil}
         let result = handleNetworkResponse(response)
         
         switch result {
         case .success:
-            guard let responseData = routerResponse.json as? Data else {return}
+            guard let responseData = routerResponse.data, let decodedModel = try? await self.map(from: responseData, to: model) else {return nil}
             
-            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: responseData, httpURLResponse: response)
+            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
             information.announce()
+                        
+            return decodedModel
                                     
         case .failure(_):
             
-            return
+            return nil
             
         }
         

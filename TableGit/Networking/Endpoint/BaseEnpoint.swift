@@ -12,6 +12,8 @@ enum BaseEnpoint {
     case getFDAInformation
     case getArtInformation(parameters: Parameters)
     case getITunesInformation(parameters: Parameters)
+    case getDog(parameters: Parameters, header: HTTPHeaders)
+    case uploadDog(parameters: Parameters, header: HTTPHeaders, media: Media)
     
 }
 
@@ -29,6 +31,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getITunesInformation:
             return URLs.ITunesUrl
+            
+        case .getDog:
+            return URLs.dogUrl
+            
+        case .uploadDog:
+            return URLs.dogUrl
         }
         
     }
@@ -45,6 +53,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getITunesInformation:
             return "/search"
+            
+        case .getDog:
+            return "/v1/images/search"
+            
+        case .uploadDog:
+            return "/v1/images/upload"
         }
         
     }
@@ -61,6 +75,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getITunesInformation:
             return .get
+            
+        case .getDog:
+            return .get
+            
+        case .uploadDog:
+            return .post
         }
     }
     
@@ -76,6 +96,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getITunesInformation(parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .getDog(parameters: let parameters, header: let header):
+            return .requestParametersAndHeaders(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters, additionHeaders: header)
+            
+        case .uploadDog(parameters: let parameters, header: let header, media: let media):
+            return .uploadFile(bodyParameters: parameters, bodyEncoding: .jsonEncodingWithMultipartdata, additionHeaders: header, media: media)
         }
         
     }
@@ -91,6 +117,12 @@ extension BaseEnpoint: EndPointType {
             return [:]
             
         case .getITunesInformation:
+            return [:]
+            
+        case .getDog:
+            return [:]
+            
+        case .uploadDog:
             return [:]
         }
         
