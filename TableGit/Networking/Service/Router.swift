@@ -13,7 +13,8 @@ public typealias NetworkRouterCompletion = (_ urlRequest: URLRequest?, _ data: D
 protocol NetworkRouter: AnyObject {
     associatedtype EndPoint: EndPointType
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
-    func upload(_ route: EndPoint, image: UIImage) async throws -> (urlRequest: URLRequest?, json: Any?, response: URLResponse?, error: Error?)
+    func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
+    func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?)
     func cancel()
 }
 
@@ -21,7 +22,6 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
  
     //MARK: Properties
     private var task: URLSessionTask?
-    private var media: Media? 
     
     //MARK: Features
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
@@ -36,18 +36,31 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         return (request, data, response, task?.error)
     }
     
-    func upload(_ route: EndPoint, image: UIImage) async throws -> (urlRequest: URLRequest?, json: Any?, response: URLResponse?, error: Error?) {
+    func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
         let session = URLSession.shared
         let request = try self.buildRequest(from: route)
-        
-        media = Media(withImage: image, forKey: "image")
-        
+                
         task = session.dataTask(with: request)
         let (data, response) = try await session.data(for: request)
         
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        self.task?.resume()
         
-        return (request, json, response, task?.error)
+        return (request, data, response, task?.error)
+        
+    }
+    
+    func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?){
+        
+        let session = URLSession.shared
+        let request = try self.buildRequest(from: route)
+        
+        task = session.dataTask(with: request)
+        let (url, response) = try await session.download(for: request)
+        let data = try? Data(contentsOf: url)
+        
+        self.task?.resume()
+        
+        return (request, data, response, task?.error)
         
     }
     
@@ -94,10 +107,11 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 
             case .uploadFile(let bodyParameters,
                              let bodyEncoding,
-                             let additionHeaders):
+                             let additionHeaders,
+                             let media):
                 
-                guard let media = media else {return request}
-                
+                guard let media = media else {throw NetworkError.parametersNil}
+
                 self.addAdditionalHeaders(additionHeaders, request: &request)
                 try self.configureParametersWithMeida(path: route.path,
                                                       bodyParameters: bodyParameters,
@@ -105,7 +119,12 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                                       media: [media],
                                                       request: &request)
                 
+            case .downloadFile:
+                
+                break
+                
             }
+            
             return request
             
         } catch {

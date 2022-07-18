@@ -48,6 +48,10 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    var image: UIImage?
+    
+    let vmDog = DogViewModel()
+    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -71,7 +75,7 @@ class HomeViewController: BaseViewController {
             make.bottom.equalToSuperview()
             
         }
-        
+    
     }
     
     override func setupVM() {
@@ -79,14 +83,14 @@ class HomeViewController: BaseViewController {
         
         Task {
             
-            try await vm.fetchAPI()
-            self.data = vm.artData ?? ArtModel()
+            try await vmDog.fetchAPI()
+ //           self.data = vm.artData ?? ArtModel()
             Loader.shared.hide()
             
         }
-        
+
+
     }
-    
     
 }
 
@@ -292,6 +296,12 @@ extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+        Loader.shared.show()
+        Task {
+            try await vmDog.uploadAndSearch()
+            Loader.shared.hide()
+        }
+
         return true
         
     }

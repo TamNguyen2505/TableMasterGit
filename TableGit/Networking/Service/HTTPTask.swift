@@ -24,6 +24,9 @@ public enum HTTPTask {
     
     case uploadFile(bodyParameters: Parameters?,
                     bodyEncoding: ParameterEncoding,
-                    additionHeaders: HTTPHeaders?)
+                    additionHeaders: HTTPHeaders?,
+                    media: Media?)
+    
+    case downloadFile
     // case download, upload...etc
 }

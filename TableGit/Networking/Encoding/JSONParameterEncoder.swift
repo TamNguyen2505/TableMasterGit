@@ -34,6 +34,15 @@ public struct JSONParameterEncoder: ParameterEncoder {
     
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters?, path: String?, media: [Media]?) throws {
         
+        guard let url = urlRequest.url else { throw NetworkError.missingURL }
+
+        if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), let path = path {
+            
+            urlComponents.path = path
+            urlRequest.url = urlComponents.url
+            
+        }
+        
         let boundary = "Boundary-\(NSUUID().uuidString)"
         
         let lineBreak = "\r\n"
