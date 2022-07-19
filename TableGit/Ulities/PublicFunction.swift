@@ -33,16 +33,21 @@ func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
     let session = URLSession.shared
     let downloadTask = session.downloadTask(
         with: url) { url, response, error in
-        
-        if error == nil, let url = url,
-           let data = try? Data(contentsOf: url),
-           let image = UIImage(data: data) {
-            completion(image)
+            
+            if error == nil, let url = url,
+               let data = try? Data(contentsOf: url),
+               let image = UIImage(data: data) {
+                completion(image)
+                
+            }
             
         }
-            
-    }
     
     downloadTask.resume()
 }
 
+public func duration(_ block: () -> ()) {
+    let startTime = CFAbsoluteTimeGetCurrent()
+    block()
+    print(CFAbsoluteTimeGetCurrent() - startTime)
+}
