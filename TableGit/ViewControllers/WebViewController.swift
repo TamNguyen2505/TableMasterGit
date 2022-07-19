@@ -17,6 +17,7 @@ class WebViewController: UIViewController {
         web.scrollView.indicatorStyle = .white
         web.scrollView.bounces = false
         web.scrollView.delegate = self
+        web.navigationDelegate = self
         return web
     }()
     
@@ -35,7 +36,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadContentForWeb(url: "https://en.wikipedia.org/wiki/Transformation_matrix#Perspective_projection")
+        loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
         
         group.notify(queue: .main) {[weak self] in
             guard let self = self else {return}
@@ -87,6 +88,8 @@ class WebViewController: UIViewController {
         
         guard let url = URL(string: url) else {return}
         
+        Loader.shared.show()
+        
         group.enter()
         
         globalQueue.async(group: group) { [weak self] in
@@ -94,16 +97,25 @@ class WebViewController: UIViewController {
             defer{self.group.leave()}
             let request = URLRequest(url: url)
                         
-            DispatchQueue.main.async {
-
+            DispatchQueue.main.async(group: self.group) {
                 self.webView.load(request)
-                
             }
             
         }
         
     }
 
+}
+
+//MARK: WKUIDelegate
+extension WebViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView,didFinish navigation: WKNavigation!) {
+        
+        Loader.shared.hide()
+        
+    }
+    
 }
 
 //MARK: UIScrollViewDelegate
