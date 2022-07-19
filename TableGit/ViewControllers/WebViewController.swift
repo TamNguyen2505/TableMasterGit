@@ -26,15 +26,24 @@ class WebViewController: UIViewController {
         return slide
     }()
     
-    var urlItune = ""
+    var urlRequest: URLRequest?
+    
+    private let group = DispatchGroup()
+    private let globalQueue = DispatchQueue.global(qos: .userInteractive)
     
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
-        loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
-
+        loadContentForWeb(url: "https://en.wikipedia.org/wiki/Transformation_matrix#Perspective_projection")
+        
+        group.notify(queue: .main) {[weak self] in
+            guard let self = self else {return}
+            
+            self.setupUI()
+            
+        }
+        
     }
     
     //MARK: Actions
@@ -77,9 +86,21 @@ class WebViewController: UIViewController {
     private func loadContentForWeb(url: String) {
         
         guard let url = URL(string: url) else {return}
-        let request = URLRequest(url: url)
         
-        self.webView.load(request)
+        group.enter()
+        
+        globalQueue.async(group: group) { [weak self] in
+            guard let self = self else {return}
+            defer{self.group.leave()}
+            let request = URLRequest(url: url)
+                        
+            DispatchQueue.main.async {
+
+                self.webView.load(request)
+                
+            }
+            
+        }
         
     }
 

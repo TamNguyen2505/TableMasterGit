@@ -229,13 +229,13 @@ extension ViewController: FooterTableViewDelegate {
     func didTapCancelButton(from view: FooterTableView) {
         
         let targetVC = CircleGraphViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
+        self.navigationController?.pushViewController(targetVC, animated: false)
     }
     
     func didTapContinueButton(from view: FooterTableView) {
         
         let targetVC = WebViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
+        self.navigationController?.pushViewController(targetVC, animated: false)
         
     }
     
