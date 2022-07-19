@@ -29,7 +29,6 @@ class WebViewController: UIViewController {
     
     var urlRequest: URLRequest?
     
-    private let group = DispatchGroup()
     private let globalQueue = DispatchQueue.global(qos: .userInteractive)
     
     //MARK: View cycle
@@ -38,7 +37,7 @@ class WebViewController: UIViewController {
         
         loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
         
-        group.notify(queue: .main) {[weak self] in
+        DispatchQueue.main.async {[weak self] in
             guard let self = self else {return}
             
             self.setupUI()
@@ -90,14 +89,11 @@ class WebViewController: UIViewController {
         
         Loader.shared.show()
         
-        group.enter()
-        
-        globalQueue.async(group: group) { [weak self] in
+        globalQueue.async { [weak self] in
             guard let self = self else {return}
-            defer{self.group.leave()}
             let request = URLRequest(url: url)
                         
-            DispatchQueue.main.async(group: self.group) {
+            DispatchQueue.main.async {
                 self.webView.load(request)
             }
             
