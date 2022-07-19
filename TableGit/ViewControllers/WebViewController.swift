@@ -36,14 +36,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         
         loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
-        
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else {return}
             
-            self.setupUI()
-            
-        }
-        
     }
     
     //MARK: Actions
@@ -95,6 +88,7 @@ class WebViewController: UIViewController {
                         
             DispatchQueue.main.async {
                 self.webView.load(request)
+                self.setupUI()
             }
             
         }
