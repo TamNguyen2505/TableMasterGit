@@ -35,7 +35,18 @@ class WebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
+        loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
+=======
         loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
+        
+        group.notify(queue: .main) {[weak self] in
+            guard let self = self else {return}
+            
+            self.setupUI()
+            
+        }
+>>>>>>> 5c7b04e (improve web view)
         
     }
     
@@ -51,8 +62,11 @@ class WebViewController: BaseViewController {
     }
     
     //MARK: Helpers
-    func setupCustomUI() {
-                
+    override func setupUI() {
+        super.setupUI()
+        
+        view.backgroundColor = .white
+        
         view.addSubview(webView)
         webView.snp.makeConstraints{ make in
             
@@ -79,17 +93,38 @@ class WebViewController: BaseViewController {
         guard let url = URL(string: url) else {return}
         
         Loader.shared.show()
+<<<<<<< HEAD
+=======
+        
+        group.enter()
+>>>>>>> 5c7b04e (improve web view)
         
         globalQueue.async { [weak self] in
             guard let self = self else {return}
             let request = URLRequest(url: url)
                         
-            DispatchQueue.main.async{
+<<<<<<< HEAD
+            DispatchQueue.main.async {
                 self.webView.load(request)
-                self.setupCustomUI()
+                self.setupUI()
+=======
+            DispatchQueue.main.async(group: self.group) {
+                self.webView.load(request)
+>>>>>>> 5c7b04e (improve web view)
             }
             
         }
+        
+    }
+    
+}
+
+//MARK: WKUIDelegate
+extension WebViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView,didFinish navigation: WKNavigation!) {
+        
+        Loader.shared.hide()
         
     }
     

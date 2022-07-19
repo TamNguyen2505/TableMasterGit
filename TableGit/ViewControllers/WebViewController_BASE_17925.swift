@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: BaseViewController {
+class WebViewController: UIViewController {
     //MARK: Properties
     private lazy var webView: WKWebView = {
         let web = WKWebView()
@@ -17,7 +17,6 @@ class WebViewController: BaseViewController {
         web.scrollView.indicatorStyle = .white
         web.scrollView.bounces = false
         web.scrollView.delegate = self
-        web.navigationDelegate = self
         return web
     }()
     
@@ -29,13 +28,21 @@ class WebViewController: BaseViewController {
     
     var urlRequest: URLRequest?
     
+    private let group = DispatchGroup()
     private let globalQueue = DispatchQueue.global(qos: .userInteractive)
     
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
+        loadContentForWeb(url: "https://en.wikipedia.org/wiki/Transformation_matrix#Perspective_projection")
+        
+        group.notify(queue: .main) {[weak self] in
+            guard let self = self else {return}
+            
+            self.setupUI()
+            
+        }
         
     }
     
@@ -49,10 +56,12 @@ class WebViewController: BaseViewController {
         
         self.webView.scrollView.scrollRectToVisible(rect, animated: true)
     }
-    
+
     //MARK: Helpers
-    func setupCustomUI() {
-                
+    private func setupUI() {
+        
+        view.backgroundColor = .white
+        
         view.addSubview(webView)
         webView.snp.makeConstraints{ make in
             
@@ -71,46 +80,37 @@ class WebViewController: BaseViewController {
             make.bottom.equalTo(webView.snp.bottom)
             
         }
-        
+
     }
     
     private func loadContentForWeb(url: String) {
         
         guard let url = URL(string: url) else {return}
         
-        Loader.shared.show()
+        group.enter()
         
-        globalQueue.async { [weak self] in
+        globalQueue.async(group: group) { [weak self] in
             guard let self = self else {return}
+            defer{self.group.leave()}
             let request = URLRequest(url: url)
                         
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
+
                 self.webView.load(request)
-                self.setupCustomUI()
+                
             }
             
         }
         
     }
-    
-}
 
-//MARK: WKUIDelegate
-extension WebViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView,didFinish navigation: WKNavigation!) {
-        
-        Loader.shared.hide()
-        
-    }
-    
 }
 
 //MARK: UIScrollViewDelegate
 extension WebViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+                
         let invisibleHeightContent = webView.scrollView.contentSize.height - webView.bounds.height
         let percentage = scrollView.contentOffset.y / invisibleHeightContent
         let topOffset = percentage * (verticalSlide.bounds.height - verticalSlide.thumbnailImageViewHeight)

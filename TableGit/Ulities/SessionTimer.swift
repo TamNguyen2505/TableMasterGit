@@ -18,7 +18,7 @@ public struct SessionTimer {
     public func setupTimer() {
         
         SessionTimer.timer?.invalidate()
-        SessionTimer.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+        SessionTimer.timer = Timer.scheduledTimer(withTimeInterval: 5*60, repeats: false) { _ in
             
             NotificationCenter.default.post(name: Notification.Name("SessionTimer"), object: nil)
             

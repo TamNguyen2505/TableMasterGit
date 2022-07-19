@@ -35,7 +35,7 @@ class WebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
+        loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
         
     }
     
@@ -51,8 +51,11 @@ class WebViewController: BaseViewController {
     }
     
     //MARK: Helpers
-    func setupCustomUI() {
-                
+    override func setupUI() {
+        super.setupUI()
+        
+        view.backgroundColor = .white
+        
         view.addSubview(webView)
         webView.snp.makeConstraints{ make in
             
@@ -84,9 +87,9 @@ class WebViewController: BaseViewController {
             guard let self = self else {return}
             let request = URLRequest(url: url)
                         
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
                 self.webView.load(request)
-                self.setupCustomUI()
+                self.setupUI()
             }
             
         }
