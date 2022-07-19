@@ -35,8 +35,13 @@ class WebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         loadContentForWeb(url: "https://vi.wikipedia.org/wiki/Website")
         
+=======
+        loadContentForWeb(url: "https://www.behance.net/search/projects/?search=portfolio")
+            
+>>>>>>> tam_minerva_v2
     }
     
     //MARK: Actions

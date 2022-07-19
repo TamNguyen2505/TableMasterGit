@@ -215,13 +215,13 @@ extension HomeViewController: FooterTableViewDelegate {
     func didTapCancelButton(from view: FooterTableView) {
         
         let targetVC = CircleGraphViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
+        self.navigationController?.pushViewController(targetVC, animated: false)
     }
     
     func didTapContinueButton(from view: FooterTableView) {
         
         let targetVC = WebViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
+        self.navigationController?.pushViewController(targetVC, animated: false)
         
     }
     
@@ -255,9 +255,9 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
     
     func loadImage(at index: Int) -> DataLoadOperation? {
         
-        guard let data = vm.artData?.data?[index] else {return nil}
-        
-        return DataLoadOperation(artResults: data)
+        guard let id = vm.artData?.data?[index].id else {return nil}
+        let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
+        return DataLoadOperation(url: url)
     }
     
 }
