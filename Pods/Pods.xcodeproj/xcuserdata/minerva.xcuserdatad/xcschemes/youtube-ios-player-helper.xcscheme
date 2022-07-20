@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97E09B65E51D0CD77F6D4560CCEBEB94"
-               BuildableName = "GaugeSlider.framework"
-               BlueprintName = "GaugeSlider"
+               BlueprintIdentifier = "D1A7AF186BE136DE56FD5699070589B8"
+               BuildableName = "youtube_ios_player_helper.framework"
+               BlueprintName = "youtube-ios-player-helper"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

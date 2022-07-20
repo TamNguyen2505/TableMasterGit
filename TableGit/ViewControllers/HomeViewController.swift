@@ -48,10 +48,6 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    var image: UIImage?
-    
-    let vmDog = DogViewModel()
-    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -83,8 +79,8 @@ class HomeViewController: BaseViewController {
         
         Task {
             
-            try await vmDog.fetchAPI()
- //           self.data = vm.artData ?? ArtModel()
+            try await vm.fetchAPI()
+            self.data = vm.artData ?? ArtModel()
             Loader.shared.hide()
             
         }
@@ -255,7 +251,8 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
     
     func loadImage(at index: Int) -> DataLoadOperation? {
         
-        guard let id = vm.artData?.data?[index].id else {return nil}
+        guard let id = vm.artData?.data?[index].image_id else {return nil}
+        
         let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
         return DataLoadOperation(url: url)
     }
@@ -295,13 +292,6 @@ extension HomeViewController: CustomCelllDelegate {
 extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        Loader.shared.show()
-        Task {
-            try await vmDog.uploadAndSearch()
-            Loader.shared.hide()
-        }
-
         return true
         
     }

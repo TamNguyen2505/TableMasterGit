@@ -11,11 +11,7 @@ import UIKit
 class DogViewModel {
     //MARK: Properties
     let networkManager = NetworkManager()
-    var dogData: [DogModel]? {
-        didSet {
-            downloadImageDone()
-        }
-    }
+    var dogData: [DogModel]?
     var dogUpload: UploadDod?
     var image: UIImage?
     
@@ -30,19 +26,6 @@ class DogViewModel {
         
         
     
-    }
-    
-    func downloadImageDone() {
-        
-        guard let url = self.dogData?.first?.url else {return}
-                
-        downloadImage(url: url) { [weak self] (downloadImage) in
-            guard let self = self else {return}
-            
-            self.image = downloadImage!
-            
-        }
-        
     }
     
     func uploadAndSearch() async throws {

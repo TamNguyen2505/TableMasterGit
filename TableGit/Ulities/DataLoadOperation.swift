@@ -7,11 +7,12 @@
 
 import UIKit
 
-class DataLoadOperation: Operation {
+class DataLoadOperation: AsyncOperation {
     //MARK: Properties
     var image: UIImage?
     var loadingCompleteHandler: ((UIImage?) -> ())?
     private let url: String
+    private var downloadTask: URLSessionDownloadTask?
     
     //MARK: Init
     init(url: String) {
@@ -23,22 +24,29 @@ class DataLoadOperation: Operation {
     override func main() {
         super.main()
         if isCancelled {return}
-                
-        downloadImage(url: url){ (image) in
-            
-            DispatchQueue.main.async {[weak self] in
-                guard let self = self, !self.isCancelled else { return }
-                
-                self.image = image
-                self.loadingCompleteHandler?(self.image)
+        
+        guard let url = URL(string: url) else {return}
+        
+        let session = URLSession.shared
+        downloadTask = session.downloadTask(with: url) { [weak self] url, response, error in
+            guard error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data), let self = self else {return}
+            defer { self.state = .finished }
+
+            self.image = image
+            self.loadingCompleteHandler?(self.image)
                 
             }
-            
-        }
+        
+        downloadTask?.resume()
+        
+    }
+    
+    override func cancel() {
+        super.cancel()
+        
+        downloadTask?.cancel()
         
     }
     
 }
-
-//        let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
 

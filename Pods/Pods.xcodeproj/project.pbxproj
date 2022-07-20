@@ -121,9 +121,9 @@
 		98552948AB1F1F90D21FD4E376B7F059 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Sources/ConstraintConfig.swift; sourceTree = "<group>"; };
 		9A3ED82387EDFE23F6099058CF8A241D /* youtube-ios-player-helper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "youtube-ios-player-helper.modulemap"; sourceTree = "<group>"; };
 		9CEDC42B07C9126D4CC492A4298CE60D /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPrioritizable.swift; path = Sources/ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F3F97A20C5AF3366E396461CD8543C7 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
-		9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods-TableGit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TableGit"; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A59CFD42D9E723F3D6F250E0A4F9D3EF /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Sources/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		A7DC9540220F21C2F5C853C907678265 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
 		A9181424441FD5DB17FCC9D450540ED5 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Sources/ConstraintDescription.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		1992F570BA77A323103874E34F0CE104 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods_TableGit.framework */,
+				9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods-TableGit */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
 				8498A1B2C60117E181CA67921DDAE0B6 /* youtube-ios-player-helper */,
 			);
@@ -258,6 +258,7 @@
 				B4A6AAAA2F02638577EC5086635C39D9 /* UILayoutSupport+Extensions.swift */,
 				A2CABA3986C3723BD54B9A0761AEB879 /* Support Files */,
 			);
+			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -336,6 +337,7 @@
 				63BD284D83844DB80FCAAAA4B48EE1CB /* Resources */,
 				0C1E017CEDEA98DAC191E091B427E50A /* Support Files */,
 			);
+			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -405,7 +407,7 @@
 			);
 			name = "Pods-TableGit";
 			productName = Pods_TableGit;
-			productReference = 9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods_TableGit.framework */;
+			productReference = 9F94A358A0BFE5FC3F3EE030A1C630C7 /* Pods-TableGit */;
 			productType = "com.apple.product-type.framework";
 		};
 		D1A7AF186BE136DE56FD5699070589B8 /* youtube-ios-player-helper */ = {
