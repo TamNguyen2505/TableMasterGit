@@ -7,25 +7,6 @@
 
 import UIKit
 
-func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
-    
-    let size = image.size
-    let widthRatio  = targetSize.width  / size.width
-    let heightRatio = targetSize.height / size.height
-    
-    var newSize: CGSize
-    newSize = CGSize(width: size.width * widthRatio, height: size.height * heightRatio)
-    
-    let rect = CGRect(origin: .zero, size: newSize)
-    
-    UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-    image.draw(in: rect)
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    
-    return newImage
-}
-
 func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
     
     guard let url = URL(string: url) else {return}
@@ -46,7 +27,7 @@ func downloadImage(url: String, completion: @escaping (UIImage?) -> Void) {
     downloadTask.resume()
 }
 
-public func duration(_ block: () -> ()) {
+public func durationMeasurement(_ block: () -> ()) {
     let startTime = CFAbsoluteTimeGetCurrent()
     block()
     print(CFAbsoluteTimeGetCurrent() - startTime)

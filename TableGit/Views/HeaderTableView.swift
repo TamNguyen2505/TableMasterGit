@@ -266,7 +266,7 @@ extension HeaderTableView: UICollectionViewDelegate, UICollectionViewDataSource 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.className, for: indexPath) as! CustomCollectionCell
         
         guard let image = collectionData[indexPath.section].imageArray[indexPath.item] else {return cell}
-        let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 150, height: 75))
+        let resizedImage = image.resizeImage(targetSize: CGSize(width: 150, height: 75))
         cell.setupContent(image: resizedImage, index: String(indexPath.item))
 
         return cell

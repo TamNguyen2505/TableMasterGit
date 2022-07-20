@@ -27,8 +27,9 @@ class CustomCircleSlider: UIControl {
     
     private let thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "component1461")
+        iv.image = UIImage(named: "icons8-music-96")?.resizeImage(targetSize: .init(width: 52, height: 52))
         iv.contentMode = .center
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -74,6 +75,8 @@ class CustomCircleSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        setupLayer()
+        
         startPoint = CGPoint(x: thumbnailImageView.frame.midX, y: thumbnailImageView.frame.midY)
         
         startAngle = getDegree(to: startPoint)
@@ -93,12 +96,6 @@ class CustomCircleSlider: UIControl {
         previousPoint = touch.location(in: self)
         
         let isTouchingImageView = thumbnailImageView.frame.contains(previousPoint)
-        
-        if isTouchingImageView {
-            
-            thumbnailImageView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 0.5)
-            
-        }
         
         return isTouchingImageView
         
@@ -122,9 +119,7 @@ class CustomCircleSlider: UIControl {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-                
-        thumbnailImageView.backgroundColor = nil
-        
+                        
     }
     
     //MARK: Actions
@@ -172,10 +167,21 @@ class CustomCircleSlider: UIControl {
             
         }
         
-        thumbnailImageView.layer.cornerRadius = 20
         pinView.isHidden = true
         
     }
+    
+    private func setupLayer() {
+        
+        thumbnailImageView.layer.cornerRadius = 20
+        
+        playOrPauseButton.layer.cornerRadius = playOrPauseButton.bounds.width / 2
+        playOrPauseButton.layer.shadowRadius = 10
+        playOrPauseButton.layer.shadowOffset = .zero
+        playOrPauseButton.layer.shadowOpacity = 0.25
+        
+    }
+    
     
     private func getDegree(to point: CGPoint) -> CGFloat {
         
