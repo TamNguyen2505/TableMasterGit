@@ -67,6 +67,8 @@ class LoginViewController: UIViewController {
         return btn
     }()
     
+    private let networkMonitor = NetworkMonitor.shared
+    
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +79,18 @@ class LoginViewController: UIViewController {
     
     //MARK: Actions
     @objc func handleEventFromLogInButton(_ sender: UIButton) {
-        
-        let targetVC = HomeViewController()
-        self.navigationController?.pushViewController(targetVC, animated: true)
-        
+                
+        if networkMonitor.status == .satisfied {
+            
+            let targetVC = HomeViewController()
+            self.navigationController?.pushViewController(targetVC, animated: true)
+            
+        } else {
+            
+            showAlertView()
+            
+        }
+                
     }
     
     
@@ -161,6 +171,30 @@ class LoginViewController: UIViewController {
             make.width.equalTo(signupButton.snp.width)
             
         }
+        
+    }
+    
+    private func showAlertView() {
+        
+        let alert = UIAlertController(title: "Notification", message: "Please check the Internet Access", preferredStyle: .alert)
+        
+        let open = UIAlertAction(title: "Settings", style: .default) { _ in
+            
+            guard let settingUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+            
+            if UIApplication.shared.canOpenURL(settingUrl) {
+                
+                UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
+                
+            }
+            
+        }
+        alert.addAction(open)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
         
     }
     

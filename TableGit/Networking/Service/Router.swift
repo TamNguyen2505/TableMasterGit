@@ -25,7 +25,11 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     //MARK: Features
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
-        let session = URLSession.shared
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5*60
+        
+        let session = URLSession(configuration: config)
         let request = try self.buildRequest(from: route)
         
         task = session.dataTask(with: request)
@@ -37,7 +41,11 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     }
     
     func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
-        let session = URLSession.shared
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5*60
+        
+        let session = URLSession(configuration: config)
         let request = try self.buildRequest(from: route)
                 
         task = session.dataTask(with: request)
@@ -51,7 +59,10 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?){
         
-        let session = URLSession.shared
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5*60
+        
+        let session = URLSession(configuration: config)
         let request = try self.buildRequest(from: route)
         
         task = session.dataTask(with: request)

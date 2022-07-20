@@ -15,6 +15,7 @@
 		0077CCE92862C2EA0079F06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCE82862C2EA0079F06A /* Assets.xcassets */; };
 		0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */; };
 		007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856AE28879DB400E73D24 /* AsyncAddOperation.swift */; };
+		007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856B12887B31100E73D24 /* NetworkMonitor.swift */; };
 		00800034287FA72B00D3237C /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800033287FA72B00D3237C /* URLs.swift */; };
 		00800036287FAA8600D3237C /* ITunesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800035287FAA8600D3237C /* ITunesViewModel.swift */; };
 		00800038287FD99F00D3237C /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800037287FD99F00D3237C /* Media.swift */; };
@@ -75,6 +76,7 @@
 		0077CCEB2862C2EA0079F06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0077CCED2862C2EA0079F06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		007856AE28879DB400E73D24 /* AsyncAddOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAddOperation.swift; sourceTree = "<group>"; };
+		007856B12887B31100E73D24 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		00800033287FA72B00D3237C /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		00800035287FAA8600D3237C /* ITunesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesViewModel.swift; sourceTree = "<group>"; };
 		00800037287FD99F00D3237C /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			path = TableGit;
 			sourceTree = "<group>";
 		};
+		007856B02887B2E600E73D24 /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				007856B12887B31100E73D24 /* NetworkMonitor.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 		00B1CDE0287D07D70058EA96 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				007856B02887B2E600E73D24 /* NetworkMonitor */,
 				00B1CDE4287D085C0058EA96 /* Endpoint */,
 				00B1CDE3287D084D0058EA96 /* Manager */,
 				00B1CDE2287D083F0058EA96 /* Service */,
@@ -455,6 +466,7 @@
 				006FF45628729115009FDD30 /* CircleGraphViewController.swift in Sources */,
 				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
+				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				E9101A9F28669EFE00A597C9 /* ItunesResults.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
