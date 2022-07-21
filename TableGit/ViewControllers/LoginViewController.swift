@@ -82,8 +82,9 @@ class LoginViewController: UIViewController {
                 
         if networkMonitor.status == .satisfied {
             
-            let targetVC = HomeViewController()
-            self.navigationController?.pushViewController(targetVC, animated: true)
+            let targetVC = BaseTabBarController()
+            targetVC.modalPresentationStyle = .fullScreen
+            self.present(targetVC, animated: true, completion: nil)
             
         } else {
             
