@@ -5,7 +5,6 @@
 //  Created by MINERVA on 18/07/2022.
 //
 
-import Foundation
 import UIKit
 
 public struct SessionTimer {
@@ -20,7 +19,7 @@ public struct SessionTimer {
         SessionTimer.timer?.invalidate()
         SessionTimer.timer = Timer.scheduledTimer(withTimeInterval: 5*60, repeats: false) { _ in
             
-            NotificationCenter.default.post(name: Notification.Name("SessionTimer"), object: nil)
+            postNotification()
             
         }
         
@@ -29,6 +28,12 @@ public struct SessionTimer {
     public func disableTimer() {
         
         SessionTimer.timer?.invalidate()
+        
+    }
+    
+    public func postNotification() {
+        
+        NotificationCenter.default.post(name: Notification.Name("SessionTimer"), object: nil)
         
     }
     
