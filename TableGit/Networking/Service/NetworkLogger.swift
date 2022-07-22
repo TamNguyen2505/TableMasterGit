@@ -13,6 +13,7 @@ struct NetworkLogger: CustomDebugStringConvertible {
     public let urlRequest: URLRequest?
     public let data: Data?
     public let httpURLResponse: HTTPURLResponse?
+    public let dateTime: Date?
     
     public var debugDescription: String {
         
@@ -52,6 +53,33 @@ struct NetworkLogger: CustomDebugStringConvertible {
         self.urlRequest = urlRequest
         self.data = data
         self.httpURLResponse = httpURLResponse
+        
+        if #available(iOS 13.0, *) {
+            
+            if let dateString = httpURLResponse?.value(forHTTPHeaderField: "Date") {
+                
+                let date = dateString.formatDate(format: DateFormatterType.EEE_DD_MMM_YYYY_HHMMSS_GMT)
+                self.dateTime = date
+                
+            } else {
+                
+                self.dateTime = nil
+                
+            }
+        } else {
+            
+            if let dateString = httpURLResponse?.allHeaderFields["Date"] as? String {
+                
+                let date = dateString.formatDate(format: DateFormatterType.EEE_DD_MMM_YYYY_HHMMSS_GMT)
+                self.dateTime = date
+                
+            } else {
+                
+                self.dateTime = nil
+                
+            }
+            
+        }
         
     }
 

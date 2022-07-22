@@ -24,8 +24,9 @@ public struct JSONParameterEncoder: ParameterEncoder {
                 
             }
             
-        } catch {
+        } catch(let error) {
             
+            print(error.localizedDescription)
             throw NetworkError.encodingFailed
             
         }

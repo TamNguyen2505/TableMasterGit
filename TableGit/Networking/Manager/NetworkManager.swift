@@ -112,9 +112,10 @@ class NetworkManager {
             
             return try decoder.decode(type, from: data)
             
-        } catch(_) {
+        } catch(let error) {
             
-            throw NetworkError.encodingFailed
+            print(error.localizedDescription)
+            throw error
             
         }
     }

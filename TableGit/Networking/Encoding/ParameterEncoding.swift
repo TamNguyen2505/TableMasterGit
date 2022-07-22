@@ -49,9 +49,10 @@ public enum ParameterEncoding {
                 try JSONParameterEncoder.encode(urlRequest: &urlRequest, with: bodyParameters, path: path, media: media)
             }
             
-        } catch {
+        } catch(let error) {
             
-            throw error
+            print(error.localizedDescription)
+            throw NetworkError.encodingFailed
             
         }
         
