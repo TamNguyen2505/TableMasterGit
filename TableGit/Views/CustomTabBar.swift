@@ -10,6 +10,7 @@ import UIKit
 enum TabItem: String, CaseIterable {
     case home = "home"
     case news = "photos"
+    case settings = "settings"
 
     var viewController: UIViewController {
         switch self {
@@ -19,6 +20,8 @@ enum TabItem: String, CaseIterable {
         case .news:
             return WebViewController()
             
+        case .settings:
+            return SettingsViewController()
         }
     }
     
@@ -29,6 +32,9 @@ enum TabItem: String, CaseIterable {
             
         case .news:
             return UIImage(named: "icons8-news")
+            
+        case .settings:
+            return UIImage(named: "icons8-settings")
         }
     }
     
@@ -91,7 +97,7 @@ class CustomTabBar: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        activeTab(tab: 0)
+        setLayerForActiveTab(tab: 0)
         
     }
     
@@ -140,7 +146,7 @@ class CustomTabBar: UIView {
             
             make.top.equalTo(itemImageView.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview()
-            make.bottom.greaterThanOrEqualToSuperview()
+            make.bottom.greaterThanOrEqualToSuperview().inset(8)
             
         }
         
@@ -150,12 +156,121 @@ class CustomTabBar: UIView {
     
     func switchTab(from: Int, to: Int) {
         
-        deactiveTab(tab: from)
-        activeTab(tab: to)
+        let delta = from - to
+    
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            
+            if abs(delta) == 1 {
+                
+                self.animateForAdjacentTabs(from: from, to: to)
+                
+            } else {
+                
+                self.animateForFarTabs(from: from, to: to, delta: delta)
+                
+            }
+            
+            
+        }
         
     }
     
-    func activeTab(tab: Int) {
+    func animateForFarTabs(from: Int, to: Int, delta: Int) {
+        
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: [.calculationModeCubicPaced]) {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/4) {
+                
+                self.removeLayerForDeactiveTab(tab: from)
+                self.turnOffHighlightImageView(iv: self.imageArray[from])
+                
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4) {
+                
+                if delta < -1 {
+                    
+                    for index in (from + 1)..<to {
+                        
+                        self.setLayerForActiveTab(tab: index)
+                        
+                    }
+                    
+                } else if delta > 1 {
+                    
+                    for index in (from - 1)...(to + 1) {
+                        
+                        self.setLayerForActiveTab(tab: index)
+                        
+                    }
+                    
+                }
+   
+            }
+
+            UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4) {
+                
+                if delta < -1 {
+                    
+                    for index in (from + 1)..<to {
+                        
+                        self.removeLayerForDeactiveTab(tab: index)
+                        
+                    }
+                    
+                } else if delta > 1 {
+                    
+                    for index in (from - 1)...(to + 1) {
+                        
+                        self.removeLayerForDeactiveTab(tab: index)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4) {
+                
+                self.setLayerForActiveTab(tab: to)
+                self.highlightImageView(iv: self.imageArray[to])
+                
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    func animateForAdjacentTabs(from: Int, to: Int) {
+        
+        UIView.animateKeyframes(withDuration: 0.25, delay: 0.0, options: [.calculationModeCubicPaced]) {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2) {
+                
+                self.removeLayerForDeactiveTab(tab: from)
+                self.turnOffHighlightImageView(iv: self.imageArray[from])
+                
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2) {
+                
+                self.setLayerForActiveTab(tab: to)
+                self.highlightImageView(iv: self.imageArray[to])
+                
+            }
+            
+            
+        } completion: { _ in
+            
+        }
+        
+        
+    }
+    
+    func setLayerForActiveTab(tab: Int) {
         
         let tabToActive = subviews[tab]
         tabToActive.backgroundColor = .clear
@@ -165,22 +280,19 @@ class CustomTabBar: UIView {
         borderLayer.name = "Active Border"
         borderLayer.path = createPath(inside: tabToActive)
         borderLayer.fillColor = #colorLiteral(red: 0.9823524356, green: 0.7392255664, blue: 0.4647747874, alpha: 1).cgColor
-        borderLayer.lineWidth = 1.0
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
 
-            UIView.animate(withDuration: 0.4,
+            UIView.animate(withDuration: 0.0,
                            delay: 0.0,
-                           options: [.transitionCurlDown]) {
+                           options: [.transitionCrossDissolve]) {
                 
                 tabToActive.layer.insertSublayer(borderLayer, at: 0)
-                self.highlightImageView(iv: self.imageArray[tab])
                 tabToActive.setNeedsLayout()
                 tabToActive.layoutIfNeeded()
                 
-            } completion: { [weak self] _ in
-                guard let self = self else {return}
+            } completion: { _ in
                 
                 self.itemTapped?(tab)
                 self.activeItem = tab
@@ -191,27 +303,22 @@ class CustomTabBar: UIView {
         
     }
     
-    func deactiveTab(tab: Int) {
+    func removeLayerForDeactiveTab(tab: Int) {
         
         let inactiveTab = subviews[tab]
         inactiveTab.backgroundColor = #colorLiteral(red: 0.9823524356, green: 0.7392255664, blue: 0.4647747874, alpha: 1)
         
         let layerRemove = inactiveTab.layer.sublayers?.filter{$0.name == "Active Border"}
         
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else {return}
+        DispatchQueue.main.async {
             
-            UIView.animate(withDuration: 0.4,
+            UIView.animate(withDuration: 0.0,
                            delay: 0.0,
-                           options: [.transitionCurlDown]) {
+                           options: [.transitionCrossDissolve]) {
                 
                 layerRemove?.forEach{$0.removeFromSuperlayer()}
-                self.turnOffHighlightImageView(iv: self.imageArray[tab])
                 inactiveTab.setNeedsLayout()
                 inactiveTab.layoutIfNeeded()
-                
-            } completion: { _ in
-             
                 
             }
             
@@ -260,7 +367,7 @@ class CustomTabBar: UIView {
     
     private func turnOffHighlightImageView(iv: UIImageView) {
         
-        iv.transform = CGAffineTransform.init(translationX: 0, y: 0)
+        iv.transform = .identity
         iv.layer.cornerRadius = 0
         iv.layer.backgroundColor = UIColor.clear.cgColor
         iv.layer.borderColor = UIColor.clear.cgColor

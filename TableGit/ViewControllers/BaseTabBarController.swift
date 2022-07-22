@@ -10,7 +10,7 @@ import UIKit
 class BaseTabBarController: UITabBarController {
     //MARK: Properties
     var customTabBar: CustomTabBar?
-    var tabBarHeight: CGFloat = 67.0
+    var tabBarHeight: CGFloat = 75.0
     
     //MARK: View cycle
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class BaseTabBarController: UITabBarController {
     //MARK: Helpers
     func loadTabBar() {
                 
-        let tabbarItems: [TabItem] = [.home, .news]
+        let tabbarItems: [TabItem] = [.home, .news, .settings]
         
         setupCustomTabMenu(tabbarItems) { [weak self] viewControllers in
             guard let self = self else {return}

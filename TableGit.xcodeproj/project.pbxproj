@@ -22,6 +22,7 @@
 		00800036287FAA8600D3237C /* ITunesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800035287FAA8600D3237C /* ITunesViewModel.swift */; };
 		00800038287FD99F00D3237C /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800037287FD99F00D3237C /* Media.swift */; };
 		0080809B286ADB5A00973384 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080809A286ADB5A00973384 /* WebViewController.swift */; };
+		008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A4288A3605003A39EA /* SettingsViewController.swift */; };
 		0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E699286E83F400423001 /* VerticalSlider.swift */; };
 		0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E69C286E859100423001 /* UIImage + Extension.swift */; };
 		0086E6A0286EF2D900423001 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0086E69F286EF2D900423001 /* giphy.gif */; };
@@ -85,6 +86,7 @@
 		00800035287FAA8600D3237C /* ITunesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesViewModel.swift; sourceTree = "<group>"; };
 		00800037287FD99F00D3237C /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		0080809A286ADB5A00973384 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		008377A4288A3605003A39EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0086E699286E83F400423001 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		0086E69C286E859100423001 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		0086E69F286EF2D900423001 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				0077CCE32862C2E80079F06A /* HomeViewController.swift */,
 				0080809A286ADB5A00973384 /* WebViewController.swift */,
 				006FF45528729115009FDD30 /* CircleGraphViewController.swift */,
+				008377A4288A3605003A39EA /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				E97CE05428829381006A2E3C /* BaseViewController.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				00B1CE03287D62EC0058EA96 /* ArtModel.swift in Sources */,
+				008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				0089A8D12885614300792773 /* main.swift in Sources */,
