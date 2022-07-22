@@ -16,7 +16,9 @@ enum TabItem: String, CaseIterable {
     var viewController: UIViewController {
         switch self {
         case .home:
-            return HomeViewController()
+            
+            let rootVC = HomeViewController()
+            return UINavigationController(rootViewController: rootVC)
             
         case .news:
             return WebViewController()
