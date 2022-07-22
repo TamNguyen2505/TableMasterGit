@@ -91,6 +91,7 @@ class CustomTabBar: UIView {
         let itemImageView = UIImageView()
         itemImageView.image = item.icon?.withRenderingMode(.automatic)
         itemImageView.clipsToBounds = true
+        itemImageView.contentMode = .scaleAspectFit
         self.imageArray.append(itemImageView)
 
         tabBarItem.addSubview(itemTitleLabel)
@@ -140,7 +141,12 @@ class CustomTabBar: UIView {
     
     func animateForFarTabs(from: Int, to: Int, delta: Int) {
         
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: [.calculationModeCubicPaced]) {
+        let positiveDelta = Double(abs(delta))
+        let period = 0.5 / positiveDelta
+        var count = 0.0
+        
+        UIView.animateKeyframes(withDuration: 0.4, delay: 0.0, options: [.calculationModeCubicPaced]) { [weak self] in
+            guard let self = self else {return}
             
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/9) {
                 
@@ -149,50 +155,26 @@ class CustomTabBar: UIView {
                 
             }
             
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2) {
+            if delta < -1 {
                 
-                if delta < -1 {
+                for index in (from + 1)..<to {
                     
-                    for index in (from + 1)..<to {
-                        
-                        self.setLayerForActiveTab(tab: index)
-                        
-                    }
-                    
-                } else if delta > 1 {
-                    
-                    for index in (from - 1)...(to + 1) {
-                        
-                        self.setLayerForActiveTab(tab: index)
-                        
-                    }
-                    
+                    self.animateForAdjacentTabsInLoop(atIndex: index, period: period, count: count)
+                    count += 1.0
+                                        
                 }
-   
-            }
-
-            UIView.addKeyframe(withRelativeStartTime: 2/4, relativeDuration: 1/4) {
                 
-                if delta < -1 {
+            } else if delta > 1 {
+                
+                for index in ((to + 1)...(from - 1)).reversed() {
                     
-                    for index in (from + 1)..<to {
-                        
-                        self.removeLayerForDeactiveTab(tab: index)
-                        
-                    }
-                    
-                } else if delta > 1 {
-                    
-                    for index in (from - 1)...(to + 1) {
-                        
-                        self.removeLayerForDeactiveTab(tab: index)
-                        
-                    }
+                    self.animateForAdjacentTabsInLoop(atIndex: index, period: period, count: count)
+                    count += 1.0
                     
                 }
                 
             }
-            
+        
             UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4) {
                 
                 self.setLayerForActiveTab(tab: to)
@@ -203,6 +185,22 @@ class CustomTabBar: UIView {
             
         }
         
+        
+    }
+    
+    func animateForAdjacentTabsInLoop(atIndex: Int, period: Double, count: Double) {
+        
+        UIView.addKeyframe(withRelativeStartTime: 0.0 + period*count, relativeDuration: period / 2) {
+
+            self.setLayerForActiveTab(tab: atIndex)
+            
+        }
+        
+        UIView.addKeyframe(withRelativeStartTime: period*(0.5 + count), relativeDuration: period / 2) {
+            
+            self.removeLayerForDeactiveTab(tab: atIndex)
+            
+        }
         
     }
     
@@ -225,10 +223,7 @@ class CustomTabBar: UIView {
             }
             
             
-        } completion: { _ in
-            
         }
-        
         
     }
     

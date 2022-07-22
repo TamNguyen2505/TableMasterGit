@@ -8,7 +8,7 @@
 import UIKit
 import youtube_ios_player_helper
 
-class CircleGraphViewController: BaseViewController {
+class VideoPlayerViewController: BaseViewController {
     //MARK: Properties
     private lazy var circleSlider: CustomCircleSlider = {
         let slider = CustomCircleSlider()
@@ -108,7 +108,7 @@ class CircleGraphViewController: BaseViewController {
     
 }
 
-extension CircleGraphViewController: YTPlayerViewDelegate {
+extension VideoPlayerViewController: YTPlayerViewDelegate {
     
     func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
         

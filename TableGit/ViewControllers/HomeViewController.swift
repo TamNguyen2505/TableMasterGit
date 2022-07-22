@@ -210,7 +210,7 @@ extension HomeViewController: FooterTableViewDelegate {
     
     func didTapCancelButton(from view: FooterTableView) {
         
-        let targetVC = CircleGraphViewController()
+        let targetVC = VideoPlayerViewController()
         self.navigationController?.pushViewController(targetVC, animated: false)
     }
     

@@ -9,7 +9,8 @@ import UIKit
 
 enum TabItem: String, CaseIterable {
     case home = "home"
-    case news = "photos"
+    case news = "news"
+    case graph = "graph"
     case settings = "settings"
 
     var viewController: UIViewController {
@@ -22,6 +23,9 @@ enum TabItem: String, CaseIterable {
             
         case .settings:
             return SettingsViewController()
+            
+        case .graph:
+            return GraphViewController()
         }
     }
     
@@ -35,6 +39,9 @@ enum TabItem: String, CaseIterable {
             
         case .settings:
             return UIImage(named: "icons8-settings")
+            
+        case .graph:
+            return UIImage(named: "icons8-increase-profits")
         }
     }
     
@@ -63,7 +70,7 @@ class BaseTabBarController: UITabBarController {
     //MARK: Helpers
     func loadTabBar() {
                 
-        let tabbarItems: [TabItem] = [.home, .news, .settings]
+        let tabbarItems: [TabItem] = [.home, .news, .graph, .settings]
         
         setupCustomTabMenu(tabbarItems) { [weak self] viewControllers in
             guard let self = self else {return}
