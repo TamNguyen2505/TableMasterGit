@@ -9,6 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     //MARK: Properties
+    let networkMonitor = NetworkMonitor.shared
 
     
     //MARK: View cycle
@@ -48,7 +49,7 @@ class BaseViewController: UIViewController {
     
     @objc private func methodOfReceivedNotification(notification: NotificationCenter) {
         
-        self.navigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
         
     }
 

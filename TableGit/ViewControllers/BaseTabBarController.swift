@@ -7,6 +7,45 @@
 
 import UIKit
 
+enum TabItem: String, CaseIterable {
+    case home = "home"
+    case news = "photos"
+    case settings = "settings"
+
+    var viewController: UIViewController {
+        switch self {
+        case .home:
+            return HomeViewController()
+            
+        case .news:
+            return WebViewController()
+            
+        case .settings:
+            return SettingsViewController()
+        }
+    }
+    
+    var icon: UIImage? {
+        switch self {
+        case .home:
+            return UIImage(named: "icons8-home")
+            
+        case .news:
+            return UIImage(named: "icons8-news")
+            
+        case .settings:
+            return UIImage(named: "icons8-settings")
+        }
+    }
+    
+    var displayTitle: String {
+        
+        return self.rawValue.capitalized(with: nil)
+        
+    }
+        
+}
+
 class BaseTabBarController: UITabBarController {
     //MARK: Properties
     var customTabBar: CustomTabBar?

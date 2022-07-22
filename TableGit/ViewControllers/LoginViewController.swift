@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     //MARK: Properties
     private let backgroundImageView: UIImageView = {
         let iv = UIImageView()
@@ -66,9 +66,7 @@ class LoginViewController: UIViewController {
         btn.addTarget(self, action: #selector(handleEventFromSignUpButton(_:)), for: .touchUpInside)
         return btn
     }()
-    
-    private let networkMonitor = NetworkMonitor.shared
-    
+        
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,9 +102,8 @@ class LoginViewController: UIViewController {
     
     
     //MARK: Helpers
-    private func setupUI() {
-        
-        view.backgroundColor = .white
+    override func setupUI() {
+        super.setupUI()
         
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints{ make in

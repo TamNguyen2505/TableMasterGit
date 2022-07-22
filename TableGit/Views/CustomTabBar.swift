@@ -7,45 +7,6 @@
 
 import UIKit
 
-enum TabItem: String, CaseIterable {
-    case home = "home"
-    case news = "photos"
-    case settings = "settings"
-
-    var viewController: UIViewController {
-        switch self {
-        case .home:
-            return HomeViewController()
-            
-        case .news:
-            return WebViewController()
-            
-        case .settings:
-            return SettingsViewController()
-        }
-    }
-    
-    var icon: UIImage? {
-        switch self {
-        case .home:
-            return UIImage(named: "icons8-home")
-            
-        case .news:
-            return UIImage(named: "icons8-news")
-            
-        case .settings:
-            return UIImage(named: "icons8-settings")
-        }
-    }
-    
-    var displayTitle: String {
-        
-        return self.rawValue.capitalized(with: nil)
-        
-    }
-        
-}
-
 class CustomTabBar: UIView {
     //MARK: Properties
     var itemTapped: ((_ tab: Int) -> Void)?
@@ -98,6 +59,7 @@ class CustomTabBar: UIView {
         super.draw(rect)
         
         setLayerForActiveTab(tab: 0)
+        highlightImageView(iv: self.imageArray[0])
         
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
     //MARK: Properties
     private let backgroundImageView: UIImageView = {
         let iv = UIImageView()
@@ -94,9 +94,8 @@ class SignUpViewController: UIViewController {
     
     
     //MARK: Helpers
-    private func setupUI() {
-        
-        view.backgroundColor = .white
+    override func setupUI() {
+        super.setupUI()
         
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints{ make in

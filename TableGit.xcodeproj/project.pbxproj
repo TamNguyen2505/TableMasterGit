@@ -215,10 +215,10 @@
 		007FD8D628640128007ADA91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0074C22628890597005F115F /* BaseTabBarController.swift */,
+				E97CE05328829381006A2E3C /* BaseViewController.swift */,
 				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
 				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
-				E97CE05328829381006A2E3C /* BaseViewController.swift */,
-				0074C22628890597005F115F /* BaseTabBarController.swift */,
 				0077CCE32862C2E80079F06A /* HomeViewController.swift */,
 				0080809A286ADB5A00973384 /* WebViewController.swift */,
 				006FF45528729115009FDD30 /* CircleGraphViewController.swift */,
