@@ -142,14 +142,14 @@ class CustomTabBar: UIView {
         
         UIView.animateKeyframes(withDuration: 0.5, delay: 0.0, options: [.calculationModeCubicPaced]) {
             
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/4) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/9) {
                 
                 self.removeLayerForDeactiveTab(tab: from)
                 self.turnOffHighlightImageView(iv: self.imageArray[from])
                 
             }
             
-            UIView.addKeyframe(withRelativeStartTime: 1/4, relativeDuration: 1/4) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2) {
                 
                 if delta < -1 {
                     
