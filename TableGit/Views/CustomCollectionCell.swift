@@ -5,34 +5,29 @@
 //  Created by Nguyen Minh Tam on 22/06/2022.
 //
 
-import UIKit
 import SnapKit
 
 class CustomCollectionCell: UICollectionViewCell {
     //MARK: Properties
-    private let cardImageView: UIImageView = {
+    private let artImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.isUserInteractionEnabled = true
+        iv.layer.cornerRadius = 5
+        iv.clipsToBounds = true
         return iv
     }()
     
-    private let indexLabel: UILabel = {
+    private let titleImageViewLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .lightGray
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
     
-    private let addView: UIView = {
-        let view = UIView()
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 4.0
-        view.layer.cornerRadius = 5.0
-        view.isUserInteractionEnabled = true
-        return view
+    private let artistLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        return label
     }()
     
     //MARK: View cycle
@@ -49,32 +44,47 @@ class CustomCollectionCell: UICollectionViewCell {
     //MARK: Helpers
     private func setupUI() {
         
-        contentView.addSubview(cardImageView)
-        cardImageView.snp.makeConstraints{ make in
-
-            make.top.equalToSuperview()
-            make.width.equalTo(150).priority(.high)
-            make.height.equalTo(75).priority(.high)
-            make.leading.trailing.equalToSuperview()
+        contentView.addSubview(artImageView)
+        artImageView.snp.makeConstraints{ make in
+            
+            make.top.equalToSuperview().offset(5)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.width.equalTo(UIScreen.main.bounds.width - 40)
+            make.height.equalTo(200)
             
         }
         
-        contentView.addSubview(indexLabel)
-        indexLabel.snp.makeConstraints{ make in
+        let vStack = UIStackView(arrangedSubviews: [titleImageViewLabel, artistLabel])
+        vStack.spacing = 5
+        vStack.axis = .vertical
+        
+        contentView.addSubview(vStack)
+        vStack.snp.makeConstraints{ make in
             
-            make.top.equalTo(cardImageView.snp.bottom).offset(10)
-            make.leading.equalTo(cardImageView.snp.leading)
-            make.trailing.equalTo(cardImageView.snp.trailing)
+            make.top.equalTo(artImageView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
-        
+            
         }
         
     }
     
-    
-    func setupContent(image: UIImage?, index: String) {
-        self.cardImageView.image = image
-        self.indexLabel.text = index
+    func setupContent(titleImage: String, artist: String) {
+        
+        self.titleImageViewLabel.text = titleImage
+        self.artistLabel.text = artist
         
     }
+    
+    func setupImage(image: UIImage?) {
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            
+            self.artImageView.image = image
+            
+        }
+                
+    }
+    
 }

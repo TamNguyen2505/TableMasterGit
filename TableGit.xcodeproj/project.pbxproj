@@ -56,12 +56,8 @@
 		E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D928634F8600D4DA51 /* PublicData.swift */; };
 		E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */; };
 		E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */; };
-		E98DB4E02863503600D4DA51 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DF2863503600D4DA51 /* HeaderTableView.swift */; };
 		E98DB4E2286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		E98DB4E42863512E00D4DA51 /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E32863512E00D4DA51 /* CustomCollectionCell.swift */; };
-		E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E5286351A800D4DA51 /* HeaderCollectionReusableView.swift */; };
-		E98DB4E8286351D300D4DA51 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E7286351D300D4DA51 /* FooterCollectionReusableView.swift */; };
-		E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E92863523E00D4DA51 /* FooterTableView.swift */; };
 		E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */; };
 		E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */; };
 		E9B8AF2C286708C600A8242B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AF2B286708C600A8242B /* Loader.swift */; };
@@ -124,12 +120,8 @@
 		E98DB4D928634F8600D4DA51 /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
 		E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Extension.swift"; sourceTree = "<group>"; };
 		E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
-		E98DB4DF2863503600D4DA51 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		E98DB4E32863512E00D4DA51 /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
-		E98DB4E5286351A800D4DA51 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		E98DB4E7286351D300D4DA51 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
-		E98DB4E92863523E00D4DA51 /* FooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGradientCurvedView.swift; sourceTree = "<group>"; };
 		E9B8AF2B286708C600A8242B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -233,10 +225,6 @@
 		007FD8D728640134007ADA91 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E98DB4E92863523E00D4DA51 /* FooterTableView.swift */,
-				E98DB4DF2863503600D4DA51 /* HeaderTableView.swift */,
-				E98DB4E5286351A800D4DA51 /* HeaderCollectionReusableView.swift */,
-				E98DB4E7286351D300D4DA51 /* FooterCollectionReusableView.swift */,
 				E98DB4E32863512E00D4DA51 /* CustomCollectionCell.swift */,
 				E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */,
 				E98DB4D728634ED100D4DA51 /* CustomCell.swift */,
@@ -477,7 +465,6 @@
 				E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */,
 				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
 				006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */,
-				E98DB4E6286351A800D4DA51 /* HeaderCollectionReusableView.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				E9101A9F28669EFE00A597C9 /* ItunesResults.swift in Sources */,
@@ -502,7 +489,6 @@
 				0089A8CD2884F24500792773 /* DogViewModel.swift in Sources */,
 				0074C22728890597005F115F /* BaseTabBarController.swift in Sources */,
 				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
-				E98DB4EA2863523E00D4DA51 /* FooterTableView.swift in Sources */,
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				00B1CE01287D61F40058EA96 /* ArtViewModel.swift in Sources */,
@@ -511,7 +497,6 @@
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
 				00800036287FAA8600D3237C /* ITunesViewModel.swift in Sources */,
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
-				E98DB4E02863503600D4DA51 /* HeaderTableView.swift in Sources */,
 				E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */,
 				0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */,
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
@@ -520,7 +505,6 @@
 				00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,
 				E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */,
-				E98DB4E8286351D300D4DA51 /* FooterCollectionReusableView.swift in Sources */,
 				0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */,
 				00800034287FA72B00D3237C /* URLs.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,

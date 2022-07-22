@@ -27,7 +27,7 @@ class CustomCircleSlider: UIControl {
     
     private let thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "icons8-music-96")?.resizeImage(targetSize: .init(width: 52, height: 52))
+        iv.image = UIImage(named: "icons8-music-96")?.resize(targetSize: .init(width: 52, height: 52))
         iv.contentMode = .center
         iv.clipsToBounds = true
         return iv

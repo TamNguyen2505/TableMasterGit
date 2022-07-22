@@ -9,23 +9,10 @@ import UIKit
 
 extension UIImage {
     
-    func resizeImage(targetSize: CGSize) -> UIImage? {
-        
-        let size = self.size
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        var newSize: CGSize
-        newSize = CGSize(width: size.width * widthRatio, height: size.height * heightRatio)
-        
-        let rect = CGRect(origin: .zero, size: newSize)
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+    func resize(targetSize: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size:targetSize).image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
     }
     
     func rotate(radians: CGFloat) -> UIImage {

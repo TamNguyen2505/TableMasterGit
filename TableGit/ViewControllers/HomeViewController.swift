@@ -9,42 +9,57 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     //MARK: Properties
-    private lazy var searchTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Search here ..."
-        textField.layer.cornerRadius = 5
-        textField.layer.borderColor = UIColor.systemMint.cgColor
-        textField.layer.borderWidth = 2
-        textField.delegate = self
-        return textField
+    private let titleNavigationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome to Art World"
+        return label
     }()
     
-    private lazy var infoTableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-        tableView.backgroundColor = .clear
-        tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.className)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.prefetchDataSource = self
-        tableView.estimatedRowHeight = 167
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = 61
-        tableView.sectionHeaderHeight = UITableView.automaticDimension
-        tableView.register(HeaderTableView.self, forHeaderFooterViewReuseIdentifier: HeaderTableView.className)
-        tableView.estimatedSectionFooterHeight = 90
-        tableView.sectionFooterHeight = UITableView.automaticDimension
-        tableView.register(FooterTableView.self, forHeaderFooterViewReuseIdentifier: FooterTableView.className)
-        tableView.separatorStyle = .none
-        return tableView
+    private let avatarImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "default-avatar")?.resize(targetSize: .init(width: 40, height: 40))
+        iv.contentMode = .scaleAspectFit
+        return iv
     }()
     
+    private let artCollectionTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Art collection"
+        return label
+    }()
+    
+    private lazy var seeMoreButon: UIButton = {
+        let button = UIButton()
+        button.setTitle("See more", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        return button
+    }()
+    
+    private lazy var artCollectionView: UICollectionView = {
+        let layout = TopAlignedCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.backgroundColor = .clear
+        collection.showsVerticalScrollIndicator = false
+        collection.showsHorizontalScrollIndicator = false
+        collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.className)
+        collection.delegate = self
+        collection.dataSource = self
+        collection.prefetchDataSource = self
+        return collection
+    }()
+
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
     
     let vm = ArtViewModel()
     var data = ArtModel() {
         didSet {
-            self.infoTableView.reloadData()
+            self.artCollectionView.reloadData()
         }
     }
     
@@ -54,23 +69,35 @@ class HomeViewController: BaseViewController {
         
         Loader.shared.show()
         
-        view.addSubview(searchTextField)
-        searchTextField.snp.makeConstraints{ make in
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleNavigationLabel)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
+        
+        view.addSubview(artCollectionTitleLabel)
+        artCollectionTitleLabel.snp.makeConstraints{ make in
             
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.leading.equalToSuperview().offset(20)
             
         }
         
-        view.addSubview(infoTableView)
-        infoTableView.snp.makeConstraints{ make in
+        view.addSubview(seeMoreButon)
+        seeMoreButon.snp.makeConstraints{ make in
             
-            make.top.equalTo(searchTextField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.centerY.equalTo(artCollectionTitleLabel.snp.centerY)
+            make.trailing.equalToSuperview().inset(20)
+            make.leading.greaterThanOrEqualTo(artCollectionTitleLabel.snp.trailing)
             
         }
+        
+        view.addSubview(artCollectionView)
+        artCollectionView.snp.makeConstraints{ make in
+            
+            make.top.equalTo(artCollectionTitleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(400)
+            
+        }
+        
     
     }
     
@@ -90,36 +117,17 @@ class HomeViewController: BaseViewController {
     
 }
 
-//MARK: Table cell
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+//MARK: Collection view data source
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-        
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return vm.artData?.data?.count ?? 1
-        
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.className, for: indexPath) as! CustomCell
-        cell.delegate = self
-        
-        let info = vm.artData?.data?[indexPath.row]
-        cell.setupContent(name: info?.artist_display ?? "", message: info?.place_of_origin ?? "")
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        let cell = cell as! CustomCell
+        let cell = cell as! CustomCollectionCell
         
         let updateCellClosure: (UIImage?) -> () = { [unowned self] (image) in
             
@@ -149,9 +157,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 loadingOperations[indexPath] = dataLoader
             }
         }
+        
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.className, for: indexPath) as! CustomCollectionCell
+        let info = vm.artData?.data?[indexPath.row]
+        
+        cell.setupContent(titleImage: info?.title ?? "", artist: info?.artist_display ?? "")
+        
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let dataLoader = loadingOperations[indexPath] else {return}
         
@@ -160,72 +180,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return UITableView.automaticDimension
-        
-    }
-    
 }
 
-//MARK: Header Table View
-extension HomeViewController {
+//MARK: Collection prefetch data
+extension HomeViewController: UICollectionViewDataSourcePrefetching {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderTableView.className) as! HeaderTableView
-        return view
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return UITableView.automaticDimension
-    }
-    
-}
-
-//MARK: Footer Table View
-extension HomeViewController {
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterTableView.className) as! FooterTableView
-        
-        view.delegate = self
-        
-        return view
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        return UITableView.automaticDimension
-        
-    }
-    
-}
-
-extension HomeViewController: FooterTableViewDelegate {
-    
-    func didTapCancelButton(from view: FooterTableView) {
-        
-        let targetVC = VideoPlayerViewController()
-        self.navigationController?.pushViewController(targetVC, animated: false)
-    }
-    
-    func didTapContinueButton(from view: FooterTableView) {
-        
-        let targetVC = WebViewController()
-        self.navigationController?.pushViewController(targetVC, animated: false)
-        
-    }
-    
-}
-
-extension HomeViewController: UITableViewDataSourcePrefetching {
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
         for indexPath in indexPaths {
             
@@ -239,7 +199,8 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
         
     }
     
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        
         for indexPath in indexPaths {
             guard let dataLoader = loadingOperations[indexPath] else {return}
             
@@ -247,6 +208,7 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
             loadingOperations.removeValue(forKey: indexPath)
             
         }
+
     }
     
     func loadImage(at index: Int) -> DataLoadOperation? {
@@ -258,44 +220,3 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
     }
     
 }
-
-extension HomeViewController: CustomCelllDelegate {
-    
-    func deleteRow(from cell: CustomCell) {
-        
-        guard let indexEdit = infoTableView.indexPath(for: cell) else {return}
-        
-        imageArray.remove(at: indexEdit.row)
-        
-        infoTableView.beginUpdates()
-        infoTableView.deleteRows(at: [indexEdit], with: .automatic)
-        infoTableView.endUpdates()
-        
-    }
-    
-    func shouldResetUI(from cell: CustomCell) {
-        
-        guard let cells = infoTableView.visibleCells as? [CustomCell?], let indexEdit = infoTableView.indexPath(for: cell) else {return}
-        
-        cells.forEach{ [weak self] cell in
-            
-            guard let self = self, let unwrapCell = cell, let index = self.infoTableView.indexPath(for: unwrapCell), index != indexEdit else {return}
-            
-            cell?.resetUIForCardView()
-            
-        }
-        
-    }
-    
-}
-
-extension HomeViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
-        
-    }
-    
-}
-
-
