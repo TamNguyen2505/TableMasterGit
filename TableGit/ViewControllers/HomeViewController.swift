@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: BaseViewController {
     //MARK: Properties
@@ -50,13 +51,16 @@ class HomeViewController: BaseViewController {
         return button
     }()
     
-    private lazy var artCollectionView: UICollectionView = {
+    private lazy var layout: TopAlignedCollectionViewFlowLayout = {
         let layout = TopAlignedCollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 20
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        
+        return layout
+    }()
+    
+    private lazy var artCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
         collection.showsVerticalScrollIndicator = false
@@ -65,8 +69,15 @@ class HomeViewController: BaseViewController {
         collection.delegate = self
         collection.dataSource = self
         collection.prefetchDataSource = self
+        
+        let sideInset = ((view.frame.width - 250) / 2)
+        collection.contentInset = UIEdgeInsets(top: 20, left: sideInset, bottom: 0, right: sideInset)
+        
         return collection
     }()
+    
+    private var centerCell: CustomCollectionCell?
+    private var heightOfCollectionView: Constraint!
 
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
@@ -105,15 +116,15 @@ class HomeViewController: BaseViewController {
         }
         
         view.addSubview(artCollectionView)
-        artCollectionView.snp.makeConstraints{ make in
+        artCollectionView.snp.makeConstraints{ [weak self] make in
+            guard let self = self else {return}
             
-            make.top.equalTo(artCollectionTitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(artCollectionTitleLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(400)
+            self.heightOfCollectionView = make.height.equalTo(420).constraint
             
         }
         
-    
     }
     
     override func setupVM() {
@@ -126,7 +137,6 @@ class HomeViewController: BaseViewController {
             Loader.shared.hide()
             
         }
-
 
     }
     
@@ -182,6 +192,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.setupContent(titleImage: info?.title ?? "", artist: info?.artist_display ?? "")
         
+        if indexPath == .init(item: 0, section: 0) {
+            
+            cell.transformToLarge()
+            
+        }
+        
         return cell
         
     }
@@ -233,5 +249,35 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
         let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
         return DataLoadOperation(url: url)
     }
+    
+}
+
+//MARK: Scroll view
+extension HomeViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView is UICollectionView else {return}
+        
+        let centerPoint = CGPoint(x: self.artCollectionView.frame.size.width / 2 + scrollView.contentOffset.x,
+                                y: self.artCollectionView.frame.size.height / 2 + scrollView.contentOffset.y)
+        
+        guard let indexPath = self.artCollectionView.indexPathForItem(at: centerPoint) else {return}
+        
+        self.centerCell = self.artCollectionView.cellForItem(at: indexPath) as? CustomCollectionCell
+        self.centerCell?.transformToLarge()
+        
+        guard let cell = self.centerCell else {return}
+        
+        let offsetX = centerPoint.x - cell.center.x
+        
+        if offsetX < -20 || offsetX > 20 {
+            
+            cell.transformToStandard()
+            self.centerCell = nil
+            
+        }
+                
+    }
+    
     
 }

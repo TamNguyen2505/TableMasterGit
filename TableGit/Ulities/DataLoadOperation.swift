@@ -41,12 +41,5 @@ class DataLoadOperation: AsyncOperation {
         
     }
     
-    override func cancel() {
-        super.cancel()
-        
-        downloadTask?.cancel()
-        
-    }
-    
 }
 

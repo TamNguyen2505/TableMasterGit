@@ -26,7 +26,7 @@ class CustomCollectionCell: UICollectionViewCell {
     private let artistLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
+        label.numberOfLines = 4
         return label
     }()
     
@@ -48,9 +48,8 @@ class CustomCollectionCell: UICollectionViewCell {
         artImageView.snp.makeConstraints{ make in
             
             make.top.equalToSuperview().offset(5)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.width.equalTo(UIScreen.main.bounds.width - 40)
-            make.height.equalTo(200)
+            make.leading.trailing.equalToSuperview().inset(5)
+            make.width.height.equalTo(250)
             
         }
         
@@ -61,8 +60,8 @@ class CustomCollectionCell: UICollectionViewCell {
         contentView.addSubview(vStack)
         vStack.snp.makeConstraints{ make in
             
-            make.top.equalTo(artImageView.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(artImageView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(5)
             make.bottom.equalToSuperview()
             
         }
@@ -85,6 +84,34 @@ class CustomCollectionCell: UICollectionViewCell {
             
         }
                 
+    }
+    
+    func transformToLarge() {
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0) { [weak self] in
+            guard let self = self else {return}
+            
+            self.artImageView.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            self.artImageView.layer.borderColor = UIColor.systemYellow.cgColor
+            self.artImageView.layer.borderWidth = 5
+            
+        }
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+    }
+    
+    func transformToStandard() {
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0) { [weak self] in
+            guard let self = self else {return}
+            
+            self.artImageView.transform = .identity
+            self.artImageView.layer.borderWidth = 0
+            
+        }
+        
     }
     
 }

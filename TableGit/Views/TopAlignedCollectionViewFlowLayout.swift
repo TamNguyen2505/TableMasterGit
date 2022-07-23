@@ -39,22 +39,35 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let attributes = super.layoutAttributesForItem(at: indexPath) else {return nil}
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
-        attributes.frame = attributes.frame.offsetBy(dx: 0, dy: -attributes.frame.minY + sectionInset.top)
+        guard let collectionView = collectionView else {return .zero}
         
-        return attributes
+        var offsetAdjustment = CGFloat.greatestFiniteMagnitude
+        
+        let horizontalOffset = proposedContentOffset.x + collectionView.contentInset.left
+        
+        let targetRect = CGRect(x: proposedContentOffset.x,
+                                y: 0,
+                                width: collectionView.bounds.size.width,
+                                height: collectionView.bounds.size.height)
+        
+        let layoutAttributesArray = super.layoutAttributesForElements(in: targetRect)
+        
+        layoutAttributesArray?.forEach { (layoutAttributes) in
+            
+            let itemOffset = layoutAttributes.frame.origin.x
+            
+            if fabsf(Float(itemOffset - horizontalOffset)) < fabsf(Float(offsetAdjustment)) {
+                
+                offsetAdjustment = itemOffset - horizontalOffset
+                
+            }
+            
+        }
+        
+        return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: proposedContentOffset.y)
         
     }
     
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let attributes = super.layoutAttributesForSupplementaryView(ofKind: elementKind, at: indexPath) else {return nil}
-        
-        attributes.frame = attributes.frame.offsetBy(dx: 0, dy: -attributes.frame.minY + sectionInset.top)
-        
-        return attributes
-        
-    }
-
 }
