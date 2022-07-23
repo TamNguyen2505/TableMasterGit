@@ -140,7 +140,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             
         } catch {
             
-            throw error
+            throw NetworkError.buildingRequestUrlFailed
             
         }
         
@@ -157,7 +157,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             
         } catch {
             
-            throw error
+            throw NetworkError.configuringParametersFailed
             
         }
         
@@ -175,7 +175,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             
         } catch {
             
-            throw error
+            throw NetworkError.configuringParametersFailed
             
         }
         
