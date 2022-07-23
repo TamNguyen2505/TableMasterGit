@@ -119,109 +119,27 @@ class CustomTabBar: UIView {
     
     func switchTab(from: Int, to: Int) {
         
-        let delta = from - to
-    
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             
-            if abs(delta) == 1 {
+            UIView.animateKeyframes(withDuration: 0.25, delay: 0.0, options: [.calculationModeCubicPaced]) {
                 
-                self.animateForAdjacentTabs(from: from, to: to)
-                
-            } else {
-                
-                self.animateForFarTabs(from: from, to: to, delta: delta)
-                
-            }
-            
-            
-        }
-        
-    }
-    
-    func animateForFarTabs(from: Int, to: Int, delta: Int) {
-        
-        let positiveDelta = Double(abs(delta))
-        let period = 0.5 / positiveDelta
-        var count = 0.0
-        
-        UIView.animateKeyframes(withDuration: 0.4, delay: 0.0, options: [.calculationModeCubicPaced]) { [weak self] in
-            guard let self = self else {return}
-            
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/9) {
-                
-                self.removeLayerForDeactiveTab(tab: from)
-                self.turnOffHighlightImageView(iv: self.imageArray[from])
-                
-            }
-            
-            if delta < -1 {
-                
-                for index in (from + 1)..<to {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2) {
                     
-                    self.animateForAdjacentTabsInLoop(atIndex: index, period: period, count: count)
-                    count += 1.0
-                                        
-                }
-                
-            } else if delta > 1 {
-                
-                for index in ((to + 1)...(from - 1)).reversed() {
-                    
-                    self.animateForAdjacentTabsInLoop(atIndex: index, period: period, count: count)
-                    count += 1.0
+                    self.removeLayerForDeactiveTab(tab: from)
+                    self.turnOffHighlightImageView(iv: self.imageArray[from])
                     
                 }
                 
-            }
-        
-            UIView.addKeyframe(withRelativeStartTime: 3/4, relativeDuration: 1/4) {
+                UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2) {
+                    
+                    self.setLayerForActiveTab(tab: to)
+                    self.highlightImageView(iv: self.imageArray[to])
+                    
+                }
                 
-                self.setLayerForActiveTab(tab: to)
-                self.highlightImageView(iv: self.imageArray[to])
-                
-            }
-            
-            
-        }
-        
-        
-    }
-    
-    func animateForAdjacentTabsInLoop(atIndex: Int, period: Double, count: Double) {
-        
-        UIView.addKeyframe(withRelativeStartTime: 0.0 + period*count, relativeDuration: period / 2) {
-
-            self.setLayerForActiveTab(tab: atIndex)
-            
-        }
-        
-        UIView.addKeyframe(withRelativeStartTime: period*(0.5 + count), relativeDuration: period / 2) {
-            
-            self.removeLayerForDeactiveTab(tab: atIndex)
-            
-        }
-        
-    }
-    
-    func animateForAdjacentTabs(from: Int, to: Int) {
-        
-        UIView.animateKeyframes(withDuration: 0.25, delay: 0.0, options: [.calculationModeCubicPaced]) {
-            
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/2) {
-                
-                self.removeLayerForDeactiveTab(tab: from)
-                self.turnOffHighlightImageView(iv: self.imageArray[from])
                 
             }
-            
-            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2) {
-                
-                self.setLayerForActiveTab(tab: to)
-                self.highlightImageView(iv: self.imageArray[to])
-                
-            }
-            
             
         }
         

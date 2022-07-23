@@ -11,7 +11,20 @@ class HomeViewController: BaseViewController {
     //MARK: Properties
     private let titleNavigationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Welcome to Art World"
+        
+        let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]
+        let lineOne = NSMutableAttributedString(string: "Welcome to\n", attributes: attributesLineOne)
+        
+        let attributesLineTwo: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: UIColor.systemRed]
+        let lineTwo = NSMutableAttributedString(string: "Art World", attributes: attributesLineTwo)
+        
+        let totalString: NSMutableAttributedString = lineOne
+        totalString.append(lineTwo)
+        
+        label.attributedText = totalString
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -24,6 +37,7 @@ class HomeViewController: BaseViewController {
     
     private let artCollectionTitleLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.text = "Art collection"
         return label
     }()
@@ -32,6 +46,7 @@ class HomeViewController: BaseViewController {
         let button = UIButton()
         button.setTitle("See more", for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14)
         return button
     }()
     
