@@ -14,6 +14,7 @@ class CustomCollectionCell: UICollectionViewCell {
         iv.layer.cornerRadius = 5
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(named: "signup-background")?.resize(targetSize: .init(width: 250, height: 250))
         return iv
     }()
     
@@ -27,7 +28,7 @@ class CustomCollectionCell: UICollectionViewCell {
     private let artistLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 4
+        label.numberOfLines = 5
         return label
     }()
     
