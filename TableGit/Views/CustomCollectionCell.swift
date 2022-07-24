@@ -13,13 +13,14 @@ class CustomCollectionCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.layer.cornerRadius = 5
         iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
     private let titleImageViewLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         return label
     }()
     
@@ -43,29 +44,27 @@ class CustomCollectionCell: UICollectionViewCell {
     
     //MARK: Helpers
     private func setupUI() {
-        
-        contentView.addSubview(artImageView)
-        artImageView.snp.makeConstraints{ make in
-            
-            make.top.equalToSuperview().offset(5)
-            make.leading.trailing.equalToSuperview().inset(5)
-            make.width.height.equalTo(250)
-            
-        }
-        
-        let vStack = UIStackView(arrangedSubviews: [titleImageViewLabel, artistLabel])
-        vStack.spacing = 5
+                        
+        let vStack = UIStackView(arrangedSubviews: [artImageView, titleImageViewLabel, artistLabel])
+        vStack.spacing = 10
+        vStack.setCustomSpacing(20, after: artImageView)
         vStack.axis = .vertical
         
         contentView.addSubview(vStack)
         vStack.snp.makeConstraints{ make in
             
-            make.top.equalTo(artImageView.snp.bottom).offset(20)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(5)
             make.bottom.equalToSuperview()
             
         }
+                
+        artImageView.snp.makeConstraints{ make in
         
+            make.width.height.equalTo(250).priority(.high)
+                        
+        }
+                        
     }
     
     func setupContent(titleImage: String, artist: String) {

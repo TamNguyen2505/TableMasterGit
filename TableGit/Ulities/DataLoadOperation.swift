@@ -31,11 +31,15 @@ class DataLoadOperation: AsyncOperation {
         downloadTask = session.downloadTask(with: url) { [weak self] url, response, error in
             guard error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data), let self = self else {return}
             defer { self.state = .finished }
-
-            self.image = image
-            self.loadingCompleteHandler?(self.image)
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                self.image = image.resize(targetSize: .init(width: 250, height: 250))
+                self.loadingCompleteHandler?(self.image)
                 
             }
+                
+        }
         
         downloadTask?.resume()
         

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class HomeViewController: BaseViewController {
     //MARK: Properties
@@ -57,12 +56,14 @@ class HomeViewController: BaseViewController {
         layout.minimumInteritemSpacing = 20
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionInset = .zero
         return layout
     }()
     
     private lazy var artCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
+        collection.decelerationRate = .normal
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
         collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.className)
@@ -72,12 +73,12 @@ class HomeViewController: BaseViewController {
         
         let sideInset = ((view.frame.width - 250) / 2)
         collection.contentInset = UIEdgeInsets(top: 20, left: sideInset, bottom: 0, right: sideInset)
+        collection.contentInsetAdjustmentBehavior = .automatic
         
         return collection
     }()
     
     private var centerCell: CustomCollectionCell?
-    private var heightOfCollectionView: Constraint!
 
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
@@ -116,12 +117,10 @@ class HomeViewController: BaseViewController {
         }
         
         view.addSubview(artCollectionView)
-        artCollectionView.snp.makeConstraints{ [weak self] make in
-            guard let self = self else {return}
+        artCollectionView.snp.makeConstraints{ make in
             
             make.top.equalTo(artCollectionTitleLabel.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            self.heightOfCollectionView = make.height.equalTo(420).constraint
+            make.leading.trailing.bottom.equalToSuperview()
             
         }
         

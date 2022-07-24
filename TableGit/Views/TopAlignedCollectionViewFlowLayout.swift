@@ -12,9 +12,6 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     //MARK: View cycle
     override init() {
         super.init()
-        
-        scrollDirection = .horizontal
-        
     }
     
     required init?(coder: NSCoder) {
