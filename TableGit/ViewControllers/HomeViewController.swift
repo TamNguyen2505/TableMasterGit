@@ -72,7 +72,7 @@ class HomeViewController: BaseViewController {
         collection.prefetchDataSource = self
         
         let sideInset = ((view.frame.width - 250) / 2)
-        collection.contentInset = UIEdgeInsets(top: 20, left: sideInset, bottom: 0, right: sideInset)
+        collection.contentInset = UIEdgeInsets(top: 30, left: sideInset, bottom: 0, right: sideInset)
         collection.contentInsetAdjustmentBehavior = .automatic
         
         return collection
@@ -120,7 +120,8 @@ class HomeViewController: BaseViewController {
         artCollectionView.snp.makeConstraints{ make in
             
             make.top.equalTo(artCollectionTitleLabel.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(430)
             
         }
         
@@ -190,12 +191,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let info = exhibitionData?[indexPath.row]
         
         cell.setupContent(titleImage: info?.title ?? "", artist: info?.description ?? "")
-        
-        if indexPath == .init(item: 0, section: 0) {
-            
-            cell.transformToLarge()
-            
-        }
         
         return cell
         

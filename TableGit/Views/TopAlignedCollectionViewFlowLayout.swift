@@ -18,6 +18,16 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepare() {
+        super.prepare()
+        
+        guard let collectionView = collectionView, let cell = collectionView.cellForItem(at: .init(item: 0, section: 0)) as? CustomCollectionCell else {return}
+        
+        cell.transformToLarge()
+        
+        
+    }
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
         guard let attributes = super.layoutAttributesForElements(in: rect), attributes.count > 1 else {return nil}
