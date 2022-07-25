@@ -53,7 +53,6 @@
 		E97CE05428829381006A2E3C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97CE05328829381006A2E3C /* BaseViewController.swift */; };
 		E97CE0562882A36A006A2E3C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0552882A36A006A2E3C /* SignUpViewController.swift */; };
 		E98DB4D828634ED100D4DA51 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D728634ED100D4DA51 /* CustomCell.swift */; };
-		E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4D928634F8600D4DA51 /* PublicData.swift */; };
 		E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */; };
 		E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */; };
 		E98DB4E2286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */; };
@@ -117,7 +116,6 @@
 		E97CE05328829381006A2E3C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E97CE0552882A36A006A2E3C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E98DB4D728634ED100D4DA51 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		E98DB4D928634F8600D4DA51 /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
 		E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Extension.swift"; sourceTree = "<group>"; };
 		E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		E98DB4E1286350E300D4DA51 /* TopAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 		007FD8D528640120007ADA91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E98DB4D928634F8600D4DA51 /* PublicData.swift */,
 				E9101A9E28669EFE00A597C9 /* ItunesResults.swift */,
 				00B1CE02287D62EC0058EA96 /* ArtModel.swift */,
 				00800037287FD99F00D3237C /* Media.swift */,
@@ -470,7 +467,6 @@
 				E9101A9F28669EFE00A597C9 /* ItunesResults.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
-				E98DB4DA28634F8600D4DA51 /* PublicData.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
