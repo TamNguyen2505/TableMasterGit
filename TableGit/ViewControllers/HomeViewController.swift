@@ -83,8 +83,8 @@ class HomeViewController: BaseViewController {
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
     
-    let vm = ArtViewModel()
-    var data = ArtModel() {
+    let viewModel = HardvardExhibitionViewModel()
+    var exhibitionData: [ExhibitionModelArray]? {
         didSet {
             self.artCollectionView.reloadData()
         }
@@ -131,8 +131,8 @@ class HomeViewController: BaseViewController {
         
         Task {
             
-            try await vm.fetchAPI()
-            self.data = vm.artData ?? ArtModel()
+            try await viewModel.getHardvardMuseumExhibition()
+            self.exhibitionData = viewModel.exhibitionData?.records
             Loader.shared.hide()
             
         }
@@ -146,7 +146,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return vm.artData?.data?.count ?? 1
+        return exhibitionData?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -187,9 +187,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.className, for: indexPath) as! CustomCollectionCell
-        let info = vm.artData?.data?[indexPath.row]
+        let info = exhibitionData?[indexPath.row]
         
-        cell.setupContent(titleImage: info?.title ?? "", artist: info?.artist_display ?? "")
+        cell.setupContent(titleImage: info?.title ?? "", artist: info?.description ?? "")
         
         if indexPath == .init(item: 0, section: 0) {
             
@@ -243,9 +243,10 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
     
     func loadImage(at index: Int) -> DataLoadOperation? {
         
-        guard let id = vm.artData?.data?[index].image_id else {return nil}
+        guard let id = exhibitionData?[index].images?.first?.iiifbaseuri else {return nil}
         
-        let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
+        let url = id + "/full/full/0/default.jpg"
+        
         return DataLoadOperation(url: url)
     }
     

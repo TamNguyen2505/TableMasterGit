@@ -2,12 +2,13 @@
 //  Media.swift
 //  TableGit
 //
-//  Created by MINERVA on 14/07/2022.
+//  Created by MINERVA on 25/07/2022.
 //
 
 import UIKit
 
 public struct Media {
+    
     let key: String
     let filename: String
     let data: Data

@@ -9,9 +9,7 @@ import Foundation
 
 struct URLs {
     
-    static let FDAUrl = URL(string: "https://api.fda.gov/drug/label.json")!
-    static let artUrl = URL(string: "https://api.artic.edu/api/v1/artworks")!
-    static let ITunesUrl = URL(string: "https://itunes.apple.com")!
-    static let dogUrl = URL(string: "https://api.thedogapi.com")!
+    static let keyAPI = "8ec7be1d-7776-4f2e-9498-344a8d3cfb7a"
+    static let BASE_URL_MUSEUM = URL(string: "https://api.harvardartmuseums.org")
     
 }

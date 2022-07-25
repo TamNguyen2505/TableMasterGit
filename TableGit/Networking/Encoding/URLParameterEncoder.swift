@@ -31,7 +31,7 @@ public struct URLParameterEncoder: ParameterEncoder {
                     
                     let queryItem = URLQueryItem(
                         name: key,
-                        value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+                        value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed))
                     urlComponents.queryItems?.append(queryItem)
                     
                 }
