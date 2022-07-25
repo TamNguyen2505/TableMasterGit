@@ -62,7 +62,7 @@ class CustomCollectionCell: UICollectionViewCell {
                 
         artImageView.snp.makeConstraints{ make in
         
-            make.width.height.equalTo(250).priority(.high)
+            make.width.height.equalTo(250)
                         
         }
                         

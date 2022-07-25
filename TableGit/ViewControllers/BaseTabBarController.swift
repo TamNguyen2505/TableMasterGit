@@ -58,7 +58,7 @@ enum TabItem: String, CaseIterable {
 class BaseTabBarController: UITabBarController {
     //MARK: Properties
     var customTabBar: CustomTabBar?
-    var tabBarHeight: CGFloat = 75.0
+    var tabBarHeight: CGFloat = 82.0
     
     //MARK: View cycle
     override func viewDidLoad() {
