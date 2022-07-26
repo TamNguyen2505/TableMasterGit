@@ -34,7 +34,7 @@ class DataLoadOperation: AsyncOperation {
             
             DispatchQueue.global(qos: .userInitiated).async {
                 
-                self.image = image.resize(targetSize: .init(width: 250, height: 250))
+                self.image = image
                 self.loadingCompleteHandler?(self.image)
                 
             }

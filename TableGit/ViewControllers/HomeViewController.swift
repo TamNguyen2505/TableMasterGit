@@ -127,18 +127,18 @@ class HomeViewController: BaseViewController {
         
     }
     
-    override func setupVM() {
-        super.setupVM()
-        
-        Task {
-            
-            try await viewModel.getHardvardMuseumExhibition()
-            self.exhibitionData = viewModel.exhibitionData?.records
-            Loader.shared.hide()
-            
-        }
-
-    }
+//    override func setupVM() {
+//        super.setupVM()
+//        
+//        Task {
+//            
+//            try await viewModel.getHardvardMuseumExhibition()
+//            self.exhibitionData = viewModel.exhibitionDataArray
+//            Loader.shared.hide()
+//            
+//        }
+//
+//    }
     
 }
 

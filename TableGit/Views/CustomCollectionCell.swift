@@ -14,7 +14,7 @@ class CustomCollectionCell: UICollectionViewCell {
         iv.layer.cornerRadius = 5
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "signup-background")?.resize(targetSize: .init(width: 250, height: 250))
+        iv.image = UIImage(named: "signup-background")
         return iv
     }()
     
@@ -62,7 +62,8 @@ class CustomCollectionCell: UICollectionViewCell {
                 
         artImageView.snp.makeConstraints{ make in
         
-            make.width.height.equalTo(250)
+            make.height.equalTo(250)
+            make.leading.trailing.equalToSuperview()
                         
         }
                         
