@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "xoa.png",
+      "filename" : "icons8-language-24(@1x).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "xoa@2x.png",
+      "filename" : "icons8-language-48(@2x).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "xoa@3x.png",
+      "filename" : "icons8-language-72(@3x).png",
       "idiom" : "universal",
       "scale" : "3x"
     }
