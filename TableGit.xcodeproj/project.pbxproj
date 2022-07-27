@@ -26,7 +26,6 @@
 		008377A7288A765A003A39EA /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A6288A765A003A39EA /* GraphViewController.swift */; };
 		0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E699286E83F400423001 /* VerticalSlider.swift */; };
 		0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E69C286E859100423001 /* UIImage + Extension.swift */; };
-		0086E6A0286EF2D900423001 /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0086E69F286EF2D900423001 /* giphy.gif */; };
 		00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */; };
 		0089A8D12885614300792773 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8D02885614300792773 /* main.swift */; };
 		0089A8D3288562DF00792773 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089A8D2288562DF00792773 /* MyApplication.swift */; };
@@ -81,7 +80,6 @@
 		008377A6288A765A003A39EA /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		0086E699286E83F400423001 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		0086E69C286E859100423001 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
-		0086E69F286EF2D900423001 /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		00876D9A28728BEC00A3CCB0 /* CustomCircleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleSlider.swift; sourceTree = "<group>"; };
 		0089A8D02885614300792773 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		0089A8D2288562DF00792773 /* MyApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplication.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				00B1CDE0287D07D70058EA96 /* Networking */,
-				0086E69E286EF2B900423001 /* GIF */,
 				007FD8DA28640169007ADA91 /* AppDelegate */,
 				007FD8D82864013E007ADA91 /* Ulities */,
 				007FD8D728640134007ADA91 /* Views */,
@@ -245,14 +242,6 @@
 				0089A8D2288562DF00792773 /* MyApplication.swift */,
 			);
 			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		0086E69E286EF2B900423001 /* GIF */ = {
-			isa = PBXGroup;
-			children = (
-				0086E69F286EF2D900423001 /* giphy.gif */,
-			);
-			path = GIF;
 			sourceTree = "<group>";
 		};
 		00B1CDE0287D07D70058EA96 /* Networking */ = {
@@ -386,7 +375,6 @@
 			files = (
 				0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */,
 				0077CCE92862C2EA0079F06A /* Assets.xcassets in Resources */,
-				0086E6A0286EF2D900423001 /* giphy.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
