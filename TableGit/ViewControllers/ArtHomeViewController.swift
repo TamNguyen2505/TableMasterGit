@@ -54,6 +54,7 @@ class ArtHomeViewController: BaseViewController {
             
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+            section.visibleItemsInvalidationHandler = self.observeGroup
             
             let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .estimated(44))
@@ -87,6 +88,7 @@ class ArtHomeViewController: BaseViewController {
     }()
     
     private var centerCell: ArtCollectionCell?
+    private var observeGroup: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
 
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
@@ -115,6 +117,13 @@ class ArtHomeViewController: BaseViewController {
             
         }
         
+        observeGroup = { [weak self] (visibleItems, offset, _) in
+            guard let self = self else {return}
+            
+            self.highlightCenterCell(visibleItems: visibleItems, offset: offset)
+            
+        }
+        
     }
     
     override func setupVM() {
@@ -130,6 +139,33 @@ class ArtHomeViewController: BaseViewController {
         
     }
     
+    //MARK: Helpers
+    private func highlightCenterCell(visibleItems: [NSCollectionLayoutVisibleItem], offset: CGPoint) {
+        
+        let centerXPoint = offset.x + self.artCollectionView.bounds.midX
+        
+        for item in visibleItems where abs(item.frame.midX - centerXPoint) < 80 {
+            
+            self.centerCell = (self.artCollectionView.cellForItem(at: item.indexPath)) as? ArtCollectionCell
+            self.centerCell?.transformToLarge()
+            
+        }
+                    
+        if let centerCell = self.centerCell {
+            
+            let offset = abs(centerCell.center.x - centerXPoint)
+            
+            if offset > 20 {
+                
+                centerCell.transformToStandard()
+                self.centerCell = nil
+                
+            }
+            
+        }
+        
+    }
+        
 }
 
 //MARK: Collection view data source
