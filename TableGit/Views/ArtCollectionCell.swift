@@ -7,7 +7,7 @@
 
 import SnapKit
 
-class CustomCollectionCell: UICollectionViewCell {
+class ArtCollectionCell: UICollectionViewCell {
     //MARK: Properties
     private let artImageView: UIImageView = {
         let iv = UIImageView()

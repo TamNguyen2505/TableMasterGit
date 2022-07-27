@@ -77,8 +77,8 @@ class ArtHomeViewController: BaseViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.className)
-        collectionView.register(CustomCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CustomCollectionReusableView.className)
+        collectionView.register(ArtCollectionCell.self, forCellWithReuseIdentifier: ArtCollectionCell.className)
+        collectionView.register(ArtCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ArtCollectionHeaderView.className)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
@@ -86,7 +86,7 @@ class ArtHomeViewController: BaseViewController {
         return collectionView
     }()
     
-    private var centerCell: CustomCollectionCell?
+    private var centerCell: ArtCollectionCell?
 
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
@@ -148,10 +148,10 @@ extension ArtHomeViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let headerView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: CustomCollectionReusableView.className,
+                withReuseIdentifier: ArtCollectionHeaderView.className,
                 for: indexPath)
             
-            guard let typedHeaderView = headerView as? CustomCollectionReusableView, let info = exhibitionData[indexPath.section].info?.totalrecords else { return headerView }
+            guard let typedHeaderView = headerView as? ArtCollectionHeaderView, let info = exhibitionData[indexPath.section].info?.totalrecords else { return headerView }
             
             
             typedHeaderView.updateContent(title: "\(info) pictures")
@@ -172,7 +172,7 @@ extension ArtHomeViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.className, for: indexPath) as! CustomCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtCollectionCell.className, for: indexPath) as! ArtCollectionCell
         let info = exhibitionData[indexPath.section].records?[indexPath.item]
         
         cell.setupContent(titleImage: info?.title ?? "", artist: info?.description ?? "")
@@ -187,7 +187,7 @@ extension ArtHomeViewController {
         
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
                 
-        let cell = cell as! CustomCollectionCell
+        let cell = cell as! ArtCollectionCell
         
         let updateCellClosure: (UIImage?) -> () = { [unowned self] (image) in
             

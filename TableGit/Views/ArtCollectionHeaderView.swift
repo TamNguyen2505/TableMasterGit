@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomCollectionReusableView: UICollectionReusableView {
+class ArtCollectionHeaderView: UICollectionReusableView {
     //MARK: Properties
     private let totalLabel: UILabel = {
         let label = UILabel()
