@@ -68,5 +68,10 @@ extension BaseEnpoint: EndPointType {
         
     }
     
+    var cachePolicy: URLRequest.CachePolicy {
+        
+        return .useProtocolCachePolicy
+        
+    }
     
 }

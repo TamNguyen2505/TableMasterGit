@@ -14,5 +14,6 @@ protocol EndPointType {
     var httpMethod: HTTPMethod {get}
     var task: HTTPTask {get}
     var headers: HTTPHeaders {get}
+    var cachePolicy: URLRequest.CachePolicy { get }
     
 }
