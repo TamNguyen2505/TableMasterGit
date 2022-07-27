@@ -39,23 +39,21 @@ class ArtHomeViewController: BaseViewController {
         let sectionProvider = { [weak self] (sectionIndex: Int,
                                  layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             guard let self = self else {return nil}
-            
-            let absoluteWidth = 300.0
-            let sideInset = ((self.view.frame.width - absoluteWidth) / 2)
 
-            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(absoluteWidth),
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                   heightDimension: .estimated(350))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .estimated(350))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
+            let fractionWidth = 300.0
+            let sideInset = ((self.view.frame.width - fractionWidth) / 2)
         
-            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(absoluteWidth + sideInset*2),
-                                                   heightDimension: .fractionalHeight(0.59))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: sideInset, bottom: 0, trailing: sideInset)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: sideInset, bottom: 0, trailing: sideInset)
             
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-            section.interGroupSpacing = 30
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 90, trailing: 0)
             
             let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .estimated(44))
@@ -68,7 +66,6 @@ class ArtHomeViewController: BaseViewController {
         }
         
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
         
         let layout = UICollectionViewCompositionalLayout(
             sectionProvider: sectionProvider, configuration: config)
@@ -85,6 +82,7 @@ class ArtHomeViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 90, right: 0)
         return collectionView
     }()
     

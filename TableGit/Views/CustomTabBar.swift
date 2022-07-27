@@ -29,9 +29,7 @@ class CustomTabBar: UIView {
     
     convenience init(menuItems: [TabItem], frame: CGRect) {
         self.init(frame: frame)
-        
-        backgroundColor = .white
-        
+                
         for index in 0..<menuItems.count {
             
             let itemWidth = frame.width / CGFloat(menuItems.count)

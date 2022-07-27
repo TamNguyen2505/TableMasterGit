@@ -34,8 +34,10 @@ class CustomCollectionReusableView: UICollectionReusableView {
         addSubview(totalLabel)
         totalLabel.snp.makeConstraints{ make in
             
-            make.top.leading.equalToSuperview().offset(20)
-            make.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(30)
             
         }
         
