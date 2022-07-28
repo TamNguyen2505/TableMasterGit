@@ -169,6 +169,18 @@
 			path = NetworkMonitor;
 			sourceTree = "<group>";
 		};
+		007CA9E82892337300EE8D1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				00715DF9287EB85800209B2A /* Data + Extension.swift */,
+				E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */,
+				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
+				0086E69C286E859100423001 /* UIImage + Extension.swift */,
+				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,16 +231,12 @@
 		007FD8D82864013E007ADA91 /* Ulities */ = {
 			isa = PBXGroup;
 			children = (
-				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
-				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
-				0086E69C286E859100423001 /* UIImage + Extension.swift */,
-				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
-				E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */,
-				00715DF9287EB85800209B2A /* Data + Extension.swift */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
+				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				007856AE28879DB400E73D24 /* AsyncAddOperation.swift */,
 				E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */,
 				0089A8D42885659200792773 /* SessionTimer.swift */,
+				007CA9E82892337300EE8D1B /* Extensions */,
 			);
 			path = Ulities;
 			sourceTree = "<group>";

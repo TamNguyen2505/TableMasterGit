@@ -45,6 +45,21 @@ class SettingsViewController: BaseViewController {
         return btn
     }()
     
+    private lazy var faceIDSiwtch: UISwitch = {
+        let sw = UISwitch()
+        return sw
+    }()
+    
+    private lazy var englishSiwtch: UISwitch = {
+        let sw = UISwitch()
+        return sw
+    }()
+    
+    private lazy var darkModeSiwtch: UISwitch = {
+        let sw = UISwitch()
+        return sw
+    }()
+    
     struct SettingButton {
         
         var imageButton: UIImageView
@@ -80,7 +95,6 @@ class SettingsViewController: BaseViewController {
             make.top.equalToSuperview().offset(20)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(120)
-            make.bottom.equalToSuperview()
             
         }
         
@@ -90,6 +104,31 @@ class SettingsViewController: BaseViewController {
             make.width.height.equalTo(45)
             make.top.equalTo(avatarImageView.snp.top)
             make.trailing.equalToSuperview().inset(20)
+            
+        }
+        
+        let faceIDView = createSingleButton(nameOfImageButton: "icons8-face-id", nameOfButton: "Face ID", optionalButton: faceIDSiwtch)
+        let englishView = createSingleButton(nameOfImageButton: "icons8-language", nameOfButton: "Languages", optionalButton: englishSiwtch)
+        let themeView = createSingleButton(nameOfImageButton: "icons8-light-automation", nameOfButton: "Theme", optionalButton: darkModeSiwtch)
+        let fontSizeView = createSingleButton(nameOfImageButton: "icons8-text-width", nameOfButton: "Font size")
+        
+        let vStavk = UIStackView(arrangedSubviews: [faceIDView, englishView, themeView, fontSizeView])
+        vStavk.axis = .vertical
+        vStavk.spacing = 10
+        vStavk.distribution = .fillEqually
+        
+        contentView.addSubview(vStavk)
+        vStavk.snp.makeConstraints{ make in
+            
+            make.top.equalTo(avatarImageView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
+            
+        }
+        
+        faceIDView.snp.makeConstraints{ make in
+            
+            make.height.equalTo(50)
             
         }
         
@@ -106,19 +145,24 @@ class SettingsViewController: BaseViewController {
     private func createSingleButton(nameOfImageButton: String, nameOfButton: String, optionalButton: UIControl? = nil) -> UIView {
         
         let outView = UIView()
+        outView.backgroundColor = .white
         outView.layer.cornerRadius = 5.0
         outView.layer.borderWidth = 1.0
-        outView.layer.borderColor = UIColor.init(white: 0.5, alpha: 0.7).cgColor
-        outView.layer.shadowColor = UIColor.init(white: 0.6, alpha: 0.5).cgColor
+        outView.layer.borderColor = UIColor.init(white: 0.5, alpha: 0.6).cgColor
+        outView.layer.shadowColor = UIColor.init(white: 0.6, alpha: 0.4).cgColor
         outView.layer.shadowOffset = .init(width: 3, height: 3)
         outView.layer.shadowRadius = 4.0
+        outView.layer.shadowOpacity = 1.0
         
         let buttonImageView = UIImageView()
         buttonImageView.image = UIImage(named: nameOfImageButton)
+        buttonImageView.contentMode = .center
+        buttonImageView.setContentHuggingPriority(.required, for: .horizontal)
         
         let buttonNameTitle = UILabel()
         buttonNameTitle.font = UIFont.systemFont(ofSize: 14)
         buttonNameTitle.text = nameOfButton
+        buttonNameTitle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         self.settingButtons.append(.init(imageButton: buttonImageView, titleButton: buttonNameTitle))
         
@@ -128,15 +172,23 @@ class SettingsViewController: BaseViewController {
             
             let hStack = UIStackView(arrangedSubviews: [buttonImageView, buttonNameTitle, optionalButton])
             hStack.axis = .horizontal
+            hStack.spacing = 10
+            hStack.alignment = .center
             hStackHolder = hStack
             
+            optionalButton.setContentHuggingPriority(.required, for: .horizontal)
+                    
         } else {
             
             let arrowImageView = UIImageView()
             arrowImageView.image = UIImage(named: "next")
+            arrowImageView.contentMode = .center
+            arrowImageView.setContentHuggingPriority(.required, for: .horizontal)
             
             let hStack = UIStackView(arrangedSubviews: [buttonImageView, buttonNameTitle, arrowImageView])
             hStack.axis = .horizontal
+            hStack.spacing = 10
+            hStack.alignment = .center
             hStackHolder = hStack
             
         }
