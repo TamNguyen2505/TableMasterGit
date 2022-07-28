@@ -47,6 +47,7 @@ class SettingsViewController: BaseViewController {
     
     private lazy var faceIDSiwtch: UISwitch = {
         let sw = UISwitch()
+        sw.addTarget(self, action: #selector(handleEventFromFaceIDSwitch(_:)), for: .valueChanged)
         return sw
     }()
     
@@ -59,15 +60,6 @@ class SettingsViewController: BaseViewController {
         let sw = UISwitch()
         return sw
     }()
-    
-    struct SettingButton {
-        
-        var imageButton: UIImageView
-        var titleButton: UILabel
-        
-    }
-    
-    private var settingButtons = [SettingButton]()
     
     //MARK: View cycle
     override func setupUI() {
@@ -141,6 +133,11 @@ class SettingsViewController: BaseViewController {
         
     }
     
+    //MARK: Actions
+    @objc func handleEventFromFaceIDSwitch(_ sender: UISwitch) {
+        
+    }
+    
     //MARK: Helpers
     private func createSingleButton(nameOfImageButton: String, nameOfButton: String, optionalButton: UIControl? = nil) -> UIView {
         
@@ -163,9 +160,7 @@ class SettingsViewController: BaseViewController {
         buttonNameTitle.font = UIFont.systemFont(ofSize: 14)
         buttonNameTitle.text = nameOfButton
         buttonNameTitle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        
-        self.settingButtons.append(.init(imageButton: buttonImageView, titleButton: buttonNameTitle))
-        
+                
         let hStackHolder: UIStackView
         
         if let optionalButton = optionalButton {
