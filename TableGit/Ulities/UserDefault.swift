@@ -11,22 +11,22 @@ struct UserDefault {
     
     static var username: String {
         get {
-            return UserDefaults.value(forKey: "username") as! String
+            return UserDefaults.standard.value(forKey: "username") as! String
         }
         
         set {
-            UserDefaults.setValue(newValue, forKey: "username")
+            UserDefaults.standard.setValue(newValue, forKey: "username")
         }
         
     }
     
     static var password: String {
         get {
-            return UserDefaults.value(forKey: "password") as! String
+            return UserDefaults.standard.value(forKey: "password") as! String
         }
         
         set {
-            UserDefaults.setValue(newValue, forKey: "password")
+            UserDefaults.standard.setValue(newValue, forKey: "password")
         }
         
     }
