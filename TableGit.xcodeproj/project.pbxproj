@@ -23,6 +23,10 @@
 		007CA9EA2892342500EE8D1B /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */; };
 		007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9ED28926BC400EE8D1B /* KeychainManager.swift */; };
 		007CA9F428938D8800EE8D1B /* UserDefaults + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */; };
+		007CA9F628939FFB00EE8D1B /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */; };
+		007CA9F82893B35B00EE8D1B /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F72893B35B00EE8D1B /* SlideInPresentationManager.swift */; };
+		007CA9FA2893C63700EE8D1B /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F92893C63700EE8D1B /* SlideInPresentationController.swift */; };
+		007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9FB2893C80C00EE8D1B /* SlideInPresentationAnimator.swift */; };
 		00800034287FA72B00D3237C /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800033287FA72B00D3237C /* URLs.swift */; };
 		0080809B286ADB5A00973384 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080809A286ADB5A00973384 /* WebViewController.swift */; };
 		008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A4288A3605003A39EA /* SettingsViewController.swift */; };
@@ -80,6 +84,10 @@
 		007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
 		007CA9ED28926BC400EE8D1B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extension.swift"; sourceTree = "<group>"; };
+		007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		007CA9F72893B35B00EE8D1B /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
+		007CA9F92893C63700EE8D1B /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
+		007CA9FB2893C80C00EE8D1B /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		00800033287FA72B00D3237C /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		0080809A286ADB5A00973384 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		008377A4288A3605003A39EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +196,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		007CA9FD2893D81700EE8D1B /* SlideInPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				007CA9F72893B35B00EE8D1B /* SlideInPresentationManager.swift */,
+				007CA9F92893C63700EE8D1B /* SlideInPresentationController.swift */,
+				007CA9FB2893C80C00EE8D1B /* SlideInPresentationAnimator.swift */,
+			);
+			path = SlideInPresentation;
+			sourceTree = "<group>";
+		};
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +228,7 @@
 			children = (
 				0074C22628890597005F115F /* BaseTabBarController.swift */,
 				E97CE05328829381006A2E3C /* BaseViewController.swift */,
+				007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */,
 				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
 				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
 				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
@@ -224,6 +243,7 @@
 		007FD8D728640134007ADA91 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				007CA9FD2893D81700EE8D1B /* SlideInPresentation */,
 				E98DB4E32863512E00D4DA51 /* ArtCollectionCell.swift */,
 				00BCC376288F9E21003F5D1A /* ArtCollectionHeaderView.swift */,
 				E9B8AF2B286708C600A8242B /* Loader.swift */,
@@ -454,6 +474,7 @@
 				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
 				006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
+				007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */,
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				00BCC377288F9E21003F5D1A /* ArtCollectionHeaderView.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
@@ -461,12 +482,14 @@
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
+				007CA9F628939FFB00EE8D1B /* SideBarViewController.swift in Sources */,
 				0071F63F288E83FF00FE67EF /* Media.swift in Sources */,
 				00B1CDF4287D0F110058EA96 /* Router.swift in Sources */,
 				E97CE05428829381006A2E3C /* BaseViewController.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
+				007CA9F82893B35B00EE8D1B /* SlideInPresentationManager.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				0089A8D12885614300792773 /* main.swift in Sources */,
 				00B1CDEC287D0ACE0058EA96 /* ParameterEncoding.swift in Sources */,
@@ -480,6 +503,7 @@
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				008377A7288A765A003A39EA /* GraphViewController.swift in Sources */,
+				007CA9FA2893C63700EE8D1B /* SlideInPresentationController.swift in Sources */,
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
 				0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */,
