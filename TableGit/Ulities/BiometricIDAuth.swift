@@ -61,7 +61,6 @@ class BiometricIDAuth {
         self.localizedReason = localizedReason
         context.localizedFallbackTitle = localizedFallbackTitle
         context.localizedCancelTitle = localziedCancelTitle
-        context.touchIDAuthenticationAllowableReuseDuration = 10
         
     }
     
@@ -139,7 +138,7 @@ class BiometricIDAuth {
         
         do {
             try await context.evaluatePolicy(policy, localizedReason: localizedReason)
-            
+                    
             return (true, nil)
             
         } catch let error {

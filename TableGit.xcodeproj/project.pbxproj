@@ -21,8 +21,8 @@
 		007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856AE28879DB400E73D24 /* AsyncAddOperation.swift */; };
 		007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856B12887B31100E73D24 /* NetworkMonitor.swift */; };
 		007CA9EA2892342500EE8D1B /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */; };
-		007CA9EC28925EB800EE8D1B /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9EB28925EB800EE8D1B /* UserDefault.swift */; };
 		007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9ED28926BC400EE8D1B /* KeychainManager.swift */; };
+		007CA9F428938D8800EE8D1B /* UserDefaults + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */; };
 		00800034287FA72B00D3237C /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800033287FA72B00D3237C /* URLs.swift */; };
 		0080809B286ADB5A00973384 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080809A286ADB5A00973384 /* WebViewController.swift */; };
 		008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A4288A3605003A39EA /* SettingsViewController.swift */; };
@@ -78,8 +78,8 @@
 		007856AE28879DB400E73D24 /* AsyncAddOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAddOperation.swift; sourceTree = "<group>"; };
 		007856B12887B31100E73D24 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
-		007CA9EB28925EB800EE8D1B /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		007CA9ED28926BC400EE8D1B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extension.swift"; sourceTree = "<group>"; };
 		00800033287FA72B00D3237C /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		0080809A286ADB5A00973384 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		008377A4288A3605003A39EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +183,7 @@
 				E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */,
 				0086E69C286E859100423001 /* UIImage + Extension.swift */,
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
+				007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,7 +238,6 @@
 		007FD8D82864013E007ADA91 /* Ulities */ = {
 			isa = PBXGroup;
 			children = (
-				007CA9EB28925EB800EE8D1B /* UserDefault.swift */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				007856AE28879DB400E73D24 /* AsyncAddOperation.swift */,
@@ -477,7 +477,6 @@
 				007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */,
 				0074C22728890597005F115F /* BaseTabBarController.swift in Sources */,
 				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
-				007CA9EC28925EB800EE8D1B /* UserDefault.swift in Sources */,
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				008377A7288A765A003A39EA /* GraphViewController.swift in Sources */,
@@ -492,6 +491,7 @@
 				0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */,
 				00800034287FA72B00D3237C /* URLs.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,
+				007CA9F428938D8800EE8D1B /* UserDefaults + Extension.swift in Sources */,
 				0089A8D52885659200792773 /* SessionTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

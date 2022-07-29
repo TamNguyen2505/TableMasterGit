@@ -31,17 +31,23 @@ class KeychainManager {
     private let context = LAContext()
     
     //MARK: Features
-    func addPasswordToKeychains(key: KeychainKey, password: String) throws -> Bool {
+    func addPasswordToKeychains(key: KeychainKey, password: String) throws {
         
-        var basicQuery = createBasicQuery(key: key)
-        
-        basicQuery.updateValue(password.data(using: .utf8)!, forKey: kSecValueData as String)
-        
-        let status = SecItemAdd(basicQuery as CFDictionary, nil)
-        
-        guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
-        
-        return true
+        if try findPasswordInKeychains(key: key).sucess {
+            
+            try updateNewPasswordForTheKeychain(key: key, newPassword: password)
+            
+        } else {
+            
+            var basicQuery = createBasicQuery(key: key)
+            
+            basicQuery.updateValue(password.data(using: .utf8)!, forKey: kSecValueData as String)
+            
+            let status = SecItemAdd(basicQuery as CFDictionary, nil)
+            
+            guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
+                        
+        }
         
     }
     
@@ -70,7 +76,7 @@ class KeychainManager {
         
     }
     
-    func updateNewPasswordForTheKeychain(key: KeychainKey, newPassword: String) throws -> Bool {
+    func updateNewPasswordForTheKeychain(key: KeychainKey, newPassword: String) throws {
         
         let basicQuery = createBasicQuery()
 
@@ -82,20 +88,16 @@ class KeychainManager {
         let status = SecItemUpdate(basicQuery as CFDictionary, attributes as CFDictionary)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
-        return true
-        
+                
     }
     
-    func deleteKeychain(key: KeychainKey) throws -> Bool {
+    func deleteKeychain(key: KeychainKey) throws {
         
         let basicQuery = createBasicQuery(key: key)
         
         let status = SecItemDelete(basicQuery as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else { throw KeychainError.unhandledError(status: status) }
-        
-        return true
-        
+                
     }
     
     //MARK: Helpers
@@ -103,8 +105,7 @@ class KeychainManager {
         
         var query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecAttrServer as String: server,
-                                    kSecUseAuthenticationContext as String: context]
+                                    kSecAttrServer as String: server]
         
         guard let key = key else {return query}
 
