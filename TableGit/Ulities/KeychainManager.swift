@@ -7,13 +7,6 @@
 
 import LocalAuthentication
 
-struct Credentials {
-    
-    var username: String
-    var password: String
-    
-}
-
 enum KeychainError: Error {
     
     case noPassword
@@ -22,93 +15,103 @@ enum KeychainError: Error {
     
 }
 
+enum KeychainKey: String {
+    
+    case JWT = "user-jwt"
+    case SoftOTPPin = "soft-otp-pin"
+    case TokenSeed = "token-seed"
+    
+}
+
 class KeychainManager {
     //MARK: Properties
+    static var shared = KeychainManager()
     private let access = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly, .userPresence, nil)
-    private let server = "www.example.com"
+    private let server = Bundle.main.bundleIdentifier!
     private let context = LAContext()
     
     //MARK: Features
-    func addPasswordToKeychains() throws -> Bool {
-                
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccount as String: UserDefault.username,
-                                    kSecAttrServer as String: server,
-                                    kSecAttrAccessControl as String: access as Any,
-                                    kSecUseAuthenticationContext as String: context,
-                                    kSecValueData as String: UserDefault.password.data(using: .utf8)!]
-        let status = SecItemAdd(query as CFDictionary, nil)
+    func addPasswordToKeychains(key: KeychainKey, password: String) throws {
         
-        guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
-        
-        return true
+        if try findPasswordInKeychains(key: key).sucess {
+            
+            try updateNewPasswordForTheKeychain(key: key, newPassword: password)
+            
+        } else {
+            
+            var basicQuery = createBasicQuery(key: key)
+            
+            basicQuery.updateValue(password.data(using: .utf8)!, forKey: kSecValueData as String)
+            
+            let status = SecItemAdd(basicQuery as CFDictionary, nil)
+            
+            guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
+                        
+        }
         
     }
     
-    func findPasswordInKeychains() throws -> (sucess: Bool, credentials: Credentials?) {
+    func findPasswordInKeychains(key: KeychainKey) throws -> (sucess: Bool, password: String) {
         
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server,
-                                    kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecReturnAttributes as String: true,
-                                    kSecReturnData as String: true,
-                                    kSecUseAuthenticationContext as String: context]
+        var basicQuery = createBasicQuery(key: key)
+        
+        basicQuery.updateValue(true, forKey: kSecReturnAttributes as String)
+        basicQuery.updateValue(true, forKey: kSecReturnData as String)
+        
         var item: CFTypeRef?
-        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        let status = SecItemCopyMatching(basicQuery as CFDictionary, &item)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
         
         guard let existingItem = item as? [String : Any],
             let passwordData = existingItem[kSecValueData as String] as? Data,
-            let password = String(data: passwordData, encoding: String.Encoding.utf8),
-            let account = existingItem[kSecAttrAccount as String] as? String
+            let password = String(data: passwordData, encoding: String.Encoding.utf8)
                 
         else {
             
             throw KeychainError.unexpectedPasswordData
         }
-        
-        let credentials = Credentials(username: account, password: password)
-        
-        return (true, credentials)
+                
+        return (true, password)
         
     }
     
-    func updateNewPasswordForTheKeychain(credentials: Credentials) throws -> Bool {
+    func updateNewPasswordForTheKeychain(key: KeychainKey, newPassword: String) throws {
         
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server,
-                                    kSecUseAuthenticationContext as String: context]
+        let basicQuery = createBasicQuery()
 
-        let account = credentials.username
-        let password = credentials.password.data(using: String.Encoding.utf8)!
+        let account = key.rawValue
+        let password = newPassword.data(using: String.Encoding.utf8)!
         let attributes: [String: Any] = [kSecAttrAccount as String: account,
                                          kSecValueData as String: password]
         
-        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        let status = SecItemUpdate(basicQuery as CFDictionary, attributes as CFDictionary)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
-        return true
-        
+                
     }
     
-    func deleteKeychain(credentials: Credentials) throws -> Bool {
+    func deleteKeychain(key: KeychainKey) throws {
         
-        let account = credentials.username
-        let password = credentials.password.data(using: String.Encoding.utf8)!
+        let basicQuery = createBasicQuery(key: key)
         
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecAttrServer as String: server,
-                                    kSecAttrAccount as String: account,
-                                    kSecValueData as String: password,
-                                    kSecUseAuthenticationContext as String: context]
-        
-        let status = SecItemDelete(query as CFDictionary)
+        let status = SecItemDelete(basicQuery as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else { throw KeychainError.unhandledError(status: status) }
+                
+    }
+    
+    //MARK: Helpers
+    private func createBasicQuery(key: KeychainKey? = nil) -> [String: Any] {
         
-        return true
+        var query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecAttrServer as String: server]
+        
+        guard let key = key else {return query}
+
+        query.updateValue(key.rawValue, forKey: kSecAttrAccount as String)
+        
+        return query
         
     }
     

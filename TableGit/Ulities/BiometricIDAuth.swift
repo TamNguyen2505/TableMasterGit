@@ -48,22 +48,19 @@ enum BiometricError: LocalizedError {
 
 class BiometricIDAuth {
     //MARK: Properties
-    private let _context = LAContext()
+    static var shared = BiometricIDAuth()
+    private let context = LAContext()
     private let policy: LAPolicy
     private let localizedReason: String
     private var error: NSError?
-    var context: LAContext {
-        return _context
-    }
 
     //MARK: Init
     init(policy: LAPolicy = .deviceOwnerAuthenticationWithBiometrics, localizedReason: String = "Access your password on the keychain", localizedFallbackTitle: String = "Enter App Password", localziedCancelTitle: String = "Touch me not") {
         
         self.policy = policy
         self.localizedReason = localizedReason
-        _context.localizedFallbackTitle = localizedFallbackTitle
-        _context.localizedCancelTitle = localziedCancelTitle
-        _context.touchIDAuthenticationAllowableReuseDuration = 10
+        context.localizedFallbackTitle = localizedFallbackTitle
+        context.localizedCancelTitle = localziedCancelTitle
         
     }
     
@@ -119,9 +116,9 @@ class BiometricIDAuth {
     
     func canEvaluate() -> (success: Bool, biometricType: BiometicType, biometricError: BiometricError?){
         
-        guard _context.canEvaluatePolicy(policy, error: &error) else {
+        guard context.canEvaluatePolicy(policy, error: &error) else {
             
-            let type = biometricType(for: _context.biometryType)
+            let type = biometricType(for: context.biometryType)
             
             guard let error = error else {
                 return (false, type, nil)
@@ -131,7 +128,7 @@ class BiometricIDAuth {
             
         }
         
-        return (true, biometricType(for: _context.biometryType), nil)
+        return (true, biometricType(for: context.biometryType), nil)
         
     }
     
@@ -140,8 +137,8 @@ class BiometricIDAuth {
         guard canEvaluate().success else {return (false, canEvaluate().biometricError)}
         
         do {
-            try await _context.evaluatePolicy(policy, localizedReason: localizedReason)
-            
+            try await context.evaluatePolicy(policy, localizedReason: localizedReason)
+                    
             return (true, nil)
             
         } catch let error {

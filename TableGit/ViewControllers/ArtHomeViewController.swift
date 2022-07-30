@@ -9,6 +9,18 @@ import UIKit
 
 class ArtHomeViewController: BaseViewController {
     //MARK: Properties
+    private lazy var sideBarImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "icons8-menu")?.resize(targetSize: .init(width: 40, height: 40))
+        iv.contentMode = .scaleAspectFit
+        iv.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromSideBar))
+        iv.addGestureRecognizer(tap)
+        
+        return iv
+    }()
+    
     private let titleNavigationLabel: UILabel = {
         let label = UILabel()
         
@@ -100,13 +112,16 @@ class ArtHomeViewController: BaseViewController {
         }
     }
     
+    private lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+    
     //MARK: Init
     override func setupUI() {
         super.setupUI()
         
         Loader.shared.show()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleNavigationLabel)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: sideBarImageView)
+        self.navigationItem.titleView = titleNavigationLabel
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
         
         view.addSubview(artCollectionView)
@@ -136,6 +151,19 @@ class ArtHomeViewController: BaseViewController {
             Loader.shared.hide()
 
         }
+        
+    }
+    
+    //MARK: Actions
+    @objc func handleEventFromSideBar() {
+        
+        let targetVC = SideBarViewController()
+        
+        slideInTransitioningDelegate.direction = .left
+        targetVC.transitioningDelegate = slideInTransitioningDelegate
+        targetVC.modalPresentationStyle = .custom
+        
+        self.present(targetVC, animated: true, completion: nil)
         
     }
     
