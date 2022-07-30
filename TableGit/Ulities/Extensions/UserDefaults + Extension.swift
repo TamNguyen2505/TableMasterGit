@@ -52,7 +52,7 @@ extension UserDefaults {
             
             do {
                 
-                let key = try KeychainManager.shared.findPasswordInKeychains(key: Keys.tokenSeed.rawValue).password
+                let key = try KeychainManager.shared.findPasswordInKeychains(key: .TokenSeed).password
                 return key
                 
             } catch {
@@ -71,10 +71,10 @@ extension UserDefaults {
             do {
                 
                 if !newValue.isEmpty {
-                    try KeychainManager.shared.addPasswordToKeychains(key: Keys.tokenSeed.rawValue, password: newValue)
+                    try KeychainManager.shared.addPasswordToKeychains(key: .TokenSeed, password: newValue)
                     
                 } else {
-                    try KeychainManager.shared.deleteKeychain(key: Keys.tokenSeed.rawValue)
+                    try KeychainManager.shared.deleteKeychain(key: .TokenSeed)
                     
                 }
                 
@@ -96,7 +96,7 @@ extension UserDefaults {
             
             do {
                 
-                let key = try KeychainManager.shared.findPasswordInKeychains(key: Keys.jwtoken.rawValue).password
+                let key = try KeychainManager.shared.findPasswordInKeychains(key: .JWT).password
                 return key
                 
             } catch {
@@ -115,10 +115,10 @@ extension UserDefaults {
             do {
                 
                 if !newValue.isEmpty {
-                    try KeychainManager.shared.addPasswordToKeychains(key: Keys.jwtoken.rawValue, password: newValue)
+                    try KeychainManager.shared.addPasswordToKeychains(key: .JWT, password: newValue)
                     
                 } else {
-                    try KeychainManager.shared.deleteKeychain(key: Keys.jwtoken.rawValue)
+                    try KeychainManager.shared.deleteKeychain(key: .JWT)
                     
                 }
                 
@@ -140,7 +140,7 @@ extension UserDefaults {
             
             do {
                 
-                let key = try KeychainManager.shared.findPasswordInKeychains(key: Keys.pinCodeSoftOPT.rawValue).password
+                let key = try KeychainManager.shared.findPasswordInKeychains(key: .SoftOTPPin).password
                 return key
                 
             } catch {
@@ -159,10 +159,10 @@ extension UserDefaults {
             do {
                 
                 if !newValue.isEmpty {
-                    try KeychainManager.shared.addPasswordToKeychains(key: Keys.pinCodeSoftOPT.rawValue, password: newValue)
+                    try KeychainManager.shared.addPasswordToKeychains(key: .SoftOTPPin, password: newValue)
                     
                 } else {
-                    try KeychainManager.shared.deleteKeychain(key: Keys.pinCodeSoftOPT.rawValue)
+                    try KeychainManager.shared.deleteKeychain(key: .SoftOTPPin)
                     
                 }
                 

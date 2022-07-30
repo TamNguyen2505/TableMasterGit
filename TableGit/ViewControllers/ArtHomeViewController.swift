@@ -146,8 +146,7 @@ class ArtHomeViewController: BaseViewController {
         
         Task {
             
-            try await viewModel.getHardvardMuseumExhibition()
-            self.exhibitionData = viewModel.exhibitionDataArray
+            self.exhibitionData = await viewModel.getHardvardMuseumExhibition()
             Loader.shared.hide()
 
         }
@@ -253,12 +252,6 @@ extension ArtHomeViewController {
                 
         let cell = cell as! ArtCollectionCell
         
-        let updateCellClosure: (UIImage?) -> () = { [unowned self] (image) in
-            
-            cell.setupImage(image: image)
-            self.loadingOperations.removeValue(forKey: indexPath)
-        }
-        
         if let dataLoader = loadingOperations[indexPath] {
             
             if let image = dataLoader.image {
@@ -268,7 +261,12 @@ extension ArtHomeViewController {
                 
             } else {
                 
-                dataLoader.loadingCompleteHandler = updateCellClosure
+                dataLoader.completionBlock = {[unowned self] in
+                    
+                    cell.setupImage(image: dataLoader.image)
+                    self.loadingOperations.removeValue(forKey: indexPath)
+
+                }
                 
             }
             
@@ -276,9 +274,15 @@ extension ArtHomeViewController {
             
             if let dataLoader = loadImage(at: indexPath) {
                 
-                dataLoader.loadingCompleteHandler = updateCellClosure
                 loadingQueue.addOperation(dataLoader)
                 loadingOperations[indexPath] = dataLoader
+                dataLoader.completionBlock = {[unowned self] in
+                    
+                    cell.setupImage(image: dataLoader.image)
+                    self.loadingOperations.removeValue(forKey: indexPath)
+                    
+                }
+                
             }
         }
         

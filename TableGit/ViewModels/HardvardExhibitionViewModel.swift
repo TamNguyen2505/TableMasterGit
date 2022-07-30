@@ -10,10 +10,9 @@ import Foundation
 class HardvardExhibitionViewModel {
     //MARK: Properties
     let networkManager = NetworkManager()
-    var exhibitionDataArray = [ExhibitionModel]()
-    
-    //MARK: Features
-    func getHardvardMuseumExhibition() async throws {
+      
+    //Method: Features
+    func getHardvardMuseumExhibition() async -> [ExhibitionModel] {
         
         let parameters: [String: Any] = ["apikey": URLs.keyAPI,
                                          "q": "totalpageviews:0",
@@ -22,26 +21,56 @@ class HardvardExhibitionViewModel {
         let parametersTwo: [String: Any] = ["apikey": URLs.keyAPI,
                                          "q": "totalpageviews:1",
                                          "size": 200]
-        do {
+        
+                
+        return await Task { () -> [ExhibitionModel] in
             
-            async let exhibitionData = try await networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parameters), parseInto: ExhibitionModel.self)
+            await withTaskGroup(of: ExhibitionModel.self, returning: [ExhibitionModel].self) {
+                [unowned self] group in
+                
+                group.addTask{
+                    
+                    do {
+                        
+                        return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parameters), parseInto: ExhibitionModel.self) ?? ExhibitionModel()
+                        
+                    } catch {
+                        
+                        return ExhibitionModel()
+                        
+                    }
+                    
+                }
+                
+                group.addTask{
+                    
+                    do {
+                        
+                        return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parametersTwo), parseInto: ExhibitionModel.self) ?? ExhibitionModel()
+                        
+                    } catch {
+                        
+                        return ExhibitionModel()
+                        
+                    }
+                    
+                }
+                
+                var collection = [ExhibitionModel]()
+                
+                for await result in group {
+                    
+                    collection.append(result)
+                    
+                }
+                
+                return collection
+                
+            }
             
-            let exhibitionDataUnAsync = try await exhibitionData
             
-            self.exhibitionDataArray.append(exhibitionDataUnAsync ?? ExhibitionModel())
-            
-            async let exhibitionDataTwo = try await networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parametersTwo), parseInto: ExhibitionModel.self)
-            
-            let exhibitionDataTwoUnAsync = try await exhibitionDataTwo
-            
-            self.exhibitionDataArray.append(exhibitionDataTwoUnAsync ?? ExhibitionModel())
-            
-        } catch {
-            
-            throw error
-            
-        }
-
+        }.value
+        
         
     }
     

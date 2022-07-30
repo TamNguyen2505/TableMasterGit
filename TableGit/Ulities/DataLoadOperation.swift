@@ -10,7 +10,6 @@ import UIKit
 class DataLoadOperation: AsyncOperation {
     //MARK: Properties
     var image: UIImage?
-    var loadingCompleteHandler: ((UIImage?) -> ())?
     private let url: String
     private var downloadTask: URLSessionDownloadTask?
     
@@ -32,12 +31,7 @@ class DataLoadOperation: AsyncOperation {
             guard error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data), let self = self else {return}
             defer { self.state = .finished }
             
-            DispatchQueue.global(qos: .userInitiated).async {
-                
-                self.image = image
-                self.loadingCompleteHandler?(self.image)
-                
-            }
+            self.image = image
                 
         }
         

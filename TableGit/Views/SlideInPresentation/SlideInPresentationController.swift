@@ -36,8 +36,9 @@ class SlideInPresentationController: UIPresentationController {
         blurEffectView.frame = containerView.bounds
         
         coordinator.animate { [weak self] _ in
+            guard let self = self else {return}
             
-            self?.blurEffectView.alpha = 0.4
+            self.blurEffectView.alpha = 0.4
             
         }
         
@@ -47,8 +48,9 @@ class SlideInPresentationController: UIPresentationController {
         guard let coordinator = presentedViewController.transitionCoordinator else {return}
         
         coordinator.animate { [weak self] _ in
-            
-            self?.blurEffectView.alpha = 0.0
+            guard let self = self else {return}
+
+            self.blurEffectView.alpha = 0.0
             
         }
         

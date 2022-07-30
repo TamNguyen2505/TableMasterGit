@@ -22,6 +22,7 @@ class ArtCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.numberOfLines = 3
+        label.textColor = .darkGray
         return label
     }()
     
@@ -29,6 +30,7 @@ class ArtCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 5
+        label.textColor = .lightGray
         return label
     }()
     
