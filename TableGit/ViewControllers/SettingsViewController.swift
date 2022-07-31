@@ -61,6 +61,17 @@ class SettingsViewController: BaseViewController {
         return sw
     }()
     
+    private let faceID = BiometricIDAuth.shared
+    private var isRightHost = false {
+        didSet{
+            guard isRightHost else {return}
+            do {try KeychainManager.shared.addPasswordToKeychains(key: .JWT, password: "TAM")}
+            catch{
+            }
+        }
+    }
+    
+    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -135,6 +146,14 @@ class SettingsViewController: BaseViewController {
     
     //MARK: Actions
     @objc func handleEventFromFaceIDSwitch(_ sender: UISwitch) {
+        
+        guard sender.isOn else {return}
+        
+        Task {
+            
+            self.isRightHost = await faceID.evaluate().success
+            
+        }
         
     }
     

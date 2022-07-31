@@ -137,9 +137,8 @@ class BiometricIDAuth {
         guard canEvaluate().success else {return (false, canEvaluate().biometricError)}
         
         do {
-            try await context.evaluatePolicy(policy, localizedReason: localizedReason)
-                    
-            return (true, nil)
+              
+            return (try await context.evaluatePolicy(policy, localizedReason: localizedReason), nil)
             
         } catch let error {
             

@@ -86,6 +86,7 @@ class CustomTabBar: UIView {
         itemTitleLabel.text = item.displayTitle
         itemTitleLabel.textAlignment = .center
         itemTitleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        itemTitleLabel.textColor = .darkText
         
         let itemImageView = UIImageView()
         itemImageView.image = item.icon?.withRenderingMode(.automatic)

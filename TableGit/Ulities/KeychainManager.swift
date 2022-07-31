@@ -5,7 +5,7 @@
 //  Created by MINERVA on 28/07/2022.
 //
 
-import LocalAuthentication
+import Foundation
 
 enum KeychainError: Error {
     
@@ -28,26 +28,17 @@ class KeychainManager {
     static var shared = KeychainManager()
     private let access = SecAccessControlCreateWithFlags(nil, kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly, .userPresence, nil)
     private let server = Bundle.main.bundleIdentifier!
-    private let context = LAContext()
     
     //MARK: Features
     func addPasswordToKeychains(key: KeychainKey, password: String) throws {
         
-        if try findPasswordInKeychains(key: key).sucess {
-            
-            try updateNewPasswordForTheKeychain(key: key, newPassword: password)
-            
-        } else {
-            
-            var basicQuery = createBasicQuery(key: key)
-            
-            basicQuery.updateValue(password.data(using: .utf8)!, forKey: kSecValueData as String)
-            
-            let status = SecItemAdd(basicQuery as CFDictionary, nil)
-            
-            guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
-                        
-        }
+        var basicQuery = createBasicQuery(key: key)
+        
+        basicQuery.updateValue(password.data(using: .utf8)!, forKey: kSecValueData as String)
+        
+        let status = SecItemAdd(basicQuery as CFDictionary, nil)
+        
+        guard status == errSecSuccess else {throw KeychainError.unhandledError(status: status)}
         
     }
     

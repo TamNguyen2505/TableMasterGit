@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import youtube_ios_player_helper
 
 class VideoPlayerViewController: BaseViewController {
     //MARK: Properties
@@ -15,15 +14,7 @@ class VideoPlayerViewController: BaseViewController {
         slider.addTarget(self, action: #selector(handleEventFromCircleSlider(_:forEvent:)), for: .allEvents)
         return slider
     }()
-    
-    private lazy var youtubeView: YTPlayerView = {
-        let view = YTPlayerView()
-        view.delegate = self
-        return view
-    }()
-    
-    private lazy var duration = youtubeView.duration()
-    
+        
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +41,7 @@ class VideoPlayerViewController: BaseViewController {
         }
         
         let percentage = normalizedAngle / 360
-        let second = percentage * duration
         
-        self.youtubeView.loadVideo(byId: "h_xLRrwDric", startSeconds: Float(second), suggestedQuality: .auto)
         
     }
     
@@ -74,52 +63,16 @@ class VideoPlayerViewController: BaseViewController {
         circleSlider.handleEventOfDidTapButton = { [weak self] (isPlayed) in
             guard let self = self else {return}
             
-            self.playOrPauseVideo(isPlayed: isPlayed)
             
         }
         
-        view.addSubview(youtubeView)
-        youtubeView.snp.makeConstraints{ make in
-            
-            make.top.equalTo(circleSlider.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            
-        }
-        
-        
-        self.youtubeView.load(withVideoId: "S7ElVoYZN0g")
+  
         
     }
     
-    private func playOrPauseVideo(isPlayed: Bool) {
-        
-        if isPlayed {
-            
-            self.youtubeView.playVideo()
-            
-        } else {
-            
-            self.youtubeView.pauseVideo()
-            
-        }
-        
-    }
+  
     
 }
 
-extension VideoPlayerViewController: YTPlayerViewDelegate {
-    
-    func playerView(_ playerView: YTPlayerView, didPlayTime playTime: Float) {
-        
-        guard !self.circleSlider.isTouchInside else {return}
-        
-        let timePercentage = Double(playTime) / duration
-        let roundTime = round(timePercentage * 100) / 100
-        
-        circleSlider.setSliderFromOutside = roundTime
-        
-    }
-    
-}
+
 
