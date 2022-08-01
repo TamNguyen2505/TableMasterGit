@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FF45528729115009FDD30 /* VideoPlayerViewController.swift */; };
+		007111BD28977A8F0012026D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BC28977A8F0012026D /* KeychainError.swift */; };
+		007111BF28977AC30012026D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BE28977AC30012026D /* KeychainQuery.swift */; };
 		00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00715DF9287EB85800209B2A /* Data + Extension.swift */; };
 		0071F639288E73D900FE67EF /* HardvardExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */; };
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
@@ -67,6 +69,8 @@
 
 /* Begin PBXFileReference section */
 		006FF45528729115009FDD30 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		007111BC28977A8F0012026D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
+		007111BE28977AC30012026D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		00715DF9287EB85800209B2A /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardExhibitionViewModel.swift; sourceTree = "<group>"; };
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
@@ -140,6 +144,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		007111B928977A350012026D /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				007111BC28977A8F0012026D /* KeychainError.swift */,
+				007111BE28977AC30012026D /* KeychainQuery.swift */,
+				007CA9ED28926BC400EE8D1B /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		0077CCD32862C2E80079F06A = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +272,7 @@
 		007FD8D82864013E007ADA91 /* Ulities */ = {
 			isa = PBXGroup;
 			children = (
+				007111B928977A350012026D /* Keychain */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				007856AE28879DB400E73D24 /* AsyncAddOperation.swift */,
@@ -265,7 +280,6 @@
 				0089A8D42885659200792773 /* SessionTimer.swift */,
 				007CA9E82892337300EE8D1B /* Extensions */,
 				007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */,
-				007CA9ED28926BC400EE8D1B /* KeychainManager.swift */,
 			);
 			path = Ulities;
 			sourceTree = "<group>";
@@ -480,6 +494,7 @@
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
+				007111BD28977A8F0012026D /* KeychainError.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
 				007CA9F628939FFB00EE8D1B /* SideBarViewController.swift in Sources */,
@@ -508,6 +523,7 @@
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
 				0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */,
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
+				007111BF28977AC30012026D /* KeychainQuery.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */,
 				00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,

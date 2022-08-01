@@ -58,16 +58,13 @@ class SettingsViewController: BaseViewController {
     
     private lazy var darkModeSiwtch: UISwitch = {
         let sw = UISwitch()
+        sw.addTarget(self, action: #selector(handleEventFromDarkmodeSwitch(_:)), for: .valueChanged)
         return sw
     }()
     
     private let faceID = BiometricIDAuth.shared
     private var isRightHost = false {
         didSet{
-            guard isRightHost else {return}
-            do {try KeychainManager.shared.addPasswordToKeychains(key: .JWT, password: "TAM")}
-            catch{
-            }
         }
     }
     
@@ -154,6 +151,10 @@ class SettingsViewController: BaseViewController {
             self.isRightHost = await faceID.evaluate().success
             
         }
+        
+    }
+    
+    @objc func handleEventFromDarkmodeSwitch(_ sender: UISwitch) {
         
     }
     
