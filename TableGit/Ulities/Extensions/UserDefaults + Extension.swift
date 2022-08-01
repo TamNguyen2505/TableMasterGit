@@ -12,11 +12,7 @@ extension UserDefaults {
     enum Keys: String, CaseIterable {
         
         case isSavedLogin = "savedLogin"
-        case fullName = "fullName"
         case userName = "userName"
-        case jwtoken = "jwtoken"
-        case pinCodeSoftOPT = "pinCodeSoftOPT"
-        case tokenSeed = "tokenSeed"
         
     }
     

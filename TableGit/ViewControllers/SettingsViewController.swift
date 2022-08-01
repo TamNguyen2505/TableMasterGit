@@ -223,12 +223,17 @@ class SettingsViewController: BaseViewController {
     //MARK: Helpers
     private func saveKeychain() {
         
+        guard isRightHost else {return}
+        
         let genericQuery = GenericPasswordQuery(service: "someService")
         let keychainManager = KeychainManager(keychainQuery: genericQuery)
         
         do{
+            
             try keychainManager.addPasswordToKeychains(key: .JWT, password: "TAM")
+            
         }
+        
         catch {
             
         }

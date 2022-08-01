@@ -78,7 +78,12 @@ class LoginViewController: BaseViewController {
         return btn
     }()
     
-        
+    private let faceID = BiometricIDAuth.shared
+    private var isRightHost = false {
+        didSet{
+            retrievePassword()
+        }
+    }
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,14 +119,9 @@ class LoginViewController: BaseViewController {
     
     @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
         
-        let genericQuery = GenericPasswordQuery(service: "someService")
-        let keychainManager = KeychainManager(keychainQuery: genericQuery)
-        
-        do{
-            let password = try keychainManager.findPasswordInKeychains(key: .JWT)
-            passwordTextField.text = password
-        }
-        catch {
+        Task {
+            
+            self.isRightHost = await faceID.evaluate().success
             
         }
         
@@ -228,6 +228,23 @@ class LoginViewController: BaseViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func retrievePassword() {
+
+        guard isRightHost else {return}
+        
+        let genericQuery = GenericPasswordQuery(service: "someService")
+        let keychainManager = KeychainManager(keychainQuery: genericQuery)
+        
+        do{
+            let password = try keychainManager.findPasswordInKeychains(key: .JWT)
+            passwordTextField.text = password
+        }
+        catch {
+            
+        }
         
     }
     
