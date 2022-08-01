@@ -104,6 +104,17 @@ struct KeychainManager {
                 
     }
     
+    public func removeAllValues() throws {
+        
+      let basicQuery = keychainQuery.query
+
+      let status = SecItemDelete(basicQuery as CFDictionary)
+      guard status == errSecSuccess || status == errSecItemNotFound else {
+        throw error(from: status)
+      }
+        
+    }
+    
     //MARK: Helpers
     private func error(from status: OSStatus) -> KeychainError {
         

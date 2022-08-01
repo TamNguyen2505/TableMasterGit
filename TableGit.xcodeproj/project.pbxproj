@@ -10,6 +10,7 @@
 		006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FF45528729115009FDD30 /* VideoPlayerViewController.swift */; };
 		007111BD28977A8F0012026D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BC28977A8F0012026D /* KeychainError.swift */; };
 		007111BF28977AC30012026D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BE28977AC30012026D /* KeychainQuery.swift */; };
+		007111CC28978EDF0012026D /* TableGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111CB28978EDF0012026D /* TableGitTests.swift */; };
 		00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00715DF9287EB85800209B2A /* Data + Extension.swift */; };
 		0071F639288E73D900FE67EF /* HardvardExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */; };
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
@@ -67,10 +68,22 @@
 		FB6B16453A127E07448972E9 /* Pods_TableGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C9B9073A082976A810428 /* Pods_TableGit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		007111CD28978EDF0012026D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0077CCD42862C2E80079F06A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0077CCDB2862C2E80079F06A;
+			remoteInfo = TableGit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		006FF45528729115009FDD30 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		007111BC28977A8F0012026D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		007111BE28977AC30012026D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
+		007111C928978EDF0012026D /* TableGitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableGitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		007111CB28978EDF0012026D /* TableGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableGitTests.swift; sourceTree = "<group>"; };
 		00715DF9287EB85800209B2A /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardExhibitionViewModel.swift; sourceTree = "<group>"; };
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
@@ -133,6 +146,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		007111C628978EDF0012026D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0077CCD92862C2E80079F06A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,10 +174,19 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
+		007111CA28978EDF0012026D /* TableGitTests */ = {
+			isa = PBXGroup;
+			children = (
+				007111CB28978EDF0012026D /* TableGitTests.swift */,
+			);
+			path = TableGitTests;
+			sourceTree = "<group>";
+		};
 		0077CCD32862C2E80079F06A = {
 			isa = PBXGroup;
 			children = (
 				0077CCDE2862C2E80079F06A /* TableGit */,
+				007111CA28978EDF0012026D /* TableGitTests */,
 				0077CCDD2862C2E80079F06A /* Products */,
 				522C42CE83074CA1B52E3A0F /* Pods */,
 				53DD6A6ACB696211AB4F95C4 /* Frameworks */,
@@ -168,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				0077CCDC2862C2E80079F06A /* TableGit.app */,
+				007111C928978EDF0012026D /* TableGitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,6 +397,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		007111C828978EDF0012026D /* TableGitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 007111CF28978EDF0012026D /* Build configuration list for PBXNativeTarget "TableGitTests" */;
+			buildPhases = (
+				007111C528978EDF0012026D /* Sources */,
+				007111C628978EDF0012026D /* Frameworks */,
+				007111C728978EDF0012026D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				007111CE28978EDF0012026D /* PBXTargetDependency */,
+			);
+			name = TableGitTests;
+			productName = TableGitTests;
+			productReference = 007111C928978EDF0012026D /* TableGitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0077CCDB2862C2E80079F06A /* TableGit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0077CCF02862C2EA0079F06A /* Build configuration list for PBXNativeTarget "TableGit" */;
@@ -396,6 +444,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					007111C828978EDF0012026D = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 0077CCDB2862C2E80079F06A;
+					};
 					0077CCDB2862C2E80079F06A = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -415,11 +467,19 @@
 			projectRoot = "";
 			targets = (
 				0077CCDB2862C2E80079F06A /* TableGit */,
+				007111C828978EDF0012026D /* TableGitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		007111C728978EDF0012026D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0077CCDA2862C2E80079F06A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,6 +534,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		007111C528978EDF0012026D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				007111CC28978EDF0012026D /* TableGitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0077CCD82862C2E80079F06A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +606,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		007111CE28978EDF0012026D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0077CCDB2862C2E80079F06A /* TableGit */;
+			targetProxy = 007111CD28978EDF0012026D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -550,6 +626,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		007111D028978EDF0012026D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tamnm-minerva.vn.TableGitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableGit.app/TableGit";
+			};
+			name = Debug;
+		};
+		007111D128978EDF0012026D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tamnm-minerva.vn.TableGitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableGit.app/TableGit";
+			};
+			name = Release;
+		};
 		0077CCEE2862C2EA0079F06A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -729,6 +839,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		007111CF28978EDF0012026D /* Build configuration list for PBXNativeTarget "TableGitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				007111D028978EDF0012026D /* Debug */,
+				007111D128978EDF0012026D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0077CCD72862C2E80079F06A /* Build configuration list for PBXProject "TableGit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
