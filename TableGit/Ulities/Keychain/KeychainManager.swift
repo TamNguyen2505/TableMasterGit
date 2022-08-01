@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Security
 
 enum KeychainKey: String {
     
@@ -18,7 +17,7 @@ enum KeychainKey: String {
 
 struct KeychainManager {
     //MARK: Properties
-    let keychainQuery: KeychainQuery
+    private let keychainQuery: KeychainQuery
     
     //MARK: Init
     init(keychainQuery: KeychainQuery) {

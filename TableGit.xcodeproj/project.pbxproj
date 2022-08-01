@@ -11,6 +11,7 @@
 		007111BD28977A8F0012026D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BC28977A8F0012026D /* KeychainError.swift */; };
 		007111BF28977AC30012026D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BE28977AC30012026D /* KeychainQuery.swift */; };
 		007111CC28978EDF0012026D /* TableGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111CB28978EDF0012026D /* TableGitTests.swift */; };
+		007111D82897B7090012026D /* AppDelegate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111D72897B7090012026D /* AppDelegate + Extension.swift */; };
 		00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00715DF9287EB85800209B2A /* Data + Extension.swift */; };
 		0071F639288E73D900FE67EF /* HardvardExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */; };
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
@@ -84,6 +85,7 @@
 		007111BE28977AC30012026D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		007111C928978EDF0012026D /* TableGitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableGitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		007111CB28978EDF0012026D /* TableGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableGitTests.swift; sourceTree = "<group>"; };
+		007111D72897B7090012026D /* AppDelegate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extension.swift"; sourceTree = "<group>"; };
 		00715DF9287EB85800209B2A /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardExhibitionViewModel.swift; sourceTree = "<group>"; };
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				0086E69C286E859100423001 /* UIImage + Extension.swift */,
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
 				007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */,
+				007111D72897B7090012026D /* AppDelegate + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -302,14 +305,14 @@
 		007FD8D82864013E007ADA91 /* Ulities */ = {
 			isa = PBXGroup;
 			children = (
-				007111B928977A350012026D /* Keychain */,
 				E9101A9C28669EBF00A597C9 /* Enums.swift */,
 				E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */,
 				007856AE28879DB400E73D24 /* AsyncAddOperation.swift */,
 				E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */,
 				0089A8D42885659200792773 /* SessionTimer.swift */,
-				007CA9E82892337300EE8D1B /* Extensions */,
 				007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */,
+				007CA9E82892337300EE8D1B /* Extensions */,
+				007111B928977A350012026D /* Keychain */,
 			);
 			path = Ulities;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */,
 				00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */,
 				0086E69D286E859100423001 /* UIImage + Extension.swift in Sources */,
+				007111D82897B7090012026D /* AppDelegate + Extension.swift in Sources */,
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
 				007111BF28977AC30012026D /* KeychainQuery.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */,

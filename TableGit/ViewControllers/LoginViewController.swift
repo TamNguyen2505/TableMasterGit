@@ -66,6 +66,18 @@ class LoginViewController: BaseViewController {
         btn.addTarget(self, action: #selector(handleEventFromSignUpButton(_:)), for: .touchUpInside)
         return btn
     }()
+    
+    private lazy var faceIdButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "icons8-face-id"), for: .normal)
+        btn.setTitle("Log in by FaceID", for: .normal)
+        btn.setTitleColor(#colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1), for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        btn.tintColor = #colorLiteral(red: 0.1597932875, green: 0.253477037, blue: 0.4077349007, alpha: 1)
+        btn.addTarget(self, action: #selector(handleEventFromFaceIdButton(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
         
     //MARK: View cycle
     override func viewDidLoad() {
@@ -100,6 +112,20 @@ class LoginViewController: BaseViewController {
         
     }
     
+    @objc func handleEventFromFaceIdButton(_ sender: UIButton) {
+        
+        let genericQuery = GenericPasswordQuery(service: "someService")
+        let keychainManager = KeychainManager(keychainQuery: genericQuery)
+        
+        do{
+            let password = try keychainManager.findPasswordInKeychains(key: .JWT)
+            passwordTextField.text = password
+        }
+        catch {
+            
+        }
+        
+    }
     
     //MARK: Helpers
     override func setupUI() {
@@ -167,6 +193,15 @@ class LoginViewController: BaseViewController {
             
             make.height.equalTo(50)
             make.width.equalTo(signupButton.snp.width)
+            
+        }
+        
+        view.addSubview(faceIdButton)
+        faceIdButton.snp.makeConstraints{ make in
+            
+            make.top.equalTo(hStackForButton.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
             
         }
         

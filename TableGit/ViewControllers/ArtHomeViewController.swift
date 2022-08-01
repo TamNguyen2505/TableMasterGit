@@ -9,44 +9,6 @@ import UIKit
 
 class ArtHomeViewController: BaseViewController {
     //MARK: Properties
-    private lazy var sideBarImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "icons8-menu")?.resize(targetSize: .init(width: 40, height: 40))
-        iv.contentMode = .scaleAspectFit
-        iv.isUserInteractionEnabled = true
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromSideBar))
-        iv.addGestureRecognizer(tap)
-        
-        return iv
-    }()
-    
-    private let titleNavigationLabel: UILabel = {
-        let label = UILabel()
-        
-        let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]
-        let lineOne = NSMutableAttributedString(string: "Welcome to\n", attributes: attributesLineOne)
-        
-        let attributesLineTwo: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 18),
-                                                                .foregroundColor: UIColor.systemRed]
-        let lineTwo = NSMutableAttributedString(string: "Art World", attributes: attributesLineTwo)
-        
-        let totalString: NSMutableAttributedString = lineOne
-        totalString.append(lineTwo)
-        
-        label.attributedText = totalString
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private let avatarImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "default-avatar")?.resize(targetSize: .init(width: 40, height: 40))
-        iv.contentMode = .scaleAspectFit
-        return iv
-    }()
-    
     private lazy var artLayOut: UICollectionViewLayout = {
         let sectionProvider = { [weak self] (sectionIndex: Int,
                                  layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -119,10 +81,8 @@ class ArtHomeViewController: BaseViewController {
         super.setupUI()
         
         Loader.shared.show()
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: sideBarImageView)
-        self.navigationItem.titleView = titleNavigationLabel
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
+
+        headerType = .headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar
         
         view.addSubview(artCollectionView)
         artCollectionView.snp.makeConstraints{ make in
@@ -154,17 +114,6 @@ class ArtHomeViewController: BaseViewController {
     }
     
     //MARK: Actions
-    @objc func handleEventFromSideBar() {
-        
-        let targetVC = SideBarViewController()
-        
-        slideInTransitioningDelegate.direction = .left
-        targetVC.transitioningDelegate = slideInTransitioningDelegate
-        targetVC.modalPresentationStyle = .custom
-        
-        self.present(targetVC, animated: true, completion: nil)
-        
-    }
     
     //MARK: Helpers
     private func highlightCenterCell(visibleItems: [NSCollectionLayoutVisibleItem], offset: CGPoint) {

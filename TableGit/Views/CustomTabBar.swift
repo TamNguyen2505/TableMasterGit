@@ -137,15 +137,6 @@ class CustomTabBar: UIView {
             
         }
         
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {return}
-            
-            self.moveCurve(to: to)
-            self.highlightImageView(iv: self.imageArray[to])
-            self.turnOffHighlightImageView(iv:  self.imageArray[from])
-            
-        }
-        
     }
     
     private func setupInitialLayer(tab: Int) {

@@ -65,9 +65,9 @@ class SettingsViewController: BaseViewController {
     private let faceID = BiometricIDAuth.shared
     private var isRightHost = false {
         didSet{
+            saveKeychain()
         }
     }
-    
     
     //MARK: View cycle
     override func setupUI() {
@@ -217,6 +217,21 @@ class SettingsViewController: BaseViewController {
         }
         
         return outView
+        
+    }
+    
+    //MARK: Helpers
+    private func saveKeychain() {
+        
+        let genericQuery = GenericPasswordQuery(service: "someService")
+        let keychainManager = KeychainManager(keychainQuery: genericQuery)
+        
+        do{
+            try keychainManager.addPasswordToKeychains(key: .JWT, password: "TAM")
+        }
+        catch {
+            
+        }
         
     }
     

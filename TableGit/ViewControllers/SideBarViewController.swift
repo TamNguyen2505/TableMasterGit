@@ -5,8 +5,13 @@
 //  Created by MINERVA on 29/07/2022.
 //
 
-import Foundation
 import UIKit
+
+protocol SideBarViewControllerDelegate: AnyObject {
+    
+    func handleEventFromLogoutButton(from vc: SideBarViewController)
+    
+}
 
 class SideBarViewController: BaseViewController {
     //MARK: Properties
@@ -41,6 +46,7 @@ class SideBarViewController: BaseViewController {
         return button
     }()
     
+    weak var delegate: SideBarViewControllerDelegate?
     
     //MARK: View cycle
     override func setupUI() {
@@ -71,7 +77,7 @@ class SideBarViewController: BaseViewController {
     //MARK: Actions
     @objc func handleEventFromLogOutButton(_ sender: UIButton) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.delegate?.handleEventFromLogoutButton(from: self)
         
     }
     
