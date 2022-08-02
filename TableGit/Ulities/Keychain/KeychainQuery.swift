@@ -19,7 +19,7 @@ public struct GenericPasswordQuery {
     let accessGroup: String?
     
     //MARK: Init
-    init(service: String, accessGroup: String? = nil) {
+    init(service: String = Bundle.main.bundleIdentifier ?? "", accessGroup: String? = nil) {
         
       self.service = service
       self.accessGroup = accessGroup

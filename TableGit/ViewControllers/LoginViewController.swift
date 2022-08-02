@@ -235,7 +235,7 @@ class LoginViewController: BaseViewController {
 
         guard isRightHost else {return}
         
-        let genericQuery = GenericPasswordQuery(service: "someService")
+        let genericQuery = GenericPasswordQuery()
         let keychainManager = KeychainManager(keychainQuery: genericQuery)
         
         do{
