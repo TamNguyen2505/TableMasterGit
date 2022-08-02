@@ -19,11 +19,11 @@ class HardvardExhibitionViewModel {
                                          "size": 200]
         
         let parametersTwo: [String: Any] = ["apikey": URLs.keyAPI,
-                                         "q": "totalpageviews:1",
+                                         "q": "totalpageviews:10",
                                          "size": 200]
         
         let parametersThree: [String: Any] = ["apikey": URLs.keyAPI,
-                                         "q": "totalpageviews:2",
+                                         "q": "totalpageviews:20",
                                          "size": 200]
                 
         return await Task { () -> [ExhibitionModel] in

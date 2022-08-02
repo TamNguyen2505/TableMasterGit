@@ -31,7 +31,7 @@ class ArtHomeViewController: BaseViewController {
             section.visibleItemsInvalidationHandler = self.observeGroup
             
             let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .estimated(44))
+                                                   heightDimension: .estimated(80))
             let titleSupplementary = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: titleSize,
                 elementKind: UICollectionView.elementKindSectionHeader,
