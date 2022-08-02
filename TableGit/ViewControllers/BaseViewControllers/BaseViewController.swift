@@ -182,7 +182,7 @@ extension BaseViewController {
         
     }
         
-    private func createCommonAttributedString() -> NSMutableAttributedString {
+    func createCommonAttributedString() -> NSMutableAttributedString {
         
         let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]
         let lineOne = NSMutableAttributedString(string: "Welcome to\n", attributes: attributesLineOne)

@@ -74,7 +74,6 @@ class SettingsViewController: BaseViewController {
         super.setupUI()
         
         headerType = .headerWidthRightSlideMenu
-        self.navigationTitle = "Settings"
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{ make in

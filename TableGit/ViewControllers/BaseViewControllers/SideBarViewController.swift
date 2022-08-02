@@ -15,6 +15,14 @@ protocol SideBarViewControllerDelegate: AnyObject {
 
 class SideBarViewController: BaseViewController {
     //MARK: Properties
+    private lazy var titlViewLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = createCommonAttributedString()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
     private lazy var logOutButton: UIButton = {
         let button = UIButton()
         
@@ -33,7 +41,14 @@ class SideBarViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
-        headerType = .headerWithMiddleTitle
+        view.addSubview(titlViewLabel)
+        titlViewLabel.snp.makeConstraints{ make in
+            
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
+            
+        }
         
         view.addSubview(logOutButton)
         logOutButton.snp.makeConstraints{ make in

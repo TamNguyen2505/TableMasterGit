@@ -20,7 +20,7 @@ enum NetworkResponse:String {
     
 }
 
-enum Result<String>{
+enum NetworkResult<String>{
     
     case success
     case failure(String)
@@ -120,7 +120,7 @@ class NetworkManager {
         }
     }
     
-    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
+    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> NetworkResult<String>{
         
         switch response.statusCode {
         case 200...299: return .success

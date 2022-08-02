@@ -22,6 +22,9 @@ class HardvardExhibitionViewModel {
                                          "q": "totalpageviews:1",
                                          "size": 200]
         
+        let parametersThree: [String: Any] = ["apikey": URLs.keyAPI,
+                                         "q": "totalpageviews:2",
+                                         "size": 200]
                 
         return await Task { () -> [ExhibitionModel] in
             
@@ -47,6 +50,20 @@ class HardvardExhibitionViewModel {
                     do {
                         
                         return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parametersTwo), parseInto: ExhibitionModel.self) ?? ExhibitionModel()
+                        
+                    } catch {
+                        
+                        return ExhibitionModel()
+                        
+                    }
+                    
+                }
+                
+                group.addTask{
+                    
+                    do {
+                        
+                        return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parametersThree), parseInto: ExhibitionModel.self) ?? ExhibitionModel()
                         
                     } catch {
                         
