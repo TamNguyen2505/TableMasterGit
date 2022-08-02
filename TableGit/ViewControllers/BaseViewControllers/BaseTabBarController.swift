@@ -24,7 +24,9 @@ enum TabItem: String, CaseIterable {
             return WebViewController()
             
         case .settings:
-            return SettingsViewController()
+            
+            let rootVC = SettingsViewController()
+            return UINavigationController(rootViewController: rootVC)
             
         case .graph:
             return GraphViewController()

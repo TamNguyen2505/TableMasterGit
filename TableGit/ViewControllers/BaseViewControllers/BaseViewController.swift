@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
 
     enum HeaderType {
         
-    case noHeader, headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar
+    case noHeader, headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar, headerWidthRightSlideMenu, headerWithMiddleTitle
     
     }
     var headerType: HeaderType = .noHeader {
@@ -21,15 +21,24 @@ class BaseViewController: UIViewController {
             setupUIForHeaderView()
         }
     }
+    
     private lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+    
+    var navigationTitle = ""
     
     //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupUIForHeaderView()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +85,14 @@ class BaseViewController: UIViewController {
             setupUIForHeaderWidthRightSlideBarAndMiddleTitleAndLeftAvatar()
             break
             
+        case .headerWidthRightSlideMenu:
+            setupUIForHeaderWidthRightSlideMenu()
+            break
+            
+        case .headerWithMiddleTitle:
+            setupUIForHeaderWithMiddleTitle()
+            break
+            
         }
         
     }
@@ -101,15 +118,71 @@ extension BaseViewController {
     
     private func setupUIForHeaderWidthRightSlideBarAndMiddleTitleAndLeftAvatar() {
         
+        setupUIForSlideBarImageView(onTheLeft: true)
+        
+        let titleNavigationLabel = UILabel()
+        titleNavigationLabel.attributedText = createCommonAttributedString()
+        titleNavigationLabel.textAlignment = .center
+        titleNavigationLabel.numberOfLines = 0
+        
+        let avatarImageView = UIImageView()
+        avatarImageView.image = UIImage(named: "default-avatar")?.resize(targetSize: .init(width: 40, height: 40))
+        avatarImageView.contentMode = .scaleAspectFit
+        
+        self.navigationItem.titleView = titleNavigationLabel
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
+        
+    }
+    
+    private func setupUIForHeaderWidthRightSlideMenu() {
+        
+        setupUIForSlideBarImageView(onTheLeft: true)
+
+        let titleNavigationLabel = UILabel()
+        titleNavigationLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleNavigationLabel.textAlignment = .center
+        titleNavigationLabel.text = navigationTitle
+        
+        self.navigationItem.titleView = titleNavigationLabel
+                
+    }
+    
+    private func setupUIForHeaderWithMiddleTitle() {
+        
+        let titleNavigationLabel = UILabel()
+        titleNavigationLabel.attributedText = createCommonAttributedString()
+        titleNavigationLabel.textAlignment = .center
+        titleNavigationLabel.numberOfLines = 0
+        
+        self.navigationItem.titleView = titleNavigationLabel
+        
+    }
+    
+    //MARK: Reusable functions
+    private func setupUIForSlideBarImageView(onTheLeft: Bool) {
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromSideBar))
+        
         let slideBarImageView = UIImageView()
         slideBarImageView.image = UIImage(named: "icons8-menu")?.resize(targetSize: .init(width: 40, height: 40))
         slideBarImageView.contentMode = .scaleAspectFit
         slideBarImageView.isUserInteractionEnabled = true
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromSideBar))
         slideBarImageView.addGestureRecognizer(tap)
+
+        if onTheLeft {
+            
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: slideBarImageView)
+            
+        } else {
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: slideBarImageView)
+            
+        }
         
-        let titleNavigationLabel = UILabel()
+        
+    }
+        
+    private func createCommonAttributedString() -> NSMutableAttributedString {
         
         let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]
         let lineOne = NSMutableAttributedString(string: "Welcome to\n", attributes: attributesLineOne)
@@ -121,20 +194,9 @@ extension BaseViewController {
         let totalString: NSMutableAttributedString = lineOne
         totalString.append(lineTwo)
         
-        titleNavigationLabel.attributedText = totalString
-        titleNavigationLabel.textAlignment = .center
-        titleNavigationLabel.numberOfLines = 0
-        
-        let avatarImageView = UIImageView()
-        avatarImageView.image = UIImage(named: "default-avatar")?.resize(targetSize: .init(width: 40, height: 40))
-        avatarImageView.contentMode = .scaleAspectFit
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: slideBarImageView)
-        self.navigationItem.titleView = titleNavigationLabel
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarImageView)
+        return totalString
         
     }
-    
     
 }
 

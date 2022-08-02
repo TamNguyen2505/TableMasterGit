@@ -253,6 +253,16 @@
 			path = SlideInPresentation;
 			sourceTree = "<group>";
 		};
+		007F76572898FF4F00133024 /* BaseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0074C22628890597005F115F /* BaseTabBarController.swift */,
+				E97CE05328829381006A2E3C /* BaseViewController.swift */,
+				007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */,
+			);
+			path = BaseViewControllers;
+			sourceTree = "<group>";
+		};
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,9 +283,6 @@
 		007FD8D628640128007ADA91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0074C22628890597005F115F /* BaseTabBarController.swift */,
-				E97CE05328829381006A2E3C /* BaseViewController.swift */,
-				007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */,
 				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
 				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
 				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
@@ -283,6 +290,7 @@
 				006FF45528729115009FDD30 /* VideoPlayerViewController.swift */,
 				008377A6288A765A003A39EA /* GraphViewController.swift */,
 				008377A4288A3605003A39EA /* SettingsViewController.swift */,
+				007F76572898FF4F00133024 /* BaseViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

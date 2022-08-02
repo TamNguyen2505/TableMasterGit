@@ -15,25 +15,6 @@ protocol SideBarViewControllerDelegate: AnyObject {
 
 class SideBarViewController: BaseViewController {
     //MARK: Properties
-    private let titleNavigationLabel: UILabel = {
-        let label = UILabel()
-        
-        let attributesLineOne: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14)]
-        let lineOne = NSMutableAttributedString(string: "Welcome to\n", attributes: attributesLineOne)
-        
-        let attributesLineTwo: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 18),
-                                                                .foregroundColor: UIColor.systemRed]
-        let lineTwo = NSMutableAttributedString(string: "Art World", attributes: attributesLineTwo)
-        
-        let totalString: NSMutableAttributedString = lineOne
-        totalString.append(lineTwo)
-        
-        label.attributedText = totalString
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-    
     private lazy var logOutButton: UIButton = {
         let button = UIButton()
         
@@ -51,15 +32,8 @@ class SideBarViewController: BaseViewController {
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
-                
-        view.addSubview(titleNavigationLabel)
-        titleNavigationLabel.snp.makeConstraints{ make in
-            
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.centerX.equalToSuperview()
-            make.leading.greaterThanOrEqualToSuperview()
-            
-        }
+        
+        headerType = .headerWithMiddleTitle
         
         view.addSubview(logOutButton)
         logOutButton.snp.makeConstraints{ make in

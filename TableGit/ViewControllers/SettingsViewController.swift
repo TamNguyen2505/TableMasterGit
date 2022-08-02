@@ -73,6 +73,9 @@ class SettingsViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
+        headerType = .headerWidthRightSlideMenu
+        self.navigationTitle = "Settings"
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{ make in
             
@@ -156,6 +159,7 @@ class SettingsViewController: BaseViewController {
     
     @objc func handleEventFromDarkmodeSwitch(_ sender: UISwitch) {
         
+                
     }
     
     //MARK: Helpers
