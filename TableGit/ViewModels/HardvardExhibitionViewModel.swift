@@ -11,7 +11,7 @@ class HardvardExhibitionViewModel {
     //MARK: Properties
     let networkManager = NetworkManager()
       
-    //Method: Features
+    //MARK: Features
     func getHardvardMuseumExhibition() async -> [ExhibitionModel] {
         
         let parameters: [String: Any] = ["apikey": URLs.keyAPI,

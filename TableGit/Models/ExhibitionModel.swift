@@ -30,14 +30,18 @@ struct ExhibitionModelArray: Codable {
     var images: [ExhibitionImage]?
     var description: String?
     var title: String?
-    
+    var objectid: Int?
+
 }
 
 struct ExhibitionImage: Codable {
     
+    var date: String?
     var copyright: String?
     var idsid: Int?
     var iiifbaseuri: String?
+    var width: Int?
+    var height: Int?
     
 }
 

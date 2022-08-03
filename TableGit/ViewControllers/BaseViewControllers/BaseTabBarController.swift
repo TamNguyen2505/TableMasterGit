@@ -21,7 +21,8 @@ enum TabItem: String, CaseIterable {
             return UINavigationController(rootViewController: rootVC)
             
         case .news:
-            return WebViewController()
+            let rootVC = NewsViewController()
+            return UINavigationController(rootViewController: rootVC)
             
         case .settings:
             
