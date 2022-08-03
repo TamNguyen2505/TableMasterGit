@@ -1,0 +1,215 @@
+//
+//  DetailedNewsViewController.swift
+//  TableGit
+//
+//  Created by MINERVA on 03/08/2022.
+//
+
+import UIKit
+
+class DetailedNewsViewController: BaseViewController {
+    //MARK: Properties
+    private let largestImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "signup-background")
+        return iv
+    }()
+    
+    private let topRightImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "signup-background")
+        return iv
+    }()
+    
+    private let bottomRightImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "signup-background")
+        return iv
+    }()
+    
+    private lazy var seeMoreButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "icon-more-than"), for: .normal)
+        button.backgroundColor = .systemYellow.withAlphaComponent(0.6)
+        return button
+    }()
+    
+    private let progressView: UIProgressView = {
+        let view = UIProgressView()
+        return view
+    }()
+    
+    private let progressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0%"
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private let colorPalletTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Color Pallet"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+    
+    private lazy var colorPalletCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = .init(width: 100, height: 200)
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.showsVerticalScrollIndicator = false
+        collection.showsHorizontalScrollIndicator = false
+        collection.register(ColorPalletCollectionCell.self, forCellWithReuseIdentifier: ColorPalletCollectionCell.className)
+        collection.delegate = self
+        collection.dataSource = self
+        return collection
+    }()
+    
+    //MARK: View cycle
+    override func setupUI() {
+        super.setupUI()
+        
+        let hStackOfGroupOfImages = setupUIForGroupOfImageViews()
+        
+        view.addSubview(hStackOfGroupOfImages)
+        hStackOfGroupOfImages.snp.makeConstraints{ make in
+            
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            
+        }
+        
+        bottomRightImageView.addSubview(seeMoreButton)
+        seeMoreButton.snp.makeConstraints{ make in
+            
+            make.bottom.trailing.equalToSuperview().inset(5)
+            make.width.height.equalTo(43)
+            
+        }
+         
+        let progressView = setupUIForProgressView()
+        
+        view.addSubview(progressView)
+        progressView.snp.makeConstraints{ make in
+            
+            make.top.equalTo(hStackOfGroupOfImages.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            
+        }
+        
+        view.addSubview(colorPalletTitleLabel)
+        colorPalletTitleLabel.snp.makeConstraints{ make in
+            
+            make.top.equalTo(progressView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.greaterThanOrEqualToSuperview()
+            
+        }
+        
+        view.addSubview(colorPalletCollection)
+        colorPalletCollection.snp.makeConstraints{ make in
+            
+            make.top.equalTo(colorPalletTitleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(200)
+            
+        }
+        
+        
+    }
+    
+    //MARK: Helpers
+    private func setupUIForGroupOfImageViews() -> UIStackView {
+        
+        let vStack = UIStackView(arrangedSubviews: [topRightImageView, bottomRightImageView])
+        vStack.spacing = 10
+        vStack.axis = .vertical
+        vStack.distribution = .fillEqually
+        
+        topRightImageView.snp.makeConstraints{ make in
+            
+            make.height.equalTo(150)
+            
+        }
+        
+        let hStack = UIStackView(arrangedSubviews: [largestImageView, vStack])
+        hStack.axis = .horizontal
+        hStack.spacing = 10
+        hStack.distribution = .fillEqually
+        
+        largestImageView.snp.makeConstraints{ make in
+            
+            make.width.equalTo(vStack.snp.width)
+            
+        }
+        
+        return hStack
+        
+    }
+    
+    private func setupUIForProgressView() -> UIView {
+        
+        let containerView = UIView()
+        containerView.backgroundColor = .white
+        containerView.layer.borderColor = UIColor.lightGray.cgColor
+        containerView.layer.borderWidth = 1.0
+        containerView.layer.cornerRadius = 5.0
+        
+        containerView.addSubview(progressView)
+        progressView.snp.makeConstraints{ make in
+            
+            make.top.equalToSuperview().offset(10)
+            make.leading.trailing.equalToSuperview().inset(16)
+            
+        }
+        
+        containerView.addSubview(progressLabel)
+        progressLabel.snp.makeConstraints{ make in
+            
+            make.top.equalTo(progressView.snp.bottom).offset(10)
+            make.leading.equalTo(progressView.snp.leading)
+            make.trailing.greaterThanOrEqualToSuperview()
+            make.bottom.equalToSuperview().inset(10)
+            
+        }
+        
+        return containerView
+        
+    }
+    
+    
+}
+
+//MARK: Collection view data source
+extension DetailedNewsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 1
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorPalletCollectionCell.className, for: indexPath) as! ColorPalletCollectionCell
+        
+        
+        return cell
+        
+    }
+    
+}

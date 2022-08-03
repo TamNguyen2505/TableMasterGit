@@ -12,6 +12,7 @@
 		007111BF28977AC30012026D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BE28977AC30012026D /* KeychainQuery.swift */; };
 		007111CC28978EDF0012026D /* TableGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111CB28978EDF0012026D /* TableGitTests.swift */; };
 		007111D82897B7090012026D /* AppDelegate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111D72897B7090012026D /* AppDelegate + Extension.swift */; };
+		00715410289A80A300FB7085 /* ColorPalletCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071540F289A80A300FB7085 /* ColorPalletCollectionCell.swift */; };
 		00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00715DF9287EB85800209B2A /* Data + Extension.swift */; };
 		0071F639288E73D900FE67EF /* HardvardExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */; };
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
@@ -44,6 +45,7 @@
 		00A06EAE289A1318009A050C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A06EAD289A1318009A050C /* NewsViewController.swift */; };
 		00A06EB0289A13F4009A050C /* NewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A06EAF289A13F4009A050C /* NewsTableCell.swift */; };
 		00A06EB2289A3656009A050C /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A06EB1289A3656009A050C /* NewsViewModel.swift */; };
+		00A06EB7289A6C00009A050C /* DetailedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A06EB6289A6C00009A050C /* DetailedNewsViewController.swift */; };
 		00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE5287D088C0058EA96 /* EndPointType.swift */; };
 		00B1CDE8287D09360058EA96 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE7287D09360058EA96 /* HTTPMethod.swift */; };
 		00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDE9287D09CB0058EA96 /* HTTPTask.swift */; };
@@ -89,6 +91,7 @@
 		007111C928978EDF0012026D /* TableGitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableGitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		007111CB28978EDF0012026D /* TableGitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableGitTests.swift; sourceTree = "<group>"; };
 		007111D72897B7090012026D /* AppDelegate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extension.swift"; sourceTree = "<group>"; };
+		0071540F289A80A300FB7085 /* ColorPalletCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalletCollectionCell.swift; sourceTree = "<group>"; };
 		00715DF9287EB85800209B2A /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardExhibitionViewModel.swift; sourceTree = "<group>"; };
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		00A06EAD289A1318009A050C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		00A06EAF289A13F4009A050C /* NewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCell.swift; sourceTree = "<group>"; };
 		00A06EB1289A3656009A050C /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		00A06EB6289A6C00009A050C /* DetailedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsViewController.swift; sourceTree = "<group>"; };
 		00B1CDE5287D088C0058EA96 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		00B1CDE7287D09360058EA96 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		00B1CDE9287D09CB0058EA96 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 				E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */,
 				0074C2282889064B005F115F /* CustomTabBar.swift */,
 				00A06EAF289A13F4009A050C /* NewsTableCell.swift */,
+				0071540F289A80A300FB7085 /* ColorPalletCollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				00A06EAD289A1318009A050C /* NewsViewController.swift */,
+				00A06EB6289A6C00009A050C /* DetailedNewsViewController.swift */,
 			);
 			path = NewsViewControllers;
 			sourceTree = "<group>";
@@ -612,7 +618,9 @@
 				007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */,
 				0074C22728890597005F115F /* BaseTabBarController.swift in Sources */,
 				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
+				00A06EB7289A6C00009A050C /* DetailedNewsViewController.swift in Sources */,
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
+				00715410289A80A300FB7085 /* ColorPalletCollectionCell.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				008377A7288A765A003A39EA /* GraphViewController.swift in Sources */,
 				007CA9FA2893C63700EE8D1B /* SlideInPresentationController.swift in Sources */,

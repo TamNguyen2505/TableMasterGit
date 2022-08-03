@@ -111,7 +111,7 @@ class NewsViewController: BaseViewController {
 }
 
 //MARK: Table view data sources
-extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
+extension NewsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -138,6 +138,18 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    
+}
+
+//MARK: Table delegate
+extension NewsViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let targetVC = DetailedNewsViewController()
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
+    }
     
 }
 
