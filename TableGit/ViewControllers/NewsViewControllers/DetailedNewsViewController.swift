@@ -9,27 +9,18 @@ import UIKit
 
 class DetailedNewsViewController: BaseViewController {
     //MARK: Properties
-    private let largestImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var largestImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
-    private let topRightImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var topRightImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
-    private let bottomRightImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var bottomRightImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
@@ -188,6 +179,20 @@ class DetailedNewsViewController: BaseViewController {
         }
         
         return containerView
+        
+    }
+    
+    private func setupUIForImageViews() -> UIImageView {
+        
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "signup-background")
+        iv.layer.borderColor = UIColor.systemYellow.cgColor
+        iv.layer.borderWidth = 3
+        iv.layer.cornerRadius = 5
+        
+        return iv
         
     }
     
