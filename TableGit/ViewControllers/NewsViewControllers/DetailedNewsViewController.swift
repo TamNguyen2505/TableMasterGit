@@ -24,13 +24,6 @@ class DetailedNewsViewController: BaseViewController {
         return iv
     }()
     
-    private lazy var seeMoreButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "icon-more-than"), for: .normal)
-        button.backgroundColor = .systemYellow.withAlphaComponent(0.6)
-        return button
-    }()
-    
     private let progressView: UIProgressView = {
         let view = UIProgressView()
         return view
@@ -81,14 +74,6 @@ class DetailedNewsViewController: BaseViewController {
             make.centerX.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            
-        }
-        
-        bottomRightImageView.addSubview(seeMoreButton)
-        seeMoreButton.snp.makeConstraints{ make in
-            
-            make.bottom.trailing.equalToSuperview().inset(5)
-            make.width.height.equalTo(43)
             
         }
          
