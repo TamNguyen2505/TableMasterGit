@@ -62,6 +62,10 @@ class DetailedNewsViewController: BaseViewController {
         return collection
     }()
     
+    var objectID: String = ""
+    
+    private let viewModel = DetailedNewsViewModel()
+    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -105,6 +109,17 @@ class DetailedNewsViewController: BaseViewController {
             
         }
         
+        
+    }
+    
+    override func setupVM() {
+        super.setupVM()
+        
+        Task {
+            
+            await viewModel.getDetailedInformationOfObject(objectID: self.objectID)
+            
+        }
         
     }
     

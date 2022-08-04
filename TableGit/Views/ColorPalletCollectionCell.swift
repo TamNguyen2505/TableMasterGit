@@ -12,6 +12,7 @@ class ColorPalletCollectionCell: UICollectionViewCell {
     private let colorView: UIView = {
         let view = UIView()
         view.backgroundColor = .brown
+        view.layer.cornerRadius = 5.0
         return view
     }()
     

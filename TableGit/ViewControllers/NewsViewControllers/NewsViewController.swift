@@ -147,6 +147,10 @@ extension NewsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let targetVC = DetailedNewsViewController()
+        guard let objectID = exhibitionData[indexPath.section].records?[indexPath.row].objectid else {return}
+        
+        targetVC.objectID = String(objectID)
+        
         self.navigationController?.pushViewController(targetVC, animated: true)
         
     }

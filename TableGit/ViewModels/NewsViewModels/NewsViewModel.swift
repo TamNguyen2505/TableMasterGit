@@ -5,9 +5,9 @@
 //  Created by MINERVA on 03/08/2022.
 //
 
-import Foundation
 import UIKit
 
+//MARK: API
 class NewsViewModel {
     //MARK: Properties
     private let networkManager = NetworkManager()
@@ -55,13 +55,9 @@ class NewsViewModel {
         
     }
     
-    
-    
-    
-    
-    
 }
 
+//MARK: Resolved API
 struct NewsTableCellModel {
     //MARK: Properties
     private var exhibitionModelArray: ExhibitionModelArray

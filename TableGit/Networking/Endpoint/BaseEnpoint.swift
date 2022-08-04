@@ -10,6 +10,7 @@ import Foundation
 enum BaseEnpoint {
     
     case getExihibitionFromHardvardMuseum(parameters: Parameters)
+    case getDetailedInformationOfObject(path: String, parameters: Parameters)
 
 }
 
@@ -22,6 +23,8 @@ extension BaseEnpoint: EndPointType {
         case .getExihibitionFromHardvardMuseum:
             return URLs.BASE_URL_MUSEUM!
         
+        case .getDetailedInformationOfObject:
+            return URLs.BASE_URL_MUSEUM!
         }
         
     }
@@ -31,7 +34,10 @@ extension BaseEnpoint: EndPointType {
         switch self {
         
         case .getExihibitionFromHardvardMuseum:
-            return "/object"
+            return URLs.OBJECT_PATH_MUSEUM
+            
+        case .getDetailedInformationOfObject(path: let path, parameters: _):
+            return URLs.OBJECT_PATH_MUSEUM + "/\(path)"
         }
     
     }
@@ -43,6 +49,8 @@ extension BaseEnpoint: EndPointType {
         case .getExihibitionFromHardvardMuseum:
             return .get
             
+        case .getDetailedInformationOfObject:
+            return .get
         }
     }
     
@@ -53,6 +61,8 @@ extension BaseEnpoint: EndPointType {
         case .getExihibitionFromHardvardMuseum(parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlAndJsonEncoding, urlParameters: parameters)
             
+        case .getDetailedInformationOfObject(path: _, parameters: let parameters):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
         }
         
     }
@@ -64,6 +74,8 @@ extension BaseEnpoint: EndPointType {
         case .getExihibitionFromHardvardMuseum:
             return [:]
             
+        case .getDetailedInformationOfObject:
+            return [:]
         }
         
     }
