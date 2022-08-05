@@ -119,6 +119,8 @@ class CustomTabBar: UIView {
     
     func switchTab(from: Int, to: Int) {
         
+        guard from != to else {return}
+        
         DispatchQueue.main.async {[weak self] in
             guard let self = self else {return}
             
