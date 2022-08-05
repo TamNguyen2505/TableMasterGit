@@ -44,7 +44,6 @@ class DetailedNewsViewController: BaseViewController {
         return label
     }()
     
-    
     private lazy var colorPalletCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -65,6 +64,20 @@ class DetailedNewsViewController: BaseViewController {
     var objectID: String = ""
     
     private let viewModel = DetailedNewsViewModel()
+    
+    private var dataImage = UIImage() {
+        
+        didSet{
+            
+            DispatchQueue.main.async {
+                
+                self.largestImageView.image = self.dataImage.rotate(radians: .pi/2)
+                
+            }
+            
+        }
+        
+    }
     
     //MARK: View cycle
     override func setupUI() {
@@ -217,4 +230,48 @@ extension DetailedNewsViewController: UICollectionViewDelegate, UICollectionView
         
     }
     
+}
+
+extension DetailedNewsViewController {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        Task {
+                        
+            let image = try await streamDownload()
+            self.dataImage = image ?? UIImage()
+                        
+        }
+        
+    }
+    
+    func streamDownload() async throws -> UIImage? {
+        
+        let id = self.viewModel.detailedInformationOfObject.images?.first?.iiifbaseuri
+        let string = id! + "/full/full/0/default.jpg"
+        let url = URL(string: string)!
+        
+        let (stream, urlResponse) = try await URLSession.shared.bytes(from: url)
+            
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 200 else {
+            throw NetworkError.buildingRequestUrlFailed
+        }
+        
+        var iterator = stream.makeAsyncIterator()
+                
+        var data = Data()
+
+        while let nextBytes = try await iterator.next() {
+                        
+            data.append(nextBytes)
+            
+        }
+     
+        let image = UIImage(data: data)
+        
+        return image
+        
+    }
+    
+  
 }

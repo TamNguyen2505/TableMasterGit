@@ -11,7 +11,7 @@ import UIKit
 class DetailedNewsViewModel {
     //MARK: Properties
     private let networkManager = NetworkManager()
-    private var detailedInformationOfObject = DetailedNewsModel()
+    var detailedInformationOfObject = DetailedNewsModel()
 
     //MARK: Features
     func getDetailedInformationOfObject(objectID: String) async {

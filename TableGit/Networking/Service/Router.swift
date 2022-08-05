@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 public typealias NetworkRouterCompletion = (_ urlRequest: URLRequest?, _ data: Data?, _ response: URLResponse?, _ error: Error?)->()
 
@@ -72,6 +73,36 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         self.task?.resume()
         
         return (request, data, response, task?.error)
+        
+    }
+    
+    func streamDownload(_ route: EndPoint) async throws -> Data? {
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5*60
+        
+        let session = URLSession(configuration: config)
+        let request = try self.buildRequest(from: route)
+        
+        task = session.dataTask(with: request)
+        let (stream, _ ) = try await session.bytes(for: request)
+        
+        var iterator = stream.lines.makeAsyncIterator()
+        
+        guard (try await iterator.next()) != nil else {throw NetworkError.buildingRequestUrlFailed}
+        
+        var sumData = Data()
+        
+        for try await line in stream.lines {
+            guard let data = line.data(using: .utf8) else {return nil}
+            
+            print("THIS IS line \(line)")
+            
+            sumData.append(data)
+            
+        }
+        
+        return sumData
         
     }
     
