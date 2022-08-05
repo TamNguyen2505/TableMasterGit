@@ -9,27 +9,18 @@ import UIKit
 
 class DetailedNewsViewController: BaseViewController {
     //MARK: Properties
-    private let largestImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var largestImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
-    private let topRightImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var topRightImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
-    private let bottomRightImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "signup-background")
+    private lazy var bottomRightImageView: UIImageView = {
+        let iv = setupUIForImageViews()
         return iv
     }()
     
@@ -53,7 +44,6 @@ class DetailedNewsViewController: BaseViewController {
         return label
     }()
     
-    
     private lazy var colorPalletCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -70,6 +60,24 @@ class DetailedNewsViewController: BaseViewController {
         collection.dataSource = self
         return collection
     }()
+    
+    var objectID: String = ""
+    
+    private let viewModel = DetailedNewsViewModel()
+    
+    private var dataImage = UIImage() {
+        
+        didSet{
+            
+            DispatchQueue.main.async {
+                
+                self.largestImageView.image = self.dataImage.rotate(radians: .pi/2)
+                
+            }
+            
+        }
+        
+    }
     
     //MARK: View cycle
     override func setupUI() {
@@ -114,6 +122,17 @@ class DetailedNewsViewController: BaseViewController {
             
         }
         
+        
+    }
+    
+    override func setupVM() {
+        super.setupVM()
+        
+        Task {
+            
+            await viewModel.getDetailedInformationOfObject(objectID: self.objectID)
+            
+        }
         
     }
     
@@ -176,6 +195,20 @@ class DetailedNewsViewController: BaseViewController {
         
     }
     
+    private func setupUIForImageViews() -> UIImageView {
+        
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "signup-background")
+        iv.layer.borderColor = UIColor.systemYellow.cgColor
+        iv.layer.borderWidth = 3
+        iv.layer.cornerRadius = 5
+        
+        return iv
+        
+    }
+    
     
 }
 
@@ -197,4 +230,48 @@ extension DetailedNewsViewController: UICollectionViewDelegate, UICollectionView
         
     }
     
+}
+
+extension DetailedNewsViewController {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        Task {
+                        
+            let image = try await streamDownload()
+            self.dataImage = image ?? UIImage()
+                        
+        }
+        
+    }
+    
+    func streamDownload() async throws -> UIImage? {
+        
+        let id = self.viewModel.detailedInformationOfObject.images?.first?.iiifbaseuri
+        let string = id! + "/full/full/0/default.jpg"
+        let url = URL(string: string)!
+        
+        let (stream, urlResponse) = try await URLSession.shared.bytes(from: url)
+            
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 200 else {
+            throw NetworkError.buildingRequestUrlFailed
+        }
+        
+        var iterator = stream.makeAsyncIterator()
+                
+        var data = Data()
+
+        while let nextBytes = try await iterator.next() {
+                        
+            data.append(nextBytes)
+            
+        }
+     
+        let image = UIImage(data: data)
+        
+        return image
+        
+    }
+    
+  
 }

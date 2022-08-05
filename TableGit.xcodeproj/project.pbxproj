@@ -25,6 +25,8 @@
 		0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */; };
 		007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856AE28879DB400E73D24 /* AsyncAddOperation.swift */; };
 		007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856B12887B31100E73D24 /* NetworkMonitor.swift */; };
+		007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AA1C9289B69C0004507F7 /* DetailedNewsViewModel.swift */; };
+		007AA1CD289B726F004507F7 /* DetailedNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */; };
 		007CA9EA2892342500EE8D1B /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */; };
 		007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9ED28926BC400EE8D1B /* KeychainManager.swift */; };
 		007CA9F428938D8800EE8D1B /* UserDefaults + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */; };
@@ -106,6 +108,8 @@
 		0077CCED2862C2EA0079F06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		007856AE28879DB400E73D24 /* AsyncAddOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAddOperation.swift; sourceTree = "<group>"; };
 		007856B12887B31100E73D24 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		007AA1C9289B69C0004507F7 /* DetailedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsViewModel.swift; sourceTree = "<group>"; };
+		007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsModel.swift; sourceTree = "<group>"; };
 		007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
 		007CA9ED28926BC400EE8D1B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extension.swift"; sourceTree = "<group>"; };
@@ -239,6 +243,23 @@
 			path = NetworkMonitor;
 			sourceTree = "<group>";
 		};
+		007AA1C8289B6996004507F7 /* NewsViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				00A06EB1289A3656009A050C /* NewsViewModel.swift */,
+				007AA1C9289B69C0004507F7 /* DetailedNewsViewModel.swift */,
+			);
+			path = NewsViewModels;
+			sourceTree = "<group>";
+		};
+		007AA1CB289B724E004507F7 /* NewsModel */ = {
+			isa = PBXGroup;
+			children = (
+				007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */,
+			);
+			path = NewsModel;
+			sourceTree = "<group>";
+		};
 		007CA9E82892337300EE8D1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,8 +297,8 @@
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				007AA1C8289B6996004507F7 /* NewsViewModels */,
 				0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */,
-				00A06EB1289A3656009A050C /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -285,6 +306,7 @@
 		007FD8D528640120007ADA91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				007AA1CB289B724E004507F7 /* NewsModel */,
 				0071F63C288E75E600FE67EF /* ExhibitionModel.swift */,
 				0071F63E288E83FF00FE67EF /* Media.swift */,
 			);
@@ -591,10 +613,12 @@
 				006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
 				007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */,
+				007AA1CD289B726F004507F7 /* DetailedNewsModel.swift in Sources */,
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				00BCC377288F9E21003F5D1A /* ArtCollectionHeaderView.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
+				007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				007111BD28977A8F0012026D /* KeychainError.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
