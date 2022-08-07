@@ -5,8 +5,8 @@
 //  Created by MINERVA on 12/07/2022.
 //
 
-import Foundation
 import UIKit
+import Combine
 
 enum NetworkResponse:String {
     
@@ -29,7 +29,8 @@ enum NetworkResult<String>{
 
 class NetworkManager {
     //MARK: Properties
-    let router = Router<BaseEnpoint>()
+    private let router = Router<BaseEnpoint>()
+    @Published var byte = UInt8()
     
     //MARK: Features
     public func callAndParseAPI<D: Codable>(accordingTo caseEndPoint: BaseEnpoint, parseInto model: D.Type) async throws -> D? {
@@ -96,6 +97,40 @@ class NetworkManager {
             information.announce()
                         
             return responseData
+                                    
+        case .failure(_):
+            
+            return nil
+            
+        }
+        
+    }
+    
+    public func streamDownloadData(accordingTo caseEndPoint: BaseEnpoint) async throws -> Data? {
+        
+        let routerResponse = try await router.streamDownload(caseEndPoint)
+        
+        guard let response = routerResponse.response as? HTTPURLResponse else {return nil}
+        let result = handleNetworkResponse(response)
+
+        switch result {
+        case .success:
+            let streamData = routerResponse.stream
+            var iterator = streamData.makeAsyncIterator()
+
+            var accumulatorData = Data()
+                        
+            while let nextBytes = try await iterator.next() {
+                
+                self.byte = nextBytes
+                accumulatorData.append(nextBytes)
+                
+            }
+               
+            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: accumulatorData, httpURLResponse: response)
+            information.announce()
+            
+            return accumulatorData
                                     
         case .failure(_):
             

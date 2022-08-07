@@ -26,11 +26,8 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     //MARK: Features
     func request(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
-        
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 5*60
-        
-        let session = URLSession(configuration: config)
+     
+        let session = buildURLSession()
         let request = try self.buildRequest(from: route)
         
         task = session.dataTask(with: request)
@@ -43,10 +40,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     func upload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?) {
         
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 5*60
-        
-        let session = URLSession(configuration: config)
+        let session = buildURLSession()
         let request = try self.buildRequest(from: route)
                 
         task = session.dataTask(with: request)
@@ -60,10 +54,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     
     func download(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, data: Data?, response: URLResponse?, error: Error?){
         
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 5*60
-        
-        let session = URLSession(configuration: config)
+        let session = buildURLSession()
         let request = try self.buildRequest(from: route)
         
         task = session.dataTask(with: request)
@@ -76,33 +67,17 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         
     }
     
-    func streamDownload(_ route: EndPoint) async throws -> Data? {
+    func streamDownload(_ route: EndPoint) async throws -> (urlRequest: URLRequest?, stream: URLSession.AsyncBytes, response: URLResponse?, error: Error?) {
         
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 5*60
-        
-        let session = URLSession(configuration: config)
+        let session = buildURLSession()
         let request = try self.buildRequest(from: route)
         
         task = session.dataTask(with: request)
-        let (stream, _ ) = try await session.bytes(for: request)
+        let (stream, response ) = try await session.bytes(for: request)
         
-        var iterator = stream.lines.makeAsyncIterator()
+        self.task?.resume()
         
-        guard (try await iterator.next()) != nil else {throw NetworkError.buildingRequestUrlFailed}
-        
-        var sumData = Data()
-        
-        for try await line in stream.lines {
-            guard let data = line.data(using: .utf8) else {return nil}
-            
-            print("THIS IS line \(line)")
-            
-            sumData.append(data)
-            
-        }
-        
-        return sumData
+        return (request, stream, response, task?.error)
         
     }
     
@@ -113,6 +88,16 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     }
     
     //MARK: Helpers
+    fileprivate func buildURLSession() -> URLSession {
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 5*60
+        
+        let session = URLSession(configuration: config)
+        
+        return session
+    }
+    
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
         
         var request = URLRequest(url: route.baseURL)

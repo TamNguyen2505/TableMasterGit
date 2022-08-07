@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class DetailedNewsViewController: BaseViewController {
     //MARK: Properties
@@ -69,14 +70,22 @@ class DetailedNewsViewController: BaseViewController {
         
         didSet{
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 
-                self.largestImageView.image = self.dataImage.rotate(radians: .pi/2)
+                self?.largestImageView.image = self?.dataImage.rotate(radians: .pi/2)
                 
             }
             
         }
         
+    }
+    
+    var cancellable: AnyCancellable?
+    
+    private var percent = 0.0 {
+        willSet{
+            print(percent)
+        }
     }
     
     //MARK: View cycle
@@ -133,7 +142,7 @@ class DetailedNewsViewController: BaseViewController {
             await viewModel.getDetailedInformationOfObject(objectID: self.objectID)
             
         }
-        
+    
     }
     
     //MARK: Helpers
@@ -237,39 +246,17 @@ extension DetailedNewsViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         Task {
+            
+            cancellable = viewModel.$percent.assign(to: \.percent, on: self)
+            
+            guard let id = self.viewModel.detailedInformationOfObject.images?.first?.iiifbaseuri else {return}
                         
-            let image = try await streamDownload()
+            let image = try await viewModel.streamDownloadImage(imageID: id)
             self.dataImage = image ?? UIImage()
+            
+            cancellable?.cancel()
                         
         }
-        
-    }
-    
-    func streamDownload() async throws -> UIImage? {
-        
-        let id = self.viewModel.detailedInformationOfObject.images?.first?.iiifbaseuri
-        let string = id! + "/full/full/0/default.jpg"
-        let url = URL(string: string)!
-        
-        let (stream, urlResponse) = try await URLSession.shared.bytes(from: url)
-            
-        guard (urlResponse as? HTTPURLResponse)?.statusCode == 200 else {
-            throw NetworkError.buildingRequestUrlFailed
-        }
-        
-        var iterator = stream.makeAsyncIterator()
-                
-        var data = Data()
-
-        while let nextBytes = try await iterator.next() {
-                        
-            data.append(nextBytes)
-            
-        }
-     
-        let image = UIImage(data: data)
-        
-        return image
         
     }
     

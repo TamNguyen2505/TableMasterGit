@@ -11,6 +11,7 @@ enum BaseEnpoint {
     
     case getExihibitionFromHardvardMuseum(parameters: Parameters)
     case getDetailedInformationOfObject(path: String, parameters: Parameters)
+    case downloadFullImageObject(baseURL: String)
 
 }
 
@@ -25,6 +26,10 @@ extension BaseEnpoint: EndPointType {
         
         case .getDetailedInformationOfObject:
             return URLs.BASE_URL_MUSEUM!
+            
+        case .downloadFullImageObject(baseURL: let baseURL):
+            return URL(string: baseURL)!
+            
         }
         
     }
@@ -38,6 +43,9 @@ extension BaseEnpoint: EndPointType {
             
         case .getDetailedInformationOfObject(path: let path, parameters: _):
             return URLs.OBJECT_PATH_MUSEUM + "/\(path)"
+            
+        case .downloadFullImageObject:
+            return nil
         }
     
     }
@@ -51,6 +59,9 @@ extension BaseEnpoint: EndPointType {
             
         case .getDetailedInformationOfObject:
             return .get
+            
+        case .downloadFullImageObject:
+            return .get
         }
     }
     
@@ -63,6 +74,9 @@ extension BaseEnpoint: EndPointType {
             
         case .getDetailedInformationOfObject(path: _, parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .downloadFullImageObject:
+            return .downloadFile
         }
         
     }
@@ -75,6 +89,9 @@ extension BaseEnpoint: EndPointType {
             return [:]
             
         case .getDetailedInformationOfObject:
+            return [:]
+            
+        case .downloadFullImageObject:
             return [:]
         }
         
