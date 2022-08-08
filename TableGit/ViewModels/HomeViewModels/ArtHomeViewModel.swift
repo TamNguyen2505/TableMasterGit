@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HardvardExhibitionViewModel {
+class ArtHomeViewModel {
     //MARK: Properties
     let networkManager = NetworkManager()
       
@@ -149,6 +149,18 @@ struct ArtCollectionCellViewModel {
         
         guard let id = model.images?.first?.iiifbaseuri, let url = URL(string: id + "/full/full/0/default.jpg") else {return nil}
         return url
+        
+    }
+    
+    var description: String? {
+        
+        return model.description ?? ""
+        
+    }
+    
+    var objectID: Int {
+        
+        return model.id ?? 0
         
     }
     

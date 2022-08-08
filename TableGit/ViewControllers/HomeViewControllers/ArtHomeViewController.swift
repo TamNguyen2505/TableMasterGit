@@ -67,7 +67,7 @@ class ArtHomeViewController: BaseViewController {
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
     
-    let viewModel = HardvardExhibitionViewModel()
+    let viewModel = ArtHomeViewModel()
     var exhibitionData = [ExhibitionModel]() {
         didSet {
             self.artCollectionView.reloadData()
