@@ -887,7 +887,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JJ3HPPD4J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TableGit/Info.plist;
+				INFOPLIST_FILE = TableGit/Resources/Info.plist;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"Our application requires your FaceID permission, please!\"";
 				INFOPLIST_KEY_NSPrincipalClass = MyApplication;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -919,7 +919,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6JJ3HPPD4J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TableGit/Info.plist;
+				INFOPLIST_FILE = TableGit/Resources/Info.plist;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"Our application requires your FaceID permission, please!\"";
 				INFOPLIST_KEY_NSPrincipalClass = MyApplication;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
