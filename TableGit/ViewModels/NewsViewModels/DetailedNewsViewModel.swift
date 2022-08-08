@@ -14,7 +14,7 @@ class DetailedNewsViewModel {
     private let networkManager = NetworkManager()
     var detailedInformationOfObject = DetailedNewsModel()
     var cancellable: AnyCancellable?
-    @Published var percent = 0.0
+    @Published var percent: Float = 0.0
     
     //MARK: Features
     func getDetailedInformationOfObject(objectID: String) async {
@@ -34,12 +34,25 @@ class DetailedNewsViewModel {
     
     func streamDownloadImage(imageID: String) async throws -> UIImage? {
         
-        cancellable = networkManager.$byte.sink{ [weak self] (byte) in
-            guard let self = self else {return}
+        let fullTime = 5.0.convertMinuteToMilisecond()
+        let startTime = CFAbsoluteTimeGetCurrent()
+        var acumalatorPercent = 0.0
+        var roundedNumberPlaceHolder = 0.0
+        
+        cancellable = networkManager.$byte.sink { [weak self] (byte) in
+            guard let self = self, Double(byte) != 0.0 else {return}
             
-            let startTime = CFAbsoluteTimeGetCurrent()
-            self.percent = startTime
+            let endTime = CFAbsoluteTimeGetCurrent() - startTime
+            let estimatedPercent = endTime / fullTime
+            let estimateRatePercent = estimatedPercent * Double(byte)
+            acumalatorPercent += estimateRatePercent
             
+            let normalziedNumber = estimatedPercent*200000
+            let roundedNumber = acumalatorPercent.rounded(.towardZero) / (100.0 * (1 + normalziedNumber))
+            roundedNumberPlaceHolder = roundedNumber
+                        
+            self.percent = Float(min(max(roundedNumberPlaceHolder, roundedNumber), 1.0))
+                                    
         }
         
         do {
@@ -47,7 +60,8 @@ class DetailedNewsViewModel {
             let baseURL = imageID + URLs.OBJECT_FULL_IMAGE
             
             guard let data = try await networkManager.streamDownloadData(accordingTo: .downloadFullImageObject(baseURL: baseURL)) else {return nil}
-                         
+
+            self.percent = 1.0
             cancellable?.cancel()
             
             return UIImage(data: data)
@@ -58,6 +72,14 @@ class DetailedNewsViewModel {
             
         }
         
+    }
+    
+    
+    func createPercentString(value: Float) -> String {
+        
+        let roundedValue = (value * 100).rounded(.towardZero)
+        let string = String(roundedValue) + "%"
+        return string
         
     }
     

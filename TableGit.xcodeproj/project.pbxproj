@@ -17,6 +17,7 @@
 		0071F639288E73D900FE67EF /* HardvardExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */; };
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
 		0071F63F288E83FF00FE67EF /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63E288E83FF00FE67EF /* Media.swift */; };
+		0072FEDB28A0B6E3002E4C91 /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072FEDA28A0B6E3002E4C91 /* Double + Extension.swift */; };
 		0074C22728890597005F115F /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C22628890597005F115F /* BaseTabBarController.swift */; };
 		0074C2292889064B005F115F /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C2282889064B005F115F /* CustomTabBar.swift */; };
 		0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCDF2862C2E80079F06A /* AppDelegate.swift */; };
@@ -98,6 +99,7 @@
 		0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardExhibitionViewModel.swift; sourceTree = "<group>"; };
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		0071F63E288E83FF00FE67EF /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		0072FEDA28A0B6E3002E4C91 /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		0074C22628890597005F115F /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		0074C2282889064B005F115F /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0077CCDC2862C2E80079F06A /* TableGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 				E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */,
 				007CA9F328938D8800EE8D1B /* UserDefaults + Extension.swift */,
 				007111D72897B7090012026D /* AppDelegate + Extension.swift */,
+				0072FEDA28A0B6E3002E4C91 /* Double + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				00A06EAE289A1318009A050C /* NewsViewController.swift in Sources */,
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
 				007111BF28977AC30012026D /* KeychainQuery.swift in Sources */,
+				0072FEDB28A0B6E3002E4C91 /* Double + Extension.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */,
 				00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,

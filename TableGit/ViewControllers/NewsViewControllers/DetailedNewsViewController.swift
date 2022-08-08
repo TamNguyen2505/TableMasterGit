@@ -27,6 +27,7 @@ class DetailedNewsViewController: BaseViewController {
     
     private let progressView: UIProgressView = {
         let view = UIProgressView()
+        view.progressViewStyle = .bar
         return view
     }()
     
@@ -71,8 +72,9 @@ class DetailedNewsViewController: BaseViewController {
         didSet{
             
             DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
                 
-                self?.largestImageView.image = self?.dataImage.rotate(radians: .pi/2)
+                self.largestImageView.image = self.dataImage.rotate(radians: .pi/2)
                 
             }
             
@@ -82,9 +84,17 @@ class DetailedNewsViewController: BaseViewController {
     
     var cancellable: AnyCancellable?
     
-    private var percent = 0.0 {
+    private var percent: Float = 0.0 {
         willSet{
-            print(percent)
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
+
+                self.progressView.progress = self.percent
+                self.progressLabel.text = self.viewModel.createPercentString(value: self.percent)
+                
+            }
+
         }
     }
     
