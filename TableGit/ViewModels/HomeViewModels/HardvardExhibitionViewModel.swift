@@ -91,5 +91,65 @@ class HardvardExhibitionViewModel {
         
     }
     
+}
+
+struct ArtCollectionHeaderViewModel {
+    //MARK: Properties
+    private var model: TotalExhibitionModel
+    
+    //MARK: Init
+    init(model: TotalExhibitionModel) {
+        
+        self.model = model
+        
+    }
+    
+    //MARK: Expected values
+    var totalOfPictures: String {
+        
+        if let total = model.totalrecords {
+            
+            return String(total) + "pictures"
+            
+        } else {
+            
+            return "no picture"
+            
+        }
+        
+    }
+    
+}
+
+struct ArtCollectionCellViewModel {
+    //MARK: Properties
+    private var model: ExhibitionModelArray
+    
+    //MARK: Init
+    init(model: ExhibitionModelArray) {
+        
+        self.model = model
+        
+    }
+    
+    //MARK: Expected values
+    var titleImage: String {
+        
+        return model.title ?? ""
+        
+    }
+    
+    var culture: String {
+        
+        return model.culture ?? ""
+        
+    }
+    
+    var imageUrl: URL? {
+        
+        guard let id = model.images?.first?.iiifbaseuri, let url = URL(string: id + "/full/full/0/default.jpg") else {return nil}
+        return url
+        
+    }
     
 }

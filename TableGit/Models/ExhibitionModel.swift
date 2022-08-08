@@ -31,6 +31,7 @@ struct ExhibitionModelArray: Codable {
     var description: String?
     var title: String?
     var objectid: Int?
+    var culture: String?
 
 }
 

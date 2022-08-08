@@ -18,6 +18,7 @@
 		0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63C288E75E600FE67EF /* ExhibitionModel.swift */; };
 		0071F63F288E83FF00FE67EF /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0071F63E288E83FF00FE67EF /* Media.swift */; };
 		0072FEDB28A0B6E3002E4C91 /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072FEDA28A0B6E3002E4C91 /* Double + Extension.swift */; };
+		0072FEDE28A0F574002E4C91 /* ArtAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */; };
 		0074C22728890597005F115F /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C22628890597005F115F /* BaseTabBarController.swift */; };
 		0074C2292889064B005F115F /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C2282889064B005F115F /* CustomTabBar.swift */; };
 		0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCDF2862C2E80079F06A /* AppDelegate.swift */; };
@@ -100,6 +101,7 @@
 		0071F63C288E75E600FE67EF /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		0071F63E288E83FF00FE67EF /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		0072FEDA28A0B6E3002E4C91 /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
+		0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtAudioViewController.swift; sourceTree = "<group>"; };
 		0074C22628890597005F115F /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		0074C2282889064B005F115F /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0077CCDC2862C2E80079F06A /* TableGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,33 @@
 			path = TableGitTests;
 			sourceTree = "<group>";
 		};
+		0072FEDC28A0F510002E4C91 /* HomeViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
+				0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */,
+			);
+			path = HomeViewControllers;
+			sourceTree = "<group>";
+		};
+		0072FEDF28A0FC91002E4C91 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */,
+				0077CCE82862C2EA0079F06A /* Assets.xcassets */,
+				0077CCED2862C2EA0079F06A /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0072FEE028A0FEA1002E4C91 /* HomeViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */,
+			);
+			path = HomeViewModels;
+			sourceTree = "<group>";
+		};
 		0077CCD32862C2E80079F06A = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +252,7 @@
 		0077CCDE2862C2E80079F06A /* TableGit */ = {
 			isa = PBXGroup;
 			children = (
+				0072FEDF28A0FC91002E4C91 /* Resources */,
 				00B1CDE0287D07D70058EA96 /* Networking */,
 				007FD8DA28640169007ADA91 /* AppDelegate */,
 				007FD8D82864013E007ADA91 /* Ulities */,
@@ -230,9 +260,6 @@
 				007FD8D628640128007ADA91 /* ViewControllers */,
 				007FD8D528640120007ADA91 /* Models */,
 				007FD8D428640111007ADA91 /* ViewModels */,
-				0077CCE82862C2EA0079F06A /* Assets.xcassets */,
-				0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */,
-				0077CCED2862C2EA0079F06A /* Info.plist */,
 			);
 			path = TableGit;
 			sourceTree = "<group>";
@@ -300,8 +327,8 @@
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0072FEE028A0FEA1002E4C91 /* HomeViewModels */,
 				007AA1C8289B6996004507F7 /* NewsViewModels */,
-				0071F638288E73D900FE67EF /* HardvardExhibitionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -319,10 +346,10 @@
 		007FD8D628640128007ADA91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0072FEDC28A0F510002E4C91 /* HomeViewControllers */,
 				00A06EB5289A6B6D009A050C /* NewsViewControllers */,
 				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
 				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
-				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
 				0080809A286ADB5A00973384 /* WebViewController.swift */,
 				006FF45528729115009FDD30 /* VideoPlayerViewController.swift */,
 				008377A6288A765A003A39EA /* GraphViewController.swift */,
@@ -648,6 +675,7 @@
 				00A06EB7289A6C00009A050C /* DetailedNewsViewController.swift in Sources */,
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
 				00715410289A80A300FB7085 /* ColorPalletCollectionCell.swift in Sources */,
+				0072FEDE28A0F574002E4C91 /* ArtAudioViewController.swift in Sources */,
 				00B1CDF0287D0BE30058EA96 /* JSONParameterEncoder.swift in Sources */,
 				008377A7288A765A003A39EA /* GraphViewController.swift in Sources */,
 				007CA9FA2893C63700EE8D1B /* SlideInPresentationController.swift in Sources */,

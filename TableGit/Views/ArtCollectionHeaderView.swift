@@ -43,9 +43,9 @@ class ArtCollectionHeaderView: UICollectionReusableView {
         
     }
     
-    func updateContent(title: String) {
+    func updateContent(viewModel: ArtCollectionHeaderViewModel) {
         
-        self.totalLabel.text = title
+        self.totalLabel.text = viewModel.totalOfPictures
         
     }
         

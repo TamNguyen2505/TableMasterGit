@@ -145,7 +145,7 @@ class ArtHomeViewController: BaseViewController {
 }
 
 //MARK: Collection view data source
-extension ArtHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ArtHomeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -163,10 +163,10 @@ extension ArtHomeViewController: UICollectionViewDelegate, UICollectionViewDataS
                 withReuseIdentifier: ArtCollectionHeaderView.className,
                 for: indexPath)
             
-            guard let typedHeaderView = headerView as? ArtCollectionHeaderView, let info = exhibitionData[indexPath.section].info?.totalrecords else { return headerView }
+            guard let typedHeaderView = headerView as? ArtCollectionHeaderView, let info = exhibitionData[indexPath.section].info else { return headerView }
+            let viewModel = ArtCollectionHeaderViewModel(model: info)
             
-            
-            typedHeaderView.updateContent(title: "\(info) pictures")
+            typedHeaderView.updateContent(viewModel: viewModel)
             
             return typedHeaderView
             
@@ -184,11 +184,24 @@ extension ArtHomeViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtCollectionCell.className, for: indexPath) as! ArtCollectionCell
-        let info = exhibitionData[indexPath.section].records?[indexPath.item]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtCollectionCell.className, for: indexPath) as? ArtCollectionCell, let info = exhibitionData[indexPath.section].records?[indexPath.item] else {return UICollectionViewCell()}
+        let viewModel = ArtCollectionCellViewModel(model: info)
         
-        cell.setupContent(titleImage: info?.title ?? "", artist: info?.description ?? "")
+        cell.setupContent(viewmodel: viewModel)
         return cell
+        
+    }
+    
+}
+
+//MARK: Collection delegate
+extension ArtHomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let targetVC = ArtAudioViewController()
+        
+        self.navigationController?.pushViewController(targetVC, animated: true)
         
     }
     
@@ -279,11 +292,12 @@ extension ArtHomeViewController: UICollectionViewDataSourcePrefetching {
     
     func loadImage(at index: IndexPath) -> DataLoadOperation? {
         
-        guard let id = exhibitionData[index.section].records?[index.item].images?.first?.iiifbaseuri else {return nil}
-        
-        let url = id + "/full/full/0/default.jpg"
+        guard let info = exhibitionData[index.section].records?[index.item] else {return nil}
+        let viewModel = ArtCollectionCellViewModel(model: info)
+        guard let url = viewModel.imageUrl else {return nil}
         
         return DataLoadOperation(url: url)
+        
     }
     
 }

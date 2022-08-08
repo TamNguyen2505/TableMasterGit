@@ -26,7 +26,7 @@ class ArtCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    private let artistLabel: UILabel = {
+    private let cultureLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 5
@@ -48,7 +48,7 @@ class ArtCollectionCell: UICollectionViewCell {
     //MARK: Helpers
     private func setupUI() {
                         
-        let vStack = UIStackView(arrangedSubviews: [artImageView, titleImageViewLabel, artistLabel])
+        let vStack = UIStackView(arrangedSubviews: [artImageView, titleImageViewLabel, cultureLabel])
         vStack.spacing = 10
         vStack.setCustomSpacing(20, after: artImageView)
         vStack.axis = .vertical
@@ -71,10 +71,10 @@ class ArtCollectionCell: UICollectionViewCell {
                         
     }
     
-    func setupContent(titleImage: String, artist: String) {
+    func setupContent(viewmodel: ArtCollectionCellViewModel) {
         
-        self.titleImageViewLabel.text = titleImage
-        self.artistLabel.text = artist
+        self.titleImageViewLabel.text = viewmodel.titleImage
+        self.cultureLabel.text = viewmodel.culture
         
     }
     
