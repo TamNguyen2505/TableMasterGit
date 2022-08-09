@@ -66,8 +66,6 @@
 		00B1CDF7287D0F610058EA96 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */; };
 		00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */; };
 		00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1CDFA287D17F90058EA96 /* NetworkManager.swift */; };
-		00BCC375288F9013003F5D1A /* ArtHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */; };
-		00BCC377288F9E21003F5D1A /* ArtCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BCC376288F9E21003F5D1A /* ArtCollectionHeaderView.swift */; };
 		E9101A9D28669EBF00A597C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101A9C28669EBF00A597C9 /* Enums.swift */; };
 		E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9101AA52866A8FD00A597C9 /* DataLoadOperation.swift */; };
 		E97CE052288291ED006A2E3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97CE051288291ED006A2E3C /* LoginViewController.swift */; };
@@ -75,7 +73,6 @@
 		E97CE0562882A36A006A2E3C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0552882A36A006A2E3C /* SignUpViewController.swift */; };
 		E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */; };
 		E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */; };
-		E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4E32863512E00D4DA51 /* ArtCollectionCell.swift */; };
 		E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */; };
 		E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */; };
 		E9B8AF2C286708C600A8242B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AF2B286708C600A8242B /* Loader.swift */; };
@@ -156,8 +153,6 @@
 		00B1CDF6287D0F610058EA96 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		00B1CDF8287D16290058EA96 /* BaseEnpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEnpoint.swift; sourceTree = "<group>"; };
 		00B1CDFA287D17F90058EA96 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtHomeViewController.swift; sourceTree = "<group>"; };
-		00BCC376288F9E21003F5D1A /* ArtCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionHeaderView.swift; sourceTree = "<group>"; };
 		27FEDE4CEAD19C615CA3C0E9 /* Pods-TableGit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.release.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.release.xcconfig"; sourceTree = "<group>"; };
 		361C9B9073A082976A810428 /* Pods_TableGit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TableGit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EA36031CF48C86858A51B5 /* Pods-TableGit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableGit.debug.xcconfig"; path = "Target Support Files/Pods-TableGit/Pods-TableGit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +163,6 @@
 		E97CE0552882A36A006A2E3C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E98DB4DB28634FD900D4DA51 /* NSObject + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Extension.swift"; sourceTree = "<group>"; };
 		E98DB4DD28634FFB00D4DA51 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
-		E98DB4E32863512E00D4DA51 /* ArtCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionCell.swift; sourceTree = "<group>"; };
 		E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunction.swift; sourceTree = "<group>"; };
 		E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGradientCurvedView.swift; sourceTree = "<group>"; };
 		E9B8AF2B286708C600A8242B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -215,7 +209,6 @@
 		0072FEDC28A0F510002E4C91 /* HomeViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
 				007A0BF528A2498300866F10 /* HomeViewController.swift */,
 			);
 			path = HomeViewControllers;
@@ -440,9 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				007CA9FD2893D81700EE8D1B /* SlideInPresentation */,
-				E98DB4E32863512E00D4DA51 /* ArtCollectionCell.swift */,
 				007A0BF728A2564800866F10 /* HomeCollectionView.swift */,
-				00BCC376288F9E21003F5D1A /* ArtCollectionHeaderView.swift */,
 				007A0BF928A25E2300866F10 /* HomeHeaderCollectionView.swift */,
 				E9B8AF2B286708C600A8242B /* Loader.swift */,
 				0086E699286E83F400423001 /* VerticalSlider.swift */,
@@ -716,7 +707,6 @@
 				E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */,
 				007A0BF628A2498300866F10 /* HomeViewController.swift in Sources */,
 				0071F639288E73D900FE67EF /* ArtHomeViewModel.swift in Sources */,
-				00BCC375288F9013003F5D1A /* ArtHomeViewController.swift in Sources */,
 				0074C2292889064B005F115F /* CustomTabBar.swift in Sources */,
 				E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */,
 				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
@@ -724,7 +714,6 @@
 				007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */,
 				007AA1CD289B726F004507F7 /* DetailedNewsModel.swift in Sources */,
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
-				00BCC377288F9E21003F5D1A /* ArtCollectionHeaderView.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
@@ -772,7 +761,6 @@
 				007111BF28977AC30012026D /* KeychainQuery.swift in Sources */,
 				0072FEDB28A0B6E3002E4C91 /* Double + Extension.swift in Sources */,
 				007A0BEB28A1FCC200866F10 /* AudioModel.swift in Sources */,
-				E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */,
 				00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,
 				E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */,
