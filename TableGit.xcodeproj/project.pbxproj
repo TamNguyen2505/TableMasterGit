@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FF45528729115009FDD30 /* VideoPlayerViewController.swift */; };
 		007111BD28977A8F0012026D /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BC28977A8F0012026D /* KeychainError.swift */; };
 		007111BF28977AC30012026D /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111BE28977AC30012026D /* KeychainQuery.swift */; };
 		007111CC28978EDF0012026D /* TableGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007111CB28978EDF0012026D /* TableGitTests.swift */; };
@@ -41,7 +40,6 @@
 		007CA9FA2893C63700EE8D1B /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9F92893C63700EE8D1B /* SlideInPresentationController.swift */; };
 		007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9FB2893C80C00EE8D1B /* SlideInPresentationAnimator.swift */; };
 		00800034287FA72B00D3237C /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00800033287FA72B00D3237C /* URLs.swift */; };
-		0080809B286ADB5A00973384 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080809A286ADB5A00973384 /* WebViewController.swift */; };
 		008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A4288A3605003A39EA /* SettingsViewController.swift */; };
 		008377A7288A765A003A39EA /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008377A6288A765A003A39EA /* GraphViewController.swift */; };
 		0086E69A286E83F400423001 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E699286E83F400423001 /* VerticalSlider.swift */; };
@@ -93,7 +91,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		006FF45528729115009FDD30 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		007111BC28977A8F0012026D /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
 		007111BE28977AC30012026D /* KeychainQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
 		007111C928978EDF0012026D /* TableGitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableGitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +127,6 @@
 		007CA9F92893C63700EE8D1B /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		007CA9FB2893C80C00EE8D1B /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		00800033287FA72B00D3237C /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
-		0080809A286ADB5A00973384 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		008377A4288A3605003A39EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		008377A6288A765A003A39EA /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		0086E699286E83F400423001 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
@@ -397,8 +393,6 @@
 				007A0BEF28A2169700866F10 /* AudioViewControllers */,
 				007A0BED28A2163A00866F10 /* GraphViewControllers */,
 				007A0BEE28A2166300866F10 /* SettingsViewControllers */,
-				0080809A286ADB5A00973384 /* WebViewController.swift */,
-				006FF45528729115009FDD30 /* VideoPlayerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -684,14 +678,12 @@
 				0074C2292889064B005F115F /* CustomTabBar.swift in Sources */,
 				E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */,
 				00876D9B28728BEC00A3CCB0 /* CustomCircleSlider.swift in Sources */,
-				006FF45628729115009FDD30 /* VideoPlayerViewController.swift in Sources */,
 				00B1CDEE287D0BCA0058EA96 /* URLParameterEncoder.swift in Sources */,
 				007CA9FC2893C80C00EE8D1B /* SlideInPresentationAnimator.swift in Sources */,
 				007AA1CD289B726F004507F7 /* DetailedNewsModel.swift in Sources */,
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				00BCC377288F9E21003F5D1A /* ArtCollectionHeaderView.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
-				0080809B286ADB5A00973384 /* WebViewController.swift in Sources */,
 				007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				007111BD28977A8F0012026D /* KeychainError.swift in Sources */,
