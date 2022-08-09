@@ -258,9 +258,9 @@
 		0077CCDE2862C2E80079F06A /* TableGit */ = {
 			isa = PBXGroup;
 			children = (
+				007FD8DA28640169007ADA91 /* AppDelegate */,
 				0072FEDF28A0FC91002E4C91 /* Resources */,
 				00B1CDE0287D07D70058EA96 /* Networking */,
-				007FD8DA28640169007ADA91 /* AppDelegate */,
 				007FD8D82864013E007ADA91 /* Ulities */,
 				007FD8D728640134007ADA91 /* Views */,
 				007FD8D628640128007ADA91 /* ViewControllers */,
