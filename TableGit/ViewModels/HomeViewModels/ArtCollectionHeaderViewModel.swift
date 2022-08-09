@@ -23,7 +23,7 @@ struct ArtCollectionHeaderViewModel {
         
         if let total = model.totalrecords {
             
-            return String(total) + "pictures"
+            return String(total) + " pictures"
             
         } else {
             
