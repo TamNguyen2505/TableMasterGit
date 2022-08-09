@@ -311,6 +311,34 @@
 			path = AudioViewControllers;
 			sourceTree = "<group>";
 		};
+		007A0BF028A2181E00866F10 /* SettingsViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsViewModels;
+			sourceTree = "<group>";
+		};
+		007A0BF128A2184D00866F10 /* GraphViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GraphViewModels;
+			sourceTree = "<group>";
+		};
+		007A0BF228A2186300866F10 /* AudioViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioViewModels;
+			sourceTree = "<group>";
+		};
+		007A0BF428A218BB00866F10 /* LoginViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginViewModels;
+			sourceTree = "<group>";
+		};
 		007AA1C8289B6996004507F7 /* NewsViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,8 +395,12 @@
 		007FD8D428640111007ADA91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				007A0BF428A218BB00866F10 /* LoginViewModels */,
 				0072FEE028A0FEA1002E4C91 /* HomeViewModels */,
 				007AA1C8289B6996004507F7 /* NewsViewModels */,
+				007A0BF228A2186300866F10 /* AudioViewModels */,
+				007A0BF128A2184D00866F10 /* GraphViewModels */,
+				007A0BF028A2181E00866F10 /* SettingsViewModels */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
