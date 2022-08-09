@@ -199,7 +199,12 @@ extension ArtHomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        guard let info = exhibitionData[indexPath.section].records?[indexPath.item] else {return}
+        
         let targetVC = ArtAudioViewController()
+        let viewModel = ArtCollectionCellViewModel(model: info)
+        
+        targetVC.viewModel = ArtAudioViewModel(artCollectionCellViewModel: viewModel)
         
         self.navigationController?.pushViewController(targetVC, animated: true)
         

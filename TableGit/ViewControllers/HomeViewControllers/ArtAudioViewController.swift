@@ -116,6 +116,8 @@ class ArtAudioViewController: BaseViewController {
     
     private var audioPlayer: AVAudioPlayer?
     
+    var viewModel: ArtAudioViewModel?
+    
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -230,6 +232,18 @@ class ArtAudioViewController: BaseViewController {
     
     override func setupVM() {
         super.setupVM()
+        
+        guard let viewModel = viewModel else {return}
+        
+        artTitleLabel.text = viewModel.titleOfImage
+        artDescriptionLabel.text = viewModel.descriptionOfImage
+        
+        Task {
+            
+            try await viewModel.getAudioAPI()
+            
+        }
+        
         
     }
         

@@ -28,6 +28,9 @@
 		0077CCEC2862C2EA0079F06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */; };
 		007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856AE28879DB400E73D24 /* AsyncAddOperation.swift */; };
 		007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007856B12887B31100E73D24 /* NetworkMonitor.swift */; };
+		007A0BE728A1F60E00866F10 /* ArtCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A0BE628A1F60E00866F10 /* ArtCollectionCellViewModel.swift */; };
+		007A0BE928A1F64900866F10 /* ArtCollectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A0BE828A1F64900866F10 /* ArtCollectionHeaderViewModel.swift */; };
+		007A0BEB28A1FCC200866F10 /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A0BEA28A1FCC200866F10 /* AudioModel.swift */; };
 		007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AA1C9289B69C0004507F7 /* DetailedNewsViewModel.swift */; };
 		007AA1CD289B726F004507F7 /* DetailedNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */; };
 		007CA9EA2892342500EE8D1B /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */; };
@@ -114,6 +117,9 @@
 		0077CCED2862C2EA0079F06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		007856AE28879DB400E73D24 /* AsyncAddOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAddOperation.swift; sourceTree = "<group>"; };
 		007856B12887B31100E73D24 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		007A0BE628A1F60E00866F10 /* ArtCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		007A0BE828A1F64900866F10 /* ArtCollectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionHeaderViewModel.swift; sourceTree = "<group>"; };
+		007A0BEA28A1FCC200866F10 /* AudioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
 		007AA1C9289B69C0004507F7 /* DetailedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsViewModel.swift; sourceTree = "<group>"; };
 		007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsModel.swift; sourceTree = "<group>"; };
 		007CA9E92892342500EE8D1B /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
@@ -228,6 +234,8 @@
 			children = (
 				0071F638288E73D900FE67EF /* ArtHomeViewModel.swift */,
 				0072FEE128A11735002E4C91 /* ArtAudioViewModel.swift */,
+				007A0BE828A1F64900866F10 /* ArtCollectionHeaderViewModel.swift */,
+				007A0BE628A1F60E00866F10 /* ArtCollectionCellViewModel.swift */,
 			);
 			path = HomeViewModels;
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				007AA1CC289B726F004507F7 /* DetailedNewsModel.swift */,
+				007A0BEA28A1FCC200866F10 /* AudioModel.swift */,
 			);
 			path = NewsModel;
 			sourceTree = "<group>";
@@ -661,6 +670,7 @@
 				0071F63F288E83FF00FE67EF /* Media.swift in Sources */,
 				00B1CDF4287D0F110058EA96 /* Router.swift in Sources */,
 				E97CE05428829381006A2E3C /* BaseViewController.swift in Sources */,
+				007A0BE728A1F60E00866F10 /* ArtCollectionCellViewModel.swift in Sources */,
 				E98DB4DE28634FFB00D4DA51 /* String + Extension.swift in Sources */,
 				008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
@@ -671,6 +681,7 @@
 				E97CE0562882A36A006A2E3C /* SignUpViewController.swift in Sources */,
 				007CA9EA2892342500EE8D1B /* BiometricIDAuth.swift in Sources */,
 				0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */,
+				007A0BE928A1F64900866F10 /* ArtCollectionHeaderViewModel.swift in Sources */,
 				0071F63D288E75E600FE67EF /* ExhibitionModel.swift in Sources */,
 				007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */,
 				0074C22728890597005F115F /* BaseTabBarController.swift in Sources */,
@@ -692,6 +703,7 @@
 				E9B8AF2C286708C600A8242B /* Loader.swift in Sources */,
 				007111BF28977AC30012026D /* KeychainQuery.swift in Sources */,
 				0072FEDB28A0B6E3002E4C91 /* Double + Extension.swift in Sources */,
+				007A0BEB28A1FCC200866F10 /* AudioModel.swift in Sources */,
 				E98DB4E42863512E00D4DA51 /* ArtCollectionCell.swift in Sources */,
 				00B1CDEA287D09CB0058EA96 /* HTTPTask.swift in Sources */,
 				0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */,

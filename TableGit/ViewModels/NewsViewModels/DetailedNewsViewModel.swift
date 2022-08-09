@@ -37,7 +37,6 @@ class DetailedNewsViewModel {
         let fullTime = 5.0.convertMinuteToMilisecond()
         let startTime = CFAbsoluteTimeGetCurrent()
         var acumalatorPercent = 0.0
-        var roundedNumberPlaceHolder = 0.0
         
         cancellable = networkManager.$byte.sink { [weak self] (byte) in
             guard let self = self, Double(byte) != 0.0 else {return}
@@ -47,12 +46,11 @@ class DetailedNewsViewModel {
             let estimateRatePercent = estimatedPercent * Double(byte)
             acumalatorPercent += estimateRatePercent
             
-            let normalziedNumber = estimatedPercent*200000
-            let roundedNumber = acumalatorPercent.rounded(.towardZero) / (100.0 * (1 + normalziedNumber))
-            roundedNumberPlaceHolder = roundedNumber
+            let normalziedNumber = 100000.0 + 1000000000.0 * estimatedPercent
+            let roundedNumber = acumalatorPercent / normalziedNumber
                         
-            self.percent = Float(min(max(roundedNumberPlaceHolder, roundedNumber), 1.0))
-                                    
+            self.percent = Float(min(roundedNumber, 1.0))
+                                                
         }
         
         do {
