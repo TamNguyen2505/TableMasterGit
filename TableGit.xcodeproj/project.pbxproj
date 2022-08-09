@@ -214,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				00BCC374288F9013003F5D1A /* ArtHomeViewController.swift */,
-				0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */,
 			);
 			path = HomeViewControllers;
 			sourceTree = "<group>";
@@ -281,6 +280,39 @@
 				007856B12887B31100E73D24 /* NetworkMonitor.swift */,
 			);
 			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
+		007A0BEC28A215EE00866F10 /* LoginViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
+				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
+			);
+			path = LoginViewControllers;
+			sourceTree = "<group>";
+		};
+		007A0BED28A2163A00866F10 /* GraphViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				008377A6288A765A003A39EA /* GraphViewController.swift */,
+			);
+			path = GraphViewControllers;
+			sourceTree = "<group>";
+		};
+		007A0BEE28A2166300866F10 /* SettingsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				008377A4288A3605003A39EA /* SettingsViewController.swift */,
+			);
+			path = SettingsViewControllers;
+			sourceTree = "<group>";
+		};
+		007A0BEF28A2169700866F10 /* AudioViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */,
+			);
+			path = AudioViewControllers;
 			sourceTree = "<group>";
 		};
 		007AA1C8289B6996004507F7 /* NewsViewModels */ = {
@@ -358,15 +390,15 @@
 		007FD8D628640128007ADA91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				007F76572898FF4F00133024 /* BaseViewControllers */,
+				007A0BEC28A215EE00866F10 /* LoginViewControllers */,
 				0072FEDC28A0F510002E4C91 /* HomeViewControllers */,
 				00A06EB5289A6B6D009A050C /* NewsViewControllers */,
-				E97CE051288291ED006A2E3C /* LoginViewController.swift */,
-				E97CE0552882A36A006A2E3C /* SignUpViewController.swift */,
+				007A0BEF28A2169700866F10 /* AudioViewControllers */,
+				007A0BED28A2163A00866F10 /* GraphViewControllers */,
+				007A0BEE28A2166300866F10 /* SettingsViewControllers */,
 				0080809A286ADB5A00973384 /* WebViewController.swift */,
 				006FF45528729115009FDD30 /* VideoPlayerViewController.swift */,
-				008377A6288A765A003A39EA /* GraphViewController.swift */,
-				008377A4288A3605003A39EA /* SettingsViewController.swift */,
-				007F76572898FF4F00133024 /* BaseViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
