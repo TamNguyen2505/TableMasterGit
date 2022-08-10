@@ -121,6 +121,14 @@ class BaseViewController: UIViewController {
         AppDelegate.switchToLoginViewController()
 
     }
+    
+    func hideTabBarController(hide: Bool) {
+        
+        guard let tabs = self.tabBarController as? BaseTabBarController else {return}
+        
+        tabs.customTabBar?.isHidden = hide
+        
+    }
 
 }
 

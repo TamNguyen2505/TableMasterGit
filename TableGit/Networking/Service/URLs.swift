@@ -13,7 +13,7 @@ struct URLs {
     static let BASE_URL_MUSEUM = URL(string: "https://api.harvardartmuseums.org")
     static let OBJECT_PATH_MUSEUM = "/object"
     static let AUDIO_PATH_MUSEUM = "/audio"
+    static let PERSON_PATH_MUSEUM = "/person"
     static let OBJECT_FULL_IMAGE = "/full/full/0/default.jpg"
-    
     
 }

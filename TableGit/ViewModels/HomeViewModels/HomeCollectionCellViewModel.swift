@@ -26,5 +26,10 @@ struct HomeCollectionCellViewModel {
         
     }
     
+    var title: String {
+        
+        return model.title ?? "None"
+        
+    }
     
 }

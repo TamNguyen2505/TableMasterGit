@@ -21,6 +21,10 @@
 		0075684928A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684828A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift */; };
 		0075684B28A3821300A41E13 /* HomeCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684A28A3821300A41E13 /* HomeCollectionCellViewModel.swift */; };
 		0075684D28A38BFE00A41E13 /* NewsTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684C28A38BFE00A41E13 /* NewsTableCellViewModel.swift */; };
+		0075684F28A3932D00A41E13 /* RecordInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684E28A3932D00A41E13 /* RecordInformationViewController.swift */; };
+		0075685128A3A1FB00A41E13 /* RecordInfomationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075685028A3A1FB00A41E13 /* RecordInfomationViewModel.swift */; };
+		0075685328A3A8B800A41E13 /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075685228A3A8B800A41E13 /* JSONNull.swift */; };
+		0075685528A3A90700A41E13 /* HardvardMuseumPersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075685428A3A90700A41E13 /* HardvardMuseumPersonModel.swift */; };
 		0077CCE02862C2E80079F06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCDF2862C2E80079F06A /* AppDelegate.swift */; };
 		0077CCE22862C2E80079F06A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077CCE12862C2E80079F06A /* SceneDelegate.swift */; };
 		0077CCE92862C2EA0079F06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0077CCE82862C2EA0079F06A /* Assets.xcassets */; };
@@ -106,6 +110,10 @@
 		0075684828A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderCollectionViewModel.swift; sourceTree = "<group>"; };
 		0075684A28A3821300A41E13 /* HomeCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		0075684C28A38BFE00A41E13 /* NewsTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCellViewModel.swift; sourceTree = "<group>"; };
+		0075684E28A3932D00A41E13 /* RecordInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInformationViewController.swift; sourceTree = "<group>"; };
+		0075685028A3A1FB00A41E13 /* RecordInfomationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordInfomationViewModel.swift; sourceTree = "<group>"; };
+		0075685228A3A8B800A41E13 /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
+		0075685428A3A90700A41E13 /* HardvardMuseumPersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardvardMuseumPersonModel.swift; sourceTree = "<group>"; };
 		0077CCDC2862C2E80079F06A /* TableGit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableGit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0077CCDF2862C2E80079F06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0077CCE12862C2E80079F06A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				007A0BF528A2498300866F10 /* HomeViewController.swift */,
+				0075684E28A3932D00A41E13 /* RecordInformationViewController.swift */,
 			);
 			path = HomeViewControllers;
 			sourceTree = "<group>";
@@ -230,8 +239,39 @@
 				007A0BFD28A266F300866F10 /* HomeViewModel.swift */,
 				0075684828A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift */,
 				0075684A28A3821300A41E13 /* HomeCollectionCellViewModel.swift */,
+				0075685028A3A1FB00A41E13 /* RecordInfomationViewModel.swift */,
 			);
 			path = HomeViewModels;
+			sourceTree = "<group>";
+		};
+		0075685728A3A95D00A41E13 /* SettingsModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsModels;
+			sourceTree = "<group>";
+		};
+		0075685828A3A97500A41E13 /* GraphModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GraphModels;
+			sourceTree = "<group>";
+		};
+		0075685928A3A98300A41E13 /* AudioModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioModels;
+			sourceTree = "<group>";
+		};
+		0075685A28A3A99100A41E13 /* HomeModels */ = {
+			isa = PBXGroup;
+			children = (
+				007A0BFF28A269AA00866F10 /* HardvardMuseumObjectModel.swift */,
+				0075685428A3A90700A41E13 /* HardvardMuseumPersonModel.swift */,
+			);
+			path = HomeModels;
 			sourceTree = "<group>";
 		};
 		0077CCD32862C2E80079F06A = {
@@ -408,9 +448,13 @@
 		007FD8D528640120007ADA91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0075685A28A3A99100A41E13 /* HomeModels */,
 				007AA1CB289B724E004507F7 /* NewsModel */,
+				0075685928A3A98300A41E13 /* AudioModels */,
+				0075685828A3A97500A41E13 /* GraphModels */,
+				0075685728A3A95D00A41E13 /* SettingsModels */,
 				0071F63E288E83FF00FE67EF /* Media.swift */,
-				007A0BFF28A269AA00866F10 /* HardvardMuseumObjectModel.swift */,
+				0075685228A3A8B800A41E13 /* JSONNull.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -704,6 +748,8 @@
 			files = (
 				E97CE052288291ED006A2E3C /* LoginViewController.swift in Sources */,
 				00B1CDF7287D0F610058EA96 /* NetworkLogger.swift in Sources */,
+				0075685328A3A8B800A41E13 /* JSONNull.swift in Sources */,
+				0075685128A3A1FB00A41E13 /* RecordInfomationViewModel.swift in Sources */,
 				E9101AA62866A8FD00A597C9 /* DataLoadOperation.swift in Sources */,
 				007A0BF628A2498300866F10 /* HomeViewController.swift in Sources */,
 				0074C2292889064B005F115F /* CustomTabBar.swift in Sources */,
@@ -718,6 +764,7 @@
 				007A0C0028A269AA00866F10 /* HardvardMuseumObjectModel.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				007111BD28977A8F0012026D /* KeychainError.swift in Sources */,
+				0075684F28A3932D00A41E13 /* RecordInformationViewController.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
 				007CA9F628939FFB00EE8D1B /* SideBarViewController.swift in Sources */,
@@ -731,6 +778,7 @@
 				008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
 				007CA9F82893B35B00EE8D1B /* SlideInPresentationManager.swift in Sources */,
+				0075685528A3A90700A41E13 /* HardvardMuseumPersonModel.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				0089A8D12885614300792773 /* main.swift in Sources */,
 				00B1CDEC287D0ACE0058EA96 /* ParameterEncoding.swift in Sources */,

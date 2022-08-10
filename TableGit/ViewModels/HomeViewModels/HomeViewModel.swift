@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class HomeViewModel: NSObject {
     //MARK: Properties
@@ -124,5 +125,33 @@ extension HomeViewModel {
         
     }
     
+}
+
+extension HomeViewModel {
+    
+    func createPersonID(atIndexPath: IndexPath) -> Int? {
+        
+        guard let id = self.hardvardMuseumObjectModel[atIndexPath.section]?.records?[atIndexPath.item].people?.first?.personid else {return nil}
+        
+        return id
+        
+    }
+    
+    func createRecordImage(atIndexPath: IndexPath) async throws -> UIImage? {
+        
+        guard let url = createHardvardMuseumObjectRecord(atIndexPath: atIndexPath)?.imageUrl else {return nil}
+        
+        do {
+            
+            guard let data = try await networkManager.downloadData(accordingTo: .downloadFullImageObject(baseURL: url.absoluteString)) else {return nil}
+            return UIImage(data: data)
+            
+        } catch {
+            
+            return nil
+            
+        }
+        
+    }
     
 }

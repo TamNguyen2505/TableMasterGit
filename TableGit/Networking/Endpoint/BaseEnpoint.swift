@@ -13,7 +13,8 @@ enum BaseEnpoint {
     case getDetailedInformationOfObject(path: String, parameters: Parameters)
     case downloadFullImageObject(baseURL: String)
     case downloadAudioObject(path: String, parameters: Parameters)
-
+    case getPeronalInformation(path: String, parameters: Parameters)
+    
 }
 
 extension BaseEnpoint: EndPointType {
@@ -32,6 +33,9 @@ extension BaseEnpoint: EndPointType {
             return URL(string: baseURL)!
             
         case .downloadAudioObject:
+            return URLs.BASE_URL_MUSEUM!
+            
+        case .getPeronalInformation:
             return URLs.BASE_URL_MUSEUM!
         }
         
@@ -52,6 +56,9 @@ extension BaseEnpoint: EndPointType {
             
         case .downloadAudioObject(path: let path, parameters: _):
             return URLs.AUDIO_PATH_MUSEUM + "/\(path)"
+            
+        case .getPeronalInformation(path: let path, parameters: _):
+            return URLs.PERSON_PATH_MUSEUM + "/\(path)"
         }
     
     }
@@ -71,6 +78,9 @@ extension BaseEnpoint: EndPointType {
             
         case .downloadAudioObject:
             return .get
+            
+        case .getPeronalInformation:
+            return .get
         }
     }
     
@@ -88,6 +98,9 @@ extension BaseEnpoint: EndPointType {
             return .downloadFile
             
         case .downloadAudioObject(path: _, parameters: let parameters):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .getPeronalInformation(path: _, parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
         }
         
@@ -107,6 +120,9 @@ extension BaseEnpoint: EndPointType {
             return [:]
             
         case .downloadAudioObject:
+            return [:]
+            
+        case .getPeronalInformation:
             return [:]
         }
         

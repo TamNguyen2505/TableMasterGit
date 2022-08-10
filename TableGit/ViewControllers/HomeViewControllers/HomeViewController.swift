@@ -200,6 +200,18 @@ extension HomeViewController: UICollectionViewDataSource {
 //MARK: Collection delegate
 extension HomeViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        let targetVC = RecordInformationViewController()
+        
+        targetVC.personid = viewModel.createPersonID(atIndexPath: indexPath)
+        targetVC.recordImageURL = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.imageUrl
+        targetVC.recordTitle = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
+        
+        self.navigationController?.pushViewController(targetVC, animated: true)
+        
+    }
+    
 }
 
 //MARK: Collection willDisplay and endDisplay
