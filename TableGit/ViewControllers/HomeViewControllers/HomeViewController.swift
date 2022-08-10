@@ -99,15 +99,8 @@ class HomeViewController: BaseViewController {
     
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
-    
-    let viewModel = ArtHomeViewModel()
-    var exhibitionData = [ExhibitionModel]() {
-        didSet {
-            self.artCollectionView.reloadData()
-        }
-    }
-    
-    private lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+
+    private let viewModel = HomeViewModel()
     
     //MARK: Init
     override func setupUI() {
@@ -127,12 +120,28 @@ class HomeViewController: BaseViewController {
         
     }
     
+    override func observeVM() {
+        super.observeVM()
+        
+        observation = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
+            guard let self = self else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.artCollectionView.reloadData()
+                
+            }
+
+        }
+        
+    }
+    
     override func setupVM() {
         super.setupVM()
         
         Task {
             
-            self.exhibitionData = await viewModel.getHardvardMuseumExhibition()
+            await viewModel.getHardvardMuseumObjectModel()
             Loader.shared.hide()
 
         }
@@ -146,7 +155,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return exhibitionData.count
+        return viewModel.numberOfSections()
         
     }
     
@@ -160,8 +169,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 withReuseIdentifier: HomeHeaderCollectionView.className,
                 for: indexPath)
             
-            guard let typedHeaderView = headerView as? HomeHeaderCollectionView, let info = exhibitionData[indexPath.section].info else { return headerView }
-            let viewModel = ArtCollectionHeaderViewModel(model: info)
+            guard let typedHeaderView = headerView as? HomeHeaderCollectionView, let viewModel = viewModel.createHomeHeaderCollectionViewModel(atIndexPath: indexPath) else { return headerView }
             
             typedHeaderView.updateContent(viewModel: viewModel)
             
@@ -176,7 +184,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return exhibitionData[section].records?.count ?? 4
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -279,9 +287,7 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
     
     func loadImage(at index: IndexPath) -> DataLoadOperation? {
         
-        guard let info = exhibitionData[index.section].records?[index.item] else {return nil}
-        let viewModel = ArtCollectionCellViewModel(model: info)
-        guard let url = viewModel.imageUrl else {return nil}
+        guard let url = viewModel.createHardvardMuseumObjectRecord(atIndexPath: index)?.imageUrl else {return nil}
         
         return DataLoadOperation(url: url)
         

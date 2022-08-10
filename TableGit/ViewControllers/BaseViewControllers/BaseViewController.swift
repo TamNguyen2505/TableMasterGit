@@ -10,6 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
     //MARK: Properties
     let networkMonitor = NetworkMonitor.shared
+    var observation: NSKeyValueObservation?
 
     enum HeaderType {
         
@@ -31,6 +32,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        observeVM()
         
     }
     
@@ -46,6 +48,13 @@ class BaseViewController: UIViewController {
         
         setupVM()
         observeTimer()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        observation = nil
         
     }
     
@@ -96,6 +105,8 @@ class BaseViewController: UIViewController {
         }
         
     }
+    
+    func observeVM() {}
     
     func setupVM() {}
     

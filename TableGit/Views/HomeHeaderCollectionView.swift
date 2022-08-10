@@ -43,7 +43,7 @@ class HomeHeaderCollectionView: UICollectionReusableView {
         
     }
     
-    func updateContent(viewModel: ArtCollectionHeaderViewModel) {
+    func updateContent(viewModel: HomeHeaderCollectionViewModel) {
         
         self.totalLabel.text = viewModel.totalOfPictures
         
