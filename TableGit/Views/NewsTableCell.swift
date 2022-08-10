@@ -198,12 +198,12 @@ class NewsTableCell: UITableViewCell {
         
     }
     
-    func updateContent(data: NewsTableCellModel) {
+    func updateContent(viewModel: NewsTableCellViewModel) {
         
-        self.titleObjectLabel.text = data.titleImage
-        self.widthObjectLabel.text = data.widthValue
-        self.heightObjectLabel.text = data.heightValue
-        self.dateObjectLabel.text = data.dateValue
+        self.titleObjectLabel.text = viewModel.titleImage
+        self.widthObjectLabel.text = viewModel.widthValue
+        self.heightObjectLabel.text = viewModel.heightValue
+        self.dateObjectLabel.text = viewModel.dateValue
  
     }
     

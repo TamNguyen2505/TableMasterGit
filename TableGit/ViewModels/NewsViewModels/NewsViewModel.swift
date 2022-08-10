@@ -8,111 +8,73 @@
 import UIKit
 
 //MARK: API
-class NewsViewModel {
+class NewsViewModel: NSObject {
     //MARK: Properties
     private let networkManager = NetworkManager()
+    private var hardvardMuseumObjectRecords: [HardvardMuseumObjectRecord]? = nil {
+        didSet {
+            didGetAllHardvardMuseumObjectModel = true
+        }
+    }
+    @objc dynamic var didGetAllHardvardMuseumObjectModel = false
     
     //MARK: Features
-    func getObjectAccordingToPage(page: Int) async -> [ExhibitionModel] {
+    func getHardvardMuseumObjectModel(accordingTo page: Int) async {
+        
+        let pageToString = String(page)
         
         let parameters: [String: Any] = ["apikey": URLs.keyAPI,
-                                         "q": "totalpageviews:\(page)",
+                                         "q": "totalpageviews:\(pageToString)",
                                          "size": 200]
 
-        return await Task { () -> [ExhibitionModel] in
+        
+        self.hardvardMuseumObjectRecords = await withTaskGroup(of: HardvardMuseumObject?.self, returning: [HardvardMuseumObjectRecord]?.self) { group in
             
-            await withTaskGroup(of: ExhibitionModel.self, returning: [ExhibitionModel].self) {
-                [unowned self] group in
+            group.addTask{
                 
-                group.addTask{
+                do {
                     
-                    do {
-                        
-                        return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parameters), parseInto: ExhibitionModel.self) ?? ExhibitionModel()
-                        
-                    } catch {
-                        
-                        return ExhibitionModel()
-                        
-                    }
+                    return try await self.networkManager.callAndParseAPI(accordingTo: .getExihibitionFromHardvardMuseum(parameters: parameters), parseInto: HardvardMuseumObject.self)
+                    
+                } catch {
+                    
+                    return nil
                     
                 }
-                
-                var collection = [ExhibitionModel]()
-                
-                for await result in group {
-                    
-                    collection.append(result)
-                    
-                }
-                
-                return collection
                 
             }
             
+            var records: [HardvardMuseumObjectRecord]?
             
-        }.value
+            for await result in group {
+                guard let result = result else {continue}
+                
+                records = result.records
+                
+            }
+            
+            return records
+                        
+        }
+        
         
     }
     
 }
 
-//MARK: Resolved API
-struct NewsTableCellModel {
-    //MARK: Properties
-    private var exhibitionModelArray: ExhibitionModelArray
+extension NewsViewModel {
     
-    //MARK: Init
-    init(exhibitionModelAray: ExhibitionModelArray) {
+    func numberOfItemsInSection(section: Int) -> Int {
         
-        self.exhibitionModelArray = exhibitionModelAray
+        return self.hardvardMuseumObjectRecords?.count ?? 1
         
     }
     
-    //MARK: Expected output
-    var imageUrl: URL? {
+    func createHardvardMuseumObjectRecord(atIndexPath: IndexPath) -> NewsTableCellViewModel? {
         
-        guard let id = exhibitionModelArray.images?.first?.iiifbaseuri, let url = URL(string: id + "/full/full/0/default.jpg") else {return nil}
-        return url
+        guard let model = self.hardvardMuseumObjectRecords?[atIndexPath.row] else {return nil}
         
-    }
-    
-    var titleImage: String {
-        
-        return exhibitionModelArray.title ?? ""
-        
-    }
-    
-    var widthValue: String {
-        
-        if let width = exhibitionModelArray.images?.first?.width {
-            
-            return String(width)
-            
-        } else {
-            
-            return "None"
-            
-        }
-        
-    }
-    
-    var heightValue: String {
-        
-        if let height = exhibitionModelArray.images?.first?.height {
-            
-            return String(height)
-            
-        } else {
-            
-            return "None"
-            
-        }
-    }
-    
-    var dateValue: String {
-        
-        return exhibitionModelArray.images?.first?.date?.formatDateToString(format: DateFormatterType.DDMMYYYY) ?? "None"
+        return NewsTableCellViewModel(model: model)
         
     }
     

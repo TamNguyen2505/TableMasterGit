@@ -27,13 +27,8 @@ class NewsViewController: BaseViewController {
         return table
     }()
     
-    let viewModel = NewsViewModel()
-    var exhibitionData = [ExhibitionModel]() {
-        didSet {
-            self.newsTableView.reloadData()
-        }
-    }
-    
+    private let viewModel = NewsViewModel()
+ 
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
     
@@ -65,12 +60,28 @@ class NewsViewController: BaseViewController {
         
     }
     
+    override func observeVM() {
+        super.observeVM()
+        
+        observation = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
+            guard let self = self else {return}
+            
+            DispatchQueue.main.async {
+                
+                self.newsTableView.reloadData()
+                
+            }
+
+        }
+        
+    }
+    
     override func setupVM() {
         super.setupVM()
         
         Task {
             
-            self.exhibitionData = await viewModel.getObjectAccordingToPage(page: 1)
+            await viewModel.getHardvardMuseumObjectModel(accordingTo: 0)
             Loader.shared.hide()
 
         }
@@ -113,15 +124,9 @@ class NewsViewController: BaseViewController {
 //MARK: Table view data sources
 extension NewsViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return exhibitionData.count
-        
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return exhibitionData[section].records?.count ?? 1
+        return viewModel.numberOfItemsInSection(section: section)
         
     }
     
@@ -129,10 +134,9 @@ extension NewsViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableCell.className, for: indexPath) as! NewsTableCell
         
-        guard let record = exhibitionData[indexPath.section].records?[indexPath.row] else {return cell}
-        let data = NewsTableCellModel(exhibitionModelAray: record)
+        guard let viewModel = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath) else {return cell}
         
-        cell.updateContent(data: data)
+        cell.updateContent(viewModel: viewModel)
         
         return cell
         
@@ -145,13 +149,6 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let targetVC = DetailedNewsViewController()
-        guard let objectID = exhibitionData[indexPath.section].records?[indexPath.row].objectid else {return}
-        
-        targetVC.objectID = String(objectID)
-        
-        self.navigationController?.pushViewController(targetVC, animated: true)
         
     }
     
@@ -243,7 +240,7 @@ extension NewsViewController: UITableViewDataSourcePrefetching {
     
     func loadImage(at index: IndexPath) -> DataLoadOperation? {
         
-        guard let record = exhibitionData[index.section].records?[index.row], let url = NewsTableCellModel(exhibitionModelAray: record).imageUrl else {return nil}
+        guard let url = viewModel.createHardvardMuseumObjectRecord(atIndexPath: index)?.imageUrl else {return nil}
         
         return DataLoadOperation(url: url)
         
