@@ -26,6 +26,7 @@ class BaseViewController: UIViewController {
     private lazy var slideInTransitioningDelegate = SlideInPresentationManager()
     
     var navigationTitle = ""
+    var hideTabBarController: Bool?
     
     //MARK: View cycle
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class BaseViewController: UIViewController {
         
         setupUI()
         observeVM()
+        hideBottomTabBarController()
         
     }
     
@@ -48,6 +50,13 @@ class BaseViewController: UIViewController {
         
         setupVM()
         observeTimer()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        hideBottomTabBarController()
         
     }
     
@@ -122,11 +131,12 @@ class BaseViewController: UIViewController {
 
     }
     
-    func hideTabBarController(hide: Bool) {
+    private func hideBottomTabBarController() {
         
-        guard let tabs = self.tabBarController as? BaseTabBarController else {return}
+        guard let tabs = self.tabBarController as? BaseTabBarController, let hideTabBarController = hideTabBarController else {return}
         
-        tabs.customTabBar?.isHidden = hide
+        tabs.customTabBar?.isHidden = hideTabBarController
+        self.hideTabBarController?.toggle()
         
     }
 

@@ -61,9 +61,7 @@ class RecordInformationViewController: BaseViewController {
         super.setupUI()
         
         Loader.shared.show()
-        
-        hideTabBarController(hide: true)
-        
+                
         view.addSubview(recordImageView)
         recordImageView.snp.makeConstraints{ make in
             
@@ -157,13 +155,6 @@ class RecordInformationViewController: BaseViewController {
             await viewModel.getRecordImage(with: recordImageURL)
             
         }
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        hideTabBarController(hide: false)
         
     }
     

@@ -204,6 +204,7 @@ extension HomeViewController: UICollectionViewDelegate {
         
         let targetVC = RecordInformationViewController()
         
+        targetVC.hideTabBarController = true
         targetVC.personid = viewModel.createPersonID(atIndexPath: indexPath)
         targetVC.recordImageURL = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.imageUrl
         targetVC.recordTitle = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
