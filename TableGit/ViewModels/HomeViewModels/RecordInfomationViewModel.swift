@@ -5,7 +5,6 @@
 //  Created by MINERVA on 10/08/2022.
 //
 
-import Foundation
 import UIKit
 
 class RecordInfomationViewModel: NSObject {
@@ -33,7 +32,8 @@ class RecordInfomationViewModel: NSObject {
         
         do {
             
-            self.personalInfomationModel = try await networkManager.callAndParseAPI(accordingTo: .getPeronalInformation(path: personID, parameters: parameters), parseInto: HardvardMuseumPerson.self)
+            async let personalInfomationModel = try await networkManager.callAndParseAPI(accordingTo: .getPeronalInformation(path: personID, parameters: parameters), parseInto: HardvardMuseumPerson.self)
+            self.personalInfomationModel = try await personalInfomationModel
             
         } catch {
             
@@ -48,7 +48,8 @@ class RecordInfomationViewModel: NSObject {
 
         do {
             
-            self.hardvardMuseumObjectOfPerson = try await networkManager.callAndParseAPI(accordingTo: .getObjectAccordingToPerson(parameters: parameters), parseInto: HardvardMuseumObject.self)
+            async let hardvardMuseumObjectOfPerson = try await networkManager.callAndParseAPI(accordingTo: .getObjectAccordingToPerson(parameters: parameters), parseInto: HardvardMuseumObject.self)
+            self.hardvardMuseumObjectOfPerson = try await hardvardMuseumObjectOfPerson
             
         } catch {
             
@@ -63,6 +64,8 @@ extension RecordInfomationViewModel {
 
     func createImageAccordingToGender() -> UIImage? {
         
+        guard didGetAllHardvardPersonalInformation else {return nil}
+        
         if self.personalInfomationModel?.gender == "male" {
             
             return UIImage(named: "icons8-man-artist")
@@ -76,6 +79,8 @@ extension RecordInfomationViewModel {
     }
     
     func createNames() -> String? {
+        
+        guard didGetAllHardvardPersonalInformation else {return nil}
         
         guard let names = self.personalInfomationModel?.names else {return nil}
         
@@ -97,6 +102,7 @@ extension RecordInfomationViewModel {
 extension RecordInfomationViewModel {
     
     func numberOfItemsInSection(section: Int) -> Int {
+        guard didGetObjectAccordingToPerson else {return 1}
         
         return self.hardvardMuseumObjectOfPerson?.records?.count ?? 1
         
@@ -104,7 +110,7 @@ extension RecordInfomationViewModel {
     
     func createHardvardMuseumObjectRecord(atIndexPath: IndexPath) -> HomeCollectionCellViewModel? {
         
-        guard let model = self.hardvardMuseumObjectOfPerson?.records?[atIndexPath.item] else {return nil}
+        guard didGetObjectAccordingToPerson, let model = self.hardvardMuseumObjectOfPerson?.records?[atIndexPath.item] else {return nil}
         
         return HomeCollectionCellViewModel(model: model)
         

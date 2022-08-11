@@ -65,6 +65,7 @@ class NewsViewModel: NSObject {
 extension NewsViewModel {
     
     func numberOfItemsInSection(section: Int) -> Int {
+        guard didGetAllHardvardMuseumObjectModel else {return 1}
         
         return self.hardvardMuseumObjectRecords?.count ?? 1
         
@@ -72,7 +73,7 @@ extension NewsViewModel {
     
     func createHardvardMuseumObjectRecord(atIndexPath: IndexPath) -> NewsTableCellViewModel? {
         
-        guard let model = self.hardvardMuseumObjectRecords?[atIndexPath.row] else {return nil}
+        guard didGetAllHardvardMuseumObjectModel, let model = self.hardvardMuseumObjectRecords?[atIndexPath.row] else {return nil}
         
         return NewsTableCellViewModel(model: model)
         

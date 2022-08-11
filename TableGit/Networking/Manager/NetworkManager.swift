@@ -42,12 +42,19 @@ class NetworkManager {
         
         switch result {
         case .success:
-            guard let responseData = routerResponse.data, let decodedModel = try? await self.map(from: responseData, to: model) else {return nil}
+            guard let responseData = routerResponse.data else {return nil}
             
-            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
-            information.announce()
-                        
-            return decodedModel
+            do {
+                
+                async let asyncDecodedModel = try? await self.map(from: responseData, to: model)
+                let decodedModel = await asyncDecodedModel
+                
+                let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
+                information.announce()
+                            
+                return decodedModel
+                
+            }
             
         case .failure(_):
             
@@ -66,12 +73,19 @@ class NetworkManager {
         
         switch result {
         case .success:
-            guard let responseData = routerResponse.data, let decodedModel = try? await self.map(from: responseData, to: model) else {return nil}
+            guard let responseData = routerResponse.data else {return nil}
             
-            let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
-            information.announce()
-                        
-            return decodedModel
+            do {
+                
+                async let asyncDecodedModel = try? await self.map(from: responseData, to: model)
+                let decodedModel = await asyncDecodedModel
+                
+                let information = NetworkLogger(urlRequest: routerResponse.urlRequest, data: routerResponse.data, httpURLResponse: response)
+                information.announce()
+                            
+                return decodedModel
+                
+            }
                                     
         case .failure(_):
             
