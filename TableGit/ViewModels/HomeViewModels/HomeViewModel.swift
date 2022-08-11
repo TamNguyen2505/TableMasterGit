@@ -137,21 +137,4 @@ extension HomeViewModel {
         
     }
     
-    func createRecordImage(atIndexPath: IndexPath) async throws -> UIImage? {
-        
-        guard let url = createHardvardMuseumObjectRecord(atIndexPath: atIndexPath)?.imageUrl else {return nil}
-        
-        do {
-            
-            guard let data = try await networkManager.downloadData(accordingTo: .downloadFullImageObject(baseURL: url.absoluteString)) else {return nil}
-            return UIImage(data: data)
-            
-        } catch {
-            
-            return nil
-            
-        }
-        
-    }
-    
 }

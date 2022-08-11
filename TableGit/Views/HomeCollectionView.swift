@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol HomeCollectionViewDelegate: AnyObject {
+    
+    func didTapOnImage(from: HomeCollectionView, withImage: UIImage)
+    
+}
+
 class HomeCollectionView: UICollectionViewCell {
     //MARK: Properties
     private let artImageView: UIImageView = {
@@ -15,8 +21,16 @@ class HomeCollectionView: UICollectionViewCell {
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "signup-background")
+        iv.isUserInteractionEnabled = true
         return iv
     }()
+    
+    private lazy var tapOnImage: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEventFromTapOnImage(_:)))
+        return tap
+    }()
+    
+    weak var delegate: HomeCollectionViewDelegate?
     
     //MARK: View cycle
     override init(frame: CGRect) {
@@ -29,6 +43,15 @@ class HomeCollectionView: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Actions
+    @objc func handleEventFromTapOnImage(_ sender: UITapGestureRecognizer) {
+        
+        guard let image = artImageView.image else {return}
+        
+        delegate?.didTapOnImage(from: self, withImage: image)
+        
+    }
+    
     //MARK: Helpers
     private func setupUI() {
                         
@@ -38,7 +61,9 @@ class HomeCollectionView: UICollectionViewCell {
             make.edges.equalToSuperview().inset(5)
                         
         }
-                        
+         
+        artImageView.addGestureRecognizer(tapOnImage)
+        
     }
     
     func setupImage(image: UIImage?) {

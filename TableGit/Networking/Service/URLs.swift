@@ -15,5 +15,6 @@ struct URLs {
     static let AUDIO_PATH_MUSEUM = "/audio"
     static let PERSON_PATH_MUSEUM = "/person"
     static let OBJECT_FULL_IMAGE = "/full/full/0/default.jpg"
+    static let OBJRCT_PORTRAIT_IMAGE = "/125,15,120,140/full/0/default.jpg"
     
 }

@@ -19,9 +19,16 @@ struct HomeCollectionCellViewModel {
     }
     
     //MARK: Expected values
-    var imageUrl: URL? {
+    var fullImageUrl: URL? {
         
         guard let id = model.images?.first?.iiifbaseuri, let url = URL(string: id + URLs.OBJECT_FULL_IMAGE) else {return nil}
+        return url
+        
+    }
+    
+    var portraitImage: URL? {
+        
+        guard let id = model.images?.first?.iiifbaseuri, let url = URL(string: id + URLs.OBJRCT_PORTRAIT_IMAGE) else {return nil}
         return url
         
     }

@@ -14,7 +14,9 @@ enum BaseEnpoint {
     case downloadFullImageObject(baseURL: String)
     case downloadAudioObject(path: String, parameters: Parameters)
     case getPeronalInformation(path: String, parameters: Parameters)
-    
+    case getObjectAccordingToPerson(parameters: Parameters)
+    case downloadPortraitImage(baseURL: String)
+
 }
 
 extension BaseEnpoint: EndPointType {
@@ -37,6 +39,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getPeronalInformation:
             return URLs.BASE_URL_MUSEUM!
+        
+        case .getObjectAccordingToPerson:
+            return URLs.BASE_URL_MUSEUM!
+            
+        case .downloadPortraitImage(baseURL: let baseURL):
+            return URL(string: baseURL)!
         }
         
     }
@@ -59,6 +67,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getPeronalInformation(path: let path, parameters: _):
             return URLs.PERSON_PATH_MUSEUM + "/\(path)"
+            
+        case .getObjectAccordingToPerson:
+            return URLs.OBJECT_PATH_MUSEUM
+            
+        case .downloadPortraitImage:
+            return nil
         }
     
     }
@@ -81,6 +95,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getPeronalInformation:
             return .get
+            
+        case .getObjectAccordingToPerson:
+            return .get
+            
+        case .downloadPortraitImage:
+            return .get
         }
     }
     
@@ -102,6 +122,12 @@ extension BaseEnpoint: EndPointType {
             
         case .getPeronalInformation(path: _, parameters: let parameters):
             return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .getObjectAccordingToPerson(parameters: let parameters):
+            return .requestParameters(bodyParameters: nil, bodyEncoding: .urlEncoding, urlParameters: parameters)
+            
+        case .downloadPortraitImage:
+            return .downloadFile
         }
         
     }
@@ -123,6 +149,12 @@ extension BaseEnpoint: EndPointType {
             return [:]
             
         case .getPeronalInformation:
+            return [:]
+            
+        case .getObjectAccordingToPerson:
+            return [:]
+            
+        case .downloadPortraitImage:
             return [:]
         }
         

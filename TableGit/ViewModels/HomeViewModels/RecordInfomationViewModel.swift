@@ -16,8 +16,14 @@ class RecordInfomationViewModel: NSObject {
             didGetAllHardvardPersonalInformation = true
         }
     }
+    private var hardvardMuseumObjectOfPerson: HardvardMuseumObject? {
+        didSet {
+            didGetObjectAccordingToPerson = true
+        }
+    }
+    
     @objc dynamic var didGetAllHardvardPersonalInformation = false
-    @objc dynamic var didGetImage: UIImage?
+    @objc dynamic var didGetObjectAccordingToPerson = false
 
     //MARK: Features
     func getPersonalInformationModel(personID: Int) async throws {
@@ -35,14 +41,14 @@ class RecordInfomationViewModel: NSObject {
         
     }
     
-    func getRecordImage(with url: URL) async {
+    func getObjectAccordingToPerson(personID: Int) async throws {
         
-        let urlString = url.absoluteString
-        
+        let parameters: [String: Any] = ["apikey": URLs.keyAPI,
+                                         "person": personID]
+
         do {
             
-            guard let data = try await networkManager.downloadData(accordingTo: .downloadFullImageObject(baseURL: urlString)) else {return}
-            self.didGetImage = UIImage(data: data)
+            self.hardvardMuseumObjectOfPerson = try await networkManager.callAndParseAPI(accordingTo: .getObjectAccordingToPerson(parameters: parameters), parseInto: HardvardMuseumObject.self)
             
         } catch {
             
@@ -54,13 +60,53 @@ class RecordInfomationViewModel: NSObject {
 }
 
 extension RecordInfomationViewModel {
+
+    func createImageAccordingToGender() -> UIImage? {
+        
+        if self.personalInfomationModel?.gender == "male" {
+            
+            return UIImage(named: "icons8-man-artist")
+            
+        } else {
+            
+            return UIImage(named: "icons8-woman-artist")
+            
+        }
+        
+    }
     
-    func createExhibitionURLOfPerson() -> URLRequest? {
+    func createNames() -> String? {
         
-        guard let urlString = self.personalInfomationModel?.url, let url = URL(string: urlString) else {return nil}
-        let urlRequest = URLRequest(url: url)
+        guard let names = self.personalInfomationModel?.names else {return nil}
         
-        return urlRequest
+        var stringName = [String]()
+        
+        for name in names where name.displayname != nil {
+            guard let displayName = name.displayname else {continue}
+            
+            stringName.append(displayName)
+            
+        }
+        
+        return stringName.joined(separator: " - ")
+
+    }
+    
+}
+
+extension RecordInfomationViewModel {
+    
+    func numberOfItemsInSection(section: Int) -> Int {
+        
+        return self.hardvardMuseumObjectOfPerson?.records?.count ?? 1
+        
+    }
+    
+    func createHardvardMuseumObjectRecord(atIndexPath: IndexPath) -> HomeCollectionCellViewModel? {
+        
+        guard let model = self.hardvardMuseumObjectOfPerson?.records?[atIndexPath.item] else {return nil}
+        
+        return HomeCollectionCellViewModel(model: model)
         
     }
     

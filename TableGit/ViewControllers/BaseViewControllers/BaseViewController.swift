@@ -10,7 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
     //MARK: Properties
     let networkMonitor = NetworkMonitor.shared
-    var observation: NSKeyValueObservation?
+    var observations = [NSKeyValueObservation]()
 
     enum HeaderType {
         
@@ -63,7 +63,7 @@ class BaseViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        observation = nil
+        observations.removeAll()
         
     }
     

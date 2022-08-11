@@ -63,7 +63,7 @@ class NewsViewController: BaseViewController {
     override func observeVM() {
         super.observeVM()
         
-        observation = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
+        let observationDidGetAllHardvardMuseumObjectModel = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
             guard let self = self else {return}
             
             DispatchQueue.main.async {
@@ -73,6 +73,7 @@ class NewsViewController: BaseViewController {
             }
 
         }
+        self.observations.append(observationDidGetAllHardvardMuseumObjectModel)
         
     }
     

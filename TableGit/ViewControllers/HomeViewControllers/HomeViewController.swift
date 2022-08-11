@@ -123,7 +123,7 @@ class HomeViewController: BaseViewController {
     override func observeVM() {
         super.observeVM()
         
-        observation = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
+        let observationDidGetAllHardvardMuseumObjectModel = viewModel.observe(\.didGetAllHardvardMuseumObjectModel, options: [.new]) {[weak self] _,_ in
             guard let self = self else {return}
             
             DispatchQueue.main.async {
@@ -133,6 +133,8 @@ class HomeViewController: BaseViewController {
             }
 
         }
+        self.observations.append(observationDidGetAllHardvardMuseumObjectModel)
+        
         
     }
     
@@ -151,7 +153,7 @@ class HomeViewController: BaseViewController {
 }
 
 //MARK: Collection view data source
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -191,23 +193,27 @@ extension HomeViewController: UICollectionViewDataSource {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionView.className, for: indexPath) as? HomeCollectionView else {return UICollectionViewCell()}
     
+        cell.delegate = self
+        
         return cell
         
     }
     
 }
 
-//MARK: Collection delegate
-extension HomeViewController: UICollectionViewDelegate {
+//MARK: HomeCollectionViewDelegate
+extension HomeViewController: HomeCollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func didTapOnImage(from: HomeCollectionView, withImage: UIImage) {
+        
+        guard let indexPath = self.artCollectionView.indexPath(for: from) else {return}
         
         let targetVC = RecordInformationViewController()
         
         targetVC.hideTabBarController = true
         targetVC.personid = viewModel.createPersonID(atIndexPath: indexPath)
-        targetVC.recordImageURL = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.imageUrl
-        targetVC.recordTitle = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
+        targetVC.firstRecordTitle = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
+        targetVC.firstRecordImage = withImage
         
         self.navigationController?.pushViewController(targetVC, animated: true)
         
@@ -300,7 +306,7 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
     
     func loadImage(at index: IndexPath) -> DataLoadOperation? {
         
-        guard let url = viewModel.createHardvardMuseumObjectRecord(atIndexPath: index)?.imageUrl else {return nil}
+        guard let url = viewModel.createHardvardMuseumObjectRecord(atIndexPath: index)?.fullImageUrl else {return nil}
         
         return DataLoadOperation(url: url)
         
