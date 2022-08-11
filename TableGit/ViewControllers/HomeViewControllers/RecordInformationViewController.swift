@@ -68,7 +68,7 @@ class RecordInformationViewController: BaseViewController {
     
     private lazy var loadingQueue = OperationQueue()
     private lazy var loadingOperations = [IndexPath: DataLoadOperation]()
-    
+
     //MARK: View cycle
     override func setupUI() {
         super.setupUI()
@@ -182,7 +182,7 @@ class RecordInformationViewController: BaseViewController {
 }
 
 //MARK: Collection view data source
-extension RecordInformationViewController: UICollectionViewDataSource {
+extension RecordInformationViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -201,7 +201,7 @@ extension RecordInformationViewController: UICollectionViewDataSource {
     
 }
 
-//MARK:
+//MARK: HomeCollectionViewDelegate
 extension RecordInformationViewController: HomeCollectionViewDelegate {
     
     func didTapOnImage(from: HomeCollectionView, withImage: UIImage) {
@@ -211,15 +211,6 @@ extension RecordInformationViewController: HomeCollectionViewDelegate {
         recordImageView.image = withImage
         recordTitleLabel.text = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
         
-    }
-    
-}
-
-
-//MARK: Collection delegate
-extension RecordInformationViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
     
 }
