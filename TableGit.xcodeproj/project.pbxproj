@@ -18,6 +18,7 @@
 		0072FEDE28A0F574002E4C91 /* ArtAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */; };
 		0074C22728890597005F115F /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C22628890597005F115F /* BaseTabBarController.swift */; };
 		0074C2292889064B005F115F /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074C2282889064B005F115F /* CustomTabBar.swift */; };
+		0074E03128A5F32000149A16 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0074E03028A5F32000149A16 /* BaseNavigationController.swift */; };
 		0075684928A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684828A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift */; };
 		0075684B28A3821300A41E13 /* HomeCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684A28A3821300A41E13 /* HomeCollectionCellViewModel.swift */; };
 		0075684D28A38BFE00A41E13 /* NewsTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075684C28A38BFE00A41E13 /* NewsTableCellViewModel.swift */; };
@@ -107,6 +108,7 @@
 		0072FEDD28A0F574002E4C91 /* ArtAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtAudioViewController.swift; sourceTree = "<group>"; };
 		0074C22628890597005F115F /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		0074C2282889064B005F115F /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		0074E03028A5F32000149A16 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		0075684828A370DC00A41E13 /* HomeHeaderCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderCollectionViewModel.swift; sourceTree = "<group>"; };
 		0075684A28A3821300A41E13 /* HomeCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		0075684C28A38BFE00A41E13 /* NewsTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCellViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				0074C22628890597005F115F /* BaseTabBarController.swift */,
 				E97CE05328829381006A2E3C /* BaseViewController.swift */,
 				007CA9F528939FFB00EE8D1B /* SideBarViewController.swift */,
+				0074E03028A5F32000149A16 /* BaseNavigationController.swift */,
 			);
 			path = BaseViewControllers;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				008377A5288A3605003A39EA /* SettingsViewController.swift in Sources */,
 				E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */,
 				007CA9F82893B35B00EE8D1B /* SlideInPresentationManager.swift in Sources */,
+				0074E03128A5F32000149A16 /* BaseNavigationController.swift in Sources */,
 				0075685528A3A90700A41E13 /* HardvardMuseumPersonModel.swift in Sources */,
 				00B1CDE6287D088C0058EA96 /* EndPointType.swift in Sources */,
 				0089A8D12885614300792773 /* main.swift in Sources */,
