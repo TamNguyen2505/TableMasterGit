@@ -178,6 +178,36 @@ class RecordInformationViewController: BaseViewController {
         
     }
     
+    private func fade(toTitle: String, toImage: UIImage, showEffects: Bool) {
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            
+            UIView.transition(with: self.recordImageView, duration: 0.5,
+              options: .transitionCrossDissolve,
+              animations: {
+                
+                self.recordImageView.image = toImage
+                self.recordTitleLabel.text = toTitle
+                
+              },
+              completion: nil
+            )
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0,
+              options: .curveEaseOut,
+              animations: {
+                
+                self.recordImageView.alpha = showEffects ? 1.0 : 0.0
+                
+              },
+              completion: nil
+            )
+            
+            
+        }
+        
+      }
     
 }
 
@@ -207,9 +237,9 @@ extension RecordInformationViewController: HomeCollectionViewDelegate {
     func didTapOnImage(from: HomeCollectionView, withImage: UIImage) {
         
         guard let indexPath = self.recordCollectionView.indexPath(for: from) else {return}
-        
-        recordImageView.image = withImage
-        recordTitleLabel.text = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title
+        let title = viewModel.createHardvardMuseumObjectRecord(atIndexPath: indexPath)?.title ?? ""
+
+        self.fade(toTitle: title, toImage: withImage, showEffects: true)
         
     }
     
