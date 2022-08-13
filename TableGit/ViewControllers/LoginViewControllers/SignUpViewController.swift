@@ -56,12 +56,13 @@ class SignUpViewController: BaseViewController {
         return tf
     }()
     
-    private lazy var loginButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("CANCEL", for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.backgroundColor = .systemOrange
         btn.layer.cornerRadius = 5
+        btn.addTarget(self, action: #selector(handleEventFromCancelButton(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -89,6 +90,12 @@ class SignUpViewController: BaseViewController {
     @objc func handleEventFromSignUpButton(_ sender: UIButton) {
         
         
+        
+    }
+    
+    @objc func handleEventFromCancelButton(_ sender: UIButton) {
+        
+        self.navigationController?.popViewController(animated: true)
         
     }
     
@@ -151,7 +158,7 @@ class SignUpViewController: BaseViewController {
             
         }
         
-        let hStackForButton = UIStackView(arrangedSubviews: [loginButton, signupButton])
+        let hStackForButton = UIStackView(arrangedSubviews: [cancelButton, signupButton])
         hStackForButton.axis = .horizontal
         hStackForButton.spacing = 10
         hStackForButton.distribution = .fillEqually
@@ -164,7 +171,7 @@ class SignUpViewController: BaseViewController {
             
         }
         
-        loginButton.snp.makeConstraints{ make in
+        cancelButton.snp.makeConstraints{ make in
             
             make.height.equalTo(50)
             make.width.equalTo(signupButton.snp.width)

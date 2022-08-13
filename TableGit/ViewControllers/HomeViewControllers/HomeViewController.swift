@@ -107,8 +107,6 @@ class HomeViewController: BaseViewController {
         super.setupUI()
         
         Loader.shared.show()
-
-        headerType = .headerWidthRightSlideBarAndMiddleTitleAndLeftAvatar
         
         view.addSubview(artCollectionView)
         artCollectionView.snp.makeConstraints{ make in
