@@ -7,6 +7,5 @@ target 'TableGit' do
 
   # Pods for TableGit
   pod 'SnapKit', '~> 5.6'
-  pod 'Localize-Swift', '~> 3.2'
 
 end
