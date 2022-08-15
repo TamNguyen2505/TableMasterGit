@@ -81,9 +81,9 @@
 		E98DB4EC286352DE00D4DA51 /* PublicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DB4EB286352DE00D4DA51 /* PublicFunction.swift */; };
 		E99C108C2882ECEA00DC77AC /* TopGradientCurvedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */; };
 		E9B8AF2C286708C600A8242B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AF2B286708C600A8242B /* Loader.swift */; };
-		E9E9692828AA858000C7F476 /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9692728AA858000C7F476 /* LocalizableKeys.swift */; };
-		E9E9692A28AA862900C7F476 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9692928AA862900C7F476 /* Languages.swift */; };
-		E9E9692C28AA866500C7F476 /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9692B28AA866500C7F476 /* LocalizableManager.swift */; };
+		E9E9693628AA8A0400C7F476 /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9693328AA8A0400C7F476 /* LocalizableKeys.swift */; };
+		E9E9693728AA8A0400C7F476 /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9693428AA8A0400C7F476 /* LocalizableManager.swift */; };
+		E9E9693828AA8A0400C7F476 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E9693528AA8A0400C7F476 /* Languages.swift */; };
 		E9FC052D2871AB5000AA30D0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */; };
 		FB6B16453A127E07448972E9 /* Pods_TableGit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361C9B9073A082976A810428 /* Pods_TableGit.framework */; };
 /* End PBXBuildFile section */
@@ -180,9 +180,9 @@
 		E99C108B2882ECEA00DC77AC /* TopGradientCurvedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGradientCurvedView.swift; sourceTree = "<group>"; };
 		E9B8AF2B286708C600A8242B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		E9E9691728A924E400C7F476 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		E9E9692728AA858000C7F476 /* LocalizableKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
-		E9E9692928AA862900C7F476 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
-		E9E9692B28AA866500C7F476 /* LocalizableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableManager.swift; sourceTree = "<group>"; };
+		E9E9693328AA8A0400C7F476 /* LocalizableKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
+		E9E9693428AA8A0400C7F476 /* LocalizableManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableManager.swift; sourceTree = "<group>"; };
+		E9E9693528AA8A0400C7F476 /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		E9FC052C2871AB5000AA30D0 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,7 +235,7 @@
 		0072FEDF28A0FC91002E4C91 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E9E9692628AA853600C7F476 /* Localizability */,
+				E9E9693228AA8A0400C7F476 /* Localizable */,
 				0077CCEA2862C2EA0079F06A /* LaunchScreen.storyboard */,
 				0077CCE82862C2EA0079F06A /* Assets.xcassets */,
 				0077CCED2862C2EA0079F06A /* Info.plist */,
@@ -550,14 +550,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E9E9692628AA853600C7F476 /* Localizability */ = {
+		E9E9693228AA8A0400C7F476 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				E9E9692728AA858000C7F476 /* LocalizableKeys.swift */,
-				E9E9692928AA862900C7F476 /* Languages.swift */,
-				E9E9692B28AA866500C7F476 /* LocalizableManager.swift */,
+				E9E9693328AA8A0400C7F476 /* LocalizableKeys.swift */,
+				E9E9693428AA8A0400C7F476 /* LocalizableManager.swift */,
+				E9E9693528AA8A0400C7F476 /* Languages.swift */,
 			);
-			path = Localizability;
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -728,11 +728,9 @@
 				007856B22887B31100E73D24 /* NetworkMonitor.swift in Sources */,
 				00B1CDF9287D16290058EA96 /* BaseEnpoint.swift in Sources */,
 				007AA1CA289B69C0004507F7 /* DetailedNewsViewModel.swift in Sources */,
-				E9E9692A28AA862900C7F476 /* Languages.swift in Sources */,
 				007A0C0028A269AA00866F10 /* HardvardMuseumObjectModel.swift in Sources */,
 				00715DFA287EB85800209B2A /* Data + Extension.swift in Sources */,
 				007111BD28977A8F0012026D /* KeychainError.swift in Sources */,
-				E9E9692C28AA866500C7F476 /* LocalizableManager.swift in Sources */,
 				0075684F28A3932D00A41E13 /* RecordInformationViewController.swift in Sources */,
 				00B1CDF2287D0C450058EA96 /* NetworkError.swift in Sources */,
 				0089A8D3288562DF00792773 /* MyApplication.swift in Sources */,
@@ -759,8 +757,10 @@
 				007CA9EE28926BC400EE8D1B /* KeychainManager.swift in Sources */,
 				0074C22728890597005F115F /* BaseTabBarController.swift in Sources */,
 				00B1CDFB287D17F90058EA96 /* NetworkManager.swift in Sources */,
+				E9E9693828AA8A0400C7F476 /* Languages.swift in Sources */,
 				00A06EB7289A6C00009A050C /* DetailedNewsViewController.swift in Sources */,
 				007856AF28879DB400E73D24 /* AsyncAddOperation.swift in Sources */,
+				E9E9693728AA8A0400C7F476 /* LocalizableManager.swift in Sources */,
 				00715410289A80A300FB7085 /* ColorPalletCollectionCell.swift in Sources */,
 				007A0BF828A2564800866F10 /* HomeCollectionView.swift in Sources */,
 				0072FEDE28A0F574002E4C91 /* ArtAudioViewController.swift in Sources */,
@@ -786,7 +786,7 @@
 				00800034287FA72B00D3237C /* URLs.swift in Sources */,
 				E98DB4DC28634FD900D4DA51 /* NSObject + Extension.swift in Sources */,
 				007CA9F428938D8800EE8D1B /* UserDefaults + Extension.swift in Sources */,
-				E9E9692828AA858000C7F476 /* LocalizableKeys.swift in Sources */,
+				E9E9693628AA8A0400C7F476 /* LocalizableKeys.swift in Sources */,
 				0089A8D52885659200792773 /* SessionTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
