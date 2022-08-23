@@ -22,7 +22,7 @@ class DogViewModel {
     //MARK: Features
     func fetchAPI() async throws {
                 
-        let urlParameters: [String: Any] = ["size" : "med", "mime_types" : "jpg", "format": "json", "has_breeds": true, "order": "RANDOM", "page" : 0, "limit" : 1]
+        let urlParameters: [String: Any] = ["size" : "med", "mime_types" : "jpg", "format": "json", "has_breeds": true, "order": "RANDOM", "page" : 0, "limit" : 100]
         
         let headers: [String: String] = ["x-api-key": "67edfac4-bf65-4cdd-a65f-a9c70993f5f5"]
                 

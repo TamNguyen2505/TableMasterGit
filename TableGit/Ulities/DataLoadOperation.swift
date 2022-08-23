@@ -11,22 +11,19 @@ class DataLoadOperation: Operation {
     //MARK: Properties
     var image: UIImage?
     var loadingCompleteHandler: ((UIImage?) -> ())?
-    private let artResults: DataResponse
+    private let url: String
     
     //MARK: Init
-    init(artResults: DataResponse) {
+    init(url: String) {
         
-        self.artResults = artResults
+        self.url = url
         
     }
     
     override func main() {
         super.main()
         if isCancelled {return}
-        
-        guard let id = artResults.image_id else {return}
-        
-        let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
+                
         downloadImage(url: url){ (image) in
             
             DispatchQueue.main.async {[weak self] in
@@ -41,5 +38,7 @@ class DataLoadOperation: Operation {
         
     }
     
-    
 }
+
+//        let url = "https://www.artic.edu/iiif/2/\(id)/full/843,/0/default.jpg"
+
